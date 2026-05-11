@@ -5,7 +5,7 @@
 int main(int argc, char* argv[]) {
 
     GeneratePlan genPlan;
-    genPlan.printPlan(1, "./data_environment/plan1");
+    genPlan.printPlan(1, "./data_environment/plan1.dat");
 
     return 0;
 }

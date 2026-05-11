@@ -6,6 +6,7 @@
 #ifndef H_GENERATE_PLAN_H
 #define H_GENERATE_PLAN_H
 
+#include<iostream>
 #include<string>
 
 /**
@@ -15,10 +16,10 @@
 class GeneratePlan {
     public:
         GeneratePlan();
-        void printPlan(size_t ind, std::string fileName);
+        void printPlan(const size_t ind, const std::string fileName) const;
 
     private:
-        void printPlan1(std::string fileName);
+        void printPlan1(const std::string fileName) const;
 };
 
 #endif // H_GENERATE_PLAN_H
