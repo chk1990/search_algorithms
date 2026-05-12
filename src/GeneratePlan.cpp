@@ -37,8 +37,6 @@ template<typename T>
 void GeneratePlan<T>::printPlan2D1(const std::string fileName) const
 {
     Grid2D<T> grid(5.0, 10.0, 1.0);
-
-    std::cout << fileName << std::endl;
 }
 
 template class GeneratePlan<int>;

@@ -58,6 +58,24 @@ size_t Grid2D<T>::index(const size_t col, const size_t row) const
     return row*(this->width) + col;
 }
 
+/**
+ * @brief
+ */
+template<typename T>
+size_t Grid2D<T>::getHeigt()
+{
+    return this->heigth;
+}
+
+/**
+ * @brief
+ */
+template<typename T>
+size_t Grid2D<T>::getWidth()
+{
+    return this->width;
+}
+
 template class Grid2D<int>;
 template class Grid2D<float>;
 template class Grid2D<double>;
