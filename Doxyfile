@@ -1,304 +1,394 @@
-#=============================================================================
-# Doxygen Configuration File
+#==============================================================================
+# Doxyfile für moderne C++ Projekte
 # Projekt: Search Algorithms
-# Optimiert für moderne C++-Projekte mit vollständiger HTML-Dokumentation
-#=============================================================================
+#
+# Ziel:
+# - vollständige HTML Dokumentation
+# - Klassenhierarchien
+# - Namespaces
+# - Include Graphs
+# - Vererbungsdiagramme
+# - Call Graphs
+# - Source Browser
+# - C++20 Support
+# - Markdown Support
+# - UML ähnliche Darstellung
+# - XML Export
+# - vollständige Extraktion aller Klassen/Funktionen
+#
+# Benötigte Pakete:
+#   sudo apt install doxygen graphviz clang
+#
+# Generieren:
+#   doxygen Doxyfile
+#
+# Ausgabe:
+#   docs/html/index.html
+#==============================================================================
 
-#-----------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 # Projektinformationen
-#-----------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 
-DOXYFILE_ENCODING      = UTF-8
-PROJECT_NAME           = "Search Algorithms"
-PROJECT_NUMBER         = "1.0.0"
-PROJECT_BRIEF          = "Documentation for Search Algorithms project"
-PROJECT_LOGO           =
+DOXYFILE_ENCODING            = UTF-8
 
-OUTPUT_DIRECTORY       = docs
-CREATE_SUBDIRS         = YES
-ALLOW_UNICODE_NAMES    = YES
-OUTPUT_LANGUAGE        = English
+PROJECT_NAME                 = "Search Algorithms"
+PROJECT_NUMBER               = "1.0.0"
+PROJECT_BRIEF                = "Algorithms and data structures for search problems"
 
-BRIEF_MEMBER_DESC      = YES
-REPEAT_BRIEF           = YES
-ALWAYS_DETAILED_SEC    = YES
-INLINE_INHERITED_MEMB  = YES
-FULL_PATH_NAMES        = YES
-STRIP_FROM_PATH        =
-SHORT_NAMES            = NO
+OUTPUT_DIRECTORY             = docs
 
-JAVADOC_AUTOBRIEF      = YES
-JAVADOC_BANNER         = YES
-QT_AUTOBRIEF           = YES
-MULTILINE_CPP_IS_BRIEF = YES
+CREATE_SUBDIRS               = YES
+ALLOW_UNICODE_NAMES          = YES
 
-INHERIT_DOCS           = YES
-SEPARATE_MEMBER_PAGES  = YES
-TAB_SIZE               = 4
+OUTPUT_LANGUAGE              = English
 
-OPTIMIZE_OUTPUT_FOR_C  = NO
-OPTIMIZE_OUTPUT_JAVA   = NO
-OPTIMIZE_FOR_FORTRAN   = NO
-OPTIMIZE_OUTPUT_VHDL   = NO
+BRIEF_MEMBER_DESC            = YES
+REPEAT_BRIEF                 = YES
+ALWAYS_DETAILED_SEC          = YES
+INLINE_INHERITED_MEMB        = YES
 
-MARKDOWN_SUPPORT       = YES
-TOC_INCLUDE_HEADINGS   = 5
-AUTOLINK_SUPPORT       = YES
-BUILTIN_STL_SUPPORT    = YES
+FULL_PATH_NAMES              = YES
+STRIP_FROM_PATH              =
+SHORT_NAMES                  = NO
 
-DISTRIBUTE_GROUP_DOC   = YES
-GROUP_NESTED_COMPOUNDS = YES
-SUBGROUPING            = YES
+JAVADOC_AUTOBRIEF            = YES
+JAVADOC_BANNER               = YES
+QT_AUTOBRIEF                 = YES
 
-INLINE_GROUPED_CLASSES = YES
-INLINE_SIMPLE_STRUCTS  = YES
+MULTILINE_CPP_IS_BRIEF       = YES
 
-#-----------------------------------------------------------------------------
-# Build / Extraktion
-#-----------------------------------------------------------------------------
+INHERIT_DOCS                 = YES
 
-EXTRACT_ALL            = YES
-EXTRACT_PRIVATE        = YES
-EXTRACT_PRIV_VIRTUAL   = YES
-EXTRACT_PACKAGE        = YES
-EXTRACT_STATIC         = YES
-EXTRACT_LOCAL_CLASSES  = YES
-EXTRACT_LOCAL_METHODS  = YES
-EXTRACT_ANON_NSPACES   = YES
+SEPARATE_MEMBER_PAGES        = YES
 
-HIDE_UNDOC_MEMBERS     = NO
-HIDE_UNDOC_CLASSES     = NO
-HIDE_FRIEND_COMPOUNDS  = NO
-HIDE_IN_BODY_DOCS      = NO
+TAB_SIZE                     = 4
 
-INTERNAL_DOCS          = YES
+OPTIMIZE_OUTPUT_FOR_C        = NO
+OPTIMIZE_OUTPUT_JAVA         = NO
+OPTIMIZE_FOR_FORTRAN         = NO
+OPTIMIZE_OUTPUT_VHDL         = NO
 
-SHOW_HEADERFILE        = YES
-SHOW_INCLUDE_FILES     = YES
-SHOW_GROUPED_MEMB_INC  = YES
+MARKDOWN_SUPPORT             = YES
+TOC_INCLUDE_HEADINGS         = 5
+AUTOLINK_SUPPORT             = YES
 
-INLINE_INFO            = YES
+BUILTIN_STL_SUPPORT          = YES
 
-SORT_MEMBER_DOCS       = YES
-SORT_BRIEF_DOCS        = YES
-SORT_MEMBERS_CTORS_1ST = YES
-SORT_GROUP_NAMES       = YES
-SORT_BY_SCOPE_NAME     = YES
+CPP_CLI_SUPPORT              = NO
+SIP_SUPPORT                  = NO
+IDL_PROPERTY_SUPPORT         = YES
 
-GENERATE_TODOLIST      = YES
-GENERATE_TESTLIST      = YES
-GENERATE_BUGLIST       = YES
-GENERATE_DEPRECATEDLIST= YES
+DISTRIBUTE_GROUP_DOC         = YES
+GROUP_NESTED_COMPOUNDS       = YES
+SUBGROUPING                  = YES
 
-SHOW_USED_FILES        = YES
-SHOW_FILES             = YES
-SHOW_NAMESPACES        = YES
+INLINE_GROUPED_CLASSES       = YES
+INLINE_SIMPLE_STRUCTS        = YES
 
-#-----------------------------------------------------------------------------
+TYPEDEF_HIDES_STRUCT         = NO
+
+#------------------------------------------------------------------------------
+# Extraktion
+#------------------------------------------------------------------------------
+
+EXTRACT_ALL                  = YES
+EXTRACT_PRIVATE              = YES
+EXTRACT_PRIV_VIRTUAL         = YES
+EXTRACT_PACKAGE              = YES
+EXTRACT_STATIC               = YES
+EXTRACT_LOCAL_CLASSES        = YES
+EXTRACT_LOCAL_METHODS        = YES
+EXTRACT_ANON_NSPACES         = YES
+
+HIDE_UNDOC_MEMBERS           = NO
+HIDE_UNDOC_CLASSES           = NO
+HIDE_FRIEND_COMPOUNDS        = NO
+HIDE_IN_BODY_DOCS            = NO
+
+INTERNAL_DOCS                = YES
+
+SHOW_HEADERFILE              = YES
+SHOW_INCLUDE_FILES           = YES
+SHOW_GROUPED_MEMB_INC        = YES
+
+FORCE_LOCAL_INCLUDES         = NO
+
+INLINE_INFO                  = YES
+
+SORT_MEMBER_DOCS             = YES
+SORT_BRIEF_DOCS              = YES
+SORT_MEMBERS_CTORS_1ST       = YES
+SORT_GROUP_NAMES             = YES
+SORT_BY_SCOPE_NAME           = YES
+
+STRICT_PROTO_MATCHING        = NO
+
+GENERATE_TODOLIST            = YES
+GENERATE_TESTLIST            = YES
+GENERATE_BUGLIST             = YES
+GENERATE_DEPRECATEDLIST      = YES
+
+MAX_INITIALIZER_LINES        = 50
+
+SHOW_USED_FILES              = YES
+SHOW_FILES                   = YES
+SHOW_NAMESPACES              = YES
+
+#------------------------------------------------------------------------------
 # Warnungen
-#-----------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 
-QUIET                  = NO
+QUIET                        = NO
 
-WARNINGS               = YES
-WARN_IF_UNDOCUMENTED   = YES
-WARN_IF_DOC_ERROR      = YES
-WARN_IF_INCOMPLETE_DOC = YES
-WARN_IF_UNDOC_ENUM_VAL = YES
+WARNINGS                     = YES
+WARN_IF_UNDOCUMENTED         = YES
+WARN_IF_DOC_ERROR            = YES
+WARN_IF_INCOMPLETE_DOC       = YES
+WARN_IF_UNDOC_ENUM_VAL       = YES
 
-WARN_AS_ERROR          = NO
+WARN_NO_PARAMDOC             = NO
 
-WARN_FORMAT            = "$file:$line: $text"
+WARN_AS_ERROR                = NO
 
-#-----------------------------------------------------------------------------
+WARN_FORMAT                  = "$file:$line: $text"
+
+#------------------------------------------------------------------------------
 # Eingabedateien
-#-----------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 
-INPUT                  = src include tests examples README.md
+INPUT                        = src \
+                               inc \
+                               tests \
+                               examples \
+                               README.md
 
-INPUT_ENCODING         = UTF-8
+INPUT_ENCODING               = UTF-8
 
-FILE_PATTERNS          = *.cpp \
-                         *.hpp \
-                         *.h \
-                         *.cc \
-                         *.cxx \
-                         *.hh \
-                         *.hxx \
-                         *.ixx \
-                         *.cppm \
-                         *.md
+FILE_PATTERNS                = *.cpp \
+                               *.hpp \
+                               *.h \
+                               *.hh \
+                               *.hxx \
+                               *.cxx \
+                               *.cc \
+                               *.ipp \
+                               *.tpp \
+                               *.ixx \
+                               *.cppm \
+                               *.md
 
-RECURSIVE              = YES
+RECURSIVE                    = YES
 
-EXCLUDE                = build \
-                         .git \
-                         external \
-                         third_party
+EXCLUDE                      = build \
+                               cmake-build-debug \
+                               cmake-build-release \
+                               .git \
+                               external \
+                               third_party
 
-EXCLUDE_PATTERNS       = */CMakeFiles/* \
-                         */_deps/*
+EXCLUDE_PATTERNS             = */CMakeFiles/* \
+                               */_deps/*
 
-EXAMPLE_PATH           = examples
-EXAMPLE_PATTERNS       = *
-EXAMPLE_RECURSIVE      = YES
+EXCLUDE_SYMLINKS             = NO
 
-IMAGE_PATH             = images
+EXAMPLE_PATH                 = examples
+EXAMPLE_PATTERNS             = *
+EXAMPLE_RECURSIVE            = YES
 
-USE_MDFILE_AS_MAINPAGE = README.md
+IMAGE_PATH                   = images
 
-#-----------------------------------------------------------------------------
+INPUT_FILTER                 =
+FILTER_PATTERNS              =
+FILTER_SOURCE_FILES          = NO
+
+USE_MDFILE_AS_MAINPAGE       = README.md
+
+#------------------------------------------------------------------------------
 # Source Browser
-#-----------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 
-SOURCE_BROWSER         = YES
-INLINE_SOURCES         = YES
-STRIP_CODE_COMMENTS    = NO
+SOURCE_BROWSER               = NO
 
-REFERENCED_BY_RELATION = YES
-REFERENCES_RELATION    = YES
-REFERENCES_LINK_SOURCE = YES
+INLINE_SOURCES               = NO
 
-SOURCE_TOOLTIPS        = YES
-VERBATIM_HEADERS       = YES
+STRIP_CODE_COMMENTS          = NO
 
-#-----------------------------------------------------------------------------
-# Clang Parsing (moderne C++ Unterstützung)
-#-----------------------------------------------------------------------------
+REFERENCED_BY_RELATION       = YES
+REFERENCES_RELATION          = YES
 
-CLANG_ASSISTED_PARSING = YES
-CLANG_OPTIONS          = -std=c++20
+REFERENCES_LINK_SOURCE       = YES
 
-#-----------------------------------------------------------------------------
-# Alphabetischer Index
-#-----------------------------------------------------------------------------
+SOURCE_TOOLTIPS              = YES
 
-ALPHABETICAL_INDEX     = YES
-COLS_IN_ALPHA_INDEX    = 5
+USE_HTAGS                    = NO
 
-#-----------------------------------------------------------------------------
+VERBATIM_HEADERS             = YES
+
+#------------------------------------------------------------------------------
+# Clang Unterstützung für moderne C++
+#------------------------------------------------------------------------------
+
+CLANG_ASSISTED_PARSING       = YES
+
+CLANG_OPTIONS                = -std=c++20
+
+#------------------------------------------------------------------------------
+# Index
+#------------------------------------------------------------------------------
+
+ALPHABETICAL_INDEX           = YES
+COLS_IN_ALPHA_INDEX          = 5
+
+IGNORE_PREFIX                =
+
+#------------------------------------------------------------------------------
 # HTML Ausgabe
-#-----------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 
-GENERATE_HTML          = YES
-HTML_OUTPUT            = html
+GENERATE_HTML                = YES
 
-HTML_FILE_EXTENSION    = .html
+HTML_OUTPUT                  = html
 
-HTML_DYNAMIC_MENUS     = YES
-HTML_DYNAMIC_SECTIONS  = YES
+HTML_FILE_EXTENSION          = .html
 
-HTML_CODE_FOLDING      = YES
-HTML_COPY_CLIPBOARD    = YES
+HTML_HEADER                  =
+HTML_FOOTER                  =
 
-GENERATE_TREEVIEW      = YES
-TREEVIEW_WIDTH         = 300
+HTML_EXTRA_STYLESHEET        =
+HTML_EXTRA_FILES             =
 
-HTML_COLORSTYLE        = AUTO_LIGHT
-HTML_COLORSTYLE_HUE    = 220
-HTML_COLORSTYLE_SAT    = 100
-HTML_COLORSTYLE_GAMMA  = 80
+HTML_COLORSTYLE              = AUTO_LIGHT
+HTML_COLORSTYLE_HUE          = 220
+HTML_COLORSTYLE_SAT          = 100
+HTML_COLORSTYLE_GAMMA        = 80
 
-SEARCHENGINE           = YES
-SERVER_BASED_SEARCH    = NO
+HTML_DYNAMIC_MENUS           = YES
+HTML_DYNAMIC_SECTIONS        = YES
 
-EXT_LINKS_IN_WINDOW    = YES
+HTML_CODE_FOLDING            = YES
+HTML_COPY_CLIPBOARD          = YES
 
-#-----------------------------------------------------------------------------
+GENERATE_TREEVIEW            = YES
+TREEVIEW_WIDTH               = 300
+
+ENUM_VALUES_PER_LINE         = 4
+
+EXT_LINKS_IN_WINDOW          = YES
+
+SEARCHENGINE                 = YES
+SERVER_BASED_SEARCH          = NO
+EXTERNAL_SEARCH              = NO
+
+#------------------------------------------------------------------------------
 # MathJax
-#-----------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 
-USE_MATHJAX            = YES
-MATHJAX_VERSION        = MathJax_3
-MATHJAX_FORMAT         = HTML-CSS
+USE_MATHJAX                  = YES
+MATHJAX_VERSION              = MathJax_3
+MATHJAX_FORMAT               = HTML-CSS
 
-#-----------------------------------------------------------------------------
-# Graphviz / Diagramme
-#-----------------------------------------------------------------------------
+#------------------------------------------------------------------------------
+# Graphviz / UML / Diagramme
+#------------------------------------------------------------------------------
 
-HAVE_DOT               = YES
+HAVE_DOT                     = YES
 
-DOT_NUM_THREADS        = 4
+DOT_NUM_THREADS              = 4
 
-DOT_COMMON_ATTR        = "fontname=Helvetica,fontsize=10"
-DOT_EDGE_ATTR          = "fontname=Helvetica,fontsize=10"
-DOT_NODE_ATTR          = "fontname=Helvetica,fontsize=10"
+DOT_COMMON_ATTR              = "fontname=Helvetica,fontsize=10"
+DOT_EDGE_ATTR                = "fontname=Helvetica,fontsize=10"
+DOT_NODE_ATTR                = "fontname=Helvetica,fontsize=10"
 
-CLASS_GRAPH            = YES
-COLLABORATION_GRAPH    = YES
-GROUP_GRAPHS           = YES
+CLASS_DIAGRAMS               = YES
 
-UML_LOOK               = YES
-DOT_UML_DETAILS        = YES
-UML_LIMIT_NUM_FIELDS   = 50
+CLASS_GRAPH                  = YES
+COLLABORATION_GRAPH          = YES
+GROUP_GRAPHS                 = YES
 
-DIRECTORY_GRAPH        = YES
-DIR_GRAPH_MAX_DEPTH    = 8
+UML_LOOK                     = YES
+DOT_UML_DETAILS              = YES
+UML_LIMIT_NUM_FIELDS         = 50
 
-CALL_GRAPH             = YES
-CALLER_GRAPH           = YES
+DIRECTORY_GRAPH              = YES
+DIR_GRAPH_MAX_DEPTH          = 8
 
-GRAPHICAL_HIERARCHY    = YES
+CALL_GRAPH                   = YES
+CALLER_GRAPH                 = YES
 
-DOT_IMAGE_FORMAT       = svg
-INTERACTIVE_SVG        = YES
+GRAPHICAL_HIERARCHY          = YES
 
-DOT_GRAPH_MAX_NODES    = 200
-MAX_DOT_GRAPH_DEPTH    = 0
+INCLUDED_BY_GRAPH            = YES
+INCLUDE_GRAPH                = YES
 
-DOT_TRANSPARENT        = YES
-DOT_MULTI_TARGETS      = YES
+DOT_IMAGE_FORMAT             = svg
 
-#-----------------------------------------------------------------------------
+INTERACTIVE_SVG              = YES
+
+DOT_GRAPH_MAX_NODES          = 200
+MAX_DOT_GRAPH_DEPTH          = 0
+
+DOT_TRANSPARENT              = YES
+DOT_MULTI_TARGETS            = YES
+
+#------------------------------------------------------------------------------
 # Preprocessor
-#-----------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 
-ENABLE_PREPROCESSING   = YES
-MACRO_EXPANSION        = YES
-EXPAND_ONLY_PREDEF     = NO
+ENABLE_PREPROCESSING         = YES
 
-SEARCH_INCLUDES        = YES
+MACRO_EXPANSION              = YES
+EXPAND_ONLY_PREDEF           = NO
 
-INCLUDE_PATH           = include
+SEARCH_INCLUDES              = YES
 
-INCLUDE_FILE_PATTERNS  = *.h \
-                         *.hpp \
-                         *.hxx
+INCLUDE_PATH                 = include
 
-PREDEFINED             = DOXYGEN_SHOULD_SKIP_THIS
+INCLUDE_FILE_PATTERNS        = *.h \
+                               *.hpp \
+                               *.hxx
 
-SKIP_FUNCTION_MACROS   = YES
+PREDEFINED                   = DOXYGEN_SHOULD_SKIP_THIS
 
-#-----------------------------------------------------------------------------
+EXPAND_AS_DEFINED            =
+
+SKIP_FUNCTION_MACROS         = YES
+
+#------------------------------------------------------------------------------
 # Tagfiles / externe Referenzen
-#-----------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 
-GENERATE_TAGFILE       = docs/search_algorithms.tag
+TAGFILES                     =
 
-ALLEXTERNALS           = YES
-EXTERNAL_GROUPS        = YES
-EXTERNAL_PAGES         = YES
+GENERATE_TAGFILE             = docs/search_algorithms.tag
 
-#-----------------------------------------------------------------------------
+ALLEXTERNALS                 = YES
+EXTERNAL_GROUPS              = YES
+EXTERNAL_PAGES               = YES
+
+#------------------------------------------------------------------------------
 # XML Export
-#-----------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 
-GENERATE_XML           = YES
-XML_OUTPUT             = xml
-XML_PROGRAMLISTING     = YES
+GENERATE_XML                 = YES
+XML_OUTPUT                   = xml
 
-#-----------------------------------------------------------------------------
-# Andere Ausgabeformate deaktivieren
-#-----------------------------------------------------------------------------
+XML_PROGRAMLISTING           = YES
 
-GENERATE_LATEX         = NO
-GENERATE_RTF           = NO
-GENERATE_MAN           = NO
-GENERATE_DOCBOOK       = NO
+#------------------------------------------------------------------------------
+# Andere Formate deaktivieren
+#------------------------------------------------------------------------------
 
-#-----------------------------------------------------------------------------
+GENERATE_LATEX               = NO
+GENERATE_RTF                 = NO
+GENERATE_MAN                 = NO
+GENERATE_DOCBOOK             = NO
+GENERATE_AUTOGEN_DEF         = NO
+GENERATE_PERLMOD             = NO
+
+#------------------------------------------------------------------------------
 # Aliases
-#-----------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 
 ALIASES += "todo=\xrefitem todo \"Todo\" \"Todo List\" "
 ALIASES += "bug=\xrefitem bug \"Bug\" \"Bug List\" "
@@ -307,13 +397,13 @@ ALIASES += "fixme=\xrefitem fixme \"FixMe\" \"FixMe List\" "
 ALIASES += "warning=\par Warning:^^"
 ALIASES += "note=\par Note:^^"
 
-#-----------------------------------------------------------------------------
-# Moderne C++ Dateiendungen
-#-----------------------------------------------------------------------------
+#------------------------------------------------------------------------------
+# Moderne C++ Erweiterungen
+#------------------------------------------------------------------------------
 
-EXTENSION_MAPPING      = ixx=C++ \
-                         cppm=C++
+EXTENSION_MAPPING            = ixx=C++ \
+                               cppm=C++
 
-#-----------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 # Ende
-#-----------------------------------------------------------------------------
+#------------------------------------------------------------------------------

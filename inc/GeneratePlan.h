@@ -11,20 +11,23 @@
 #include<string>
 #include<vector>
 
-#include "Point2D.h"
+#include "Grid2D.h"
 
 /**
- * @brief Prints all the plans to test
  * @class GeneratePlan
+ * @brief Prints all the plans to test
+ *      A plan consists of multiple points that 
  */
 class GeneratePlan {
     public:
         GeneratePlan();
-        void printPlan(const size_t ind, const std::string fileName) const;
+        
+        void printPlan2D(const size_t ind, const std::string fileName) const;
 
     private:
-        std::unique_ptr<std::vector<Point2D>> plan;
-        void printPlan1(const std::string fileName) const;
+        std::unique_ptr<Grid2D> plan; /**< All information of the map */
+
+        void printPlan2D1(const std::string fileName) const;
 };
 
 #endif // H_GENERATE_PLAN_H

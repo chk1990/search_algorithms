@@ -4,19 +4,20 @@
  */
 
 #include "GeneratePlan.h"
+#include "Grid2D.h"
 
 GeneratePlan::GeneratePlan() {}
 
 /**
- * @brief Specifies a plan index, generates it and stores it
+ * @brief Specifies a 2D plan index, generates it and stores it
  * @param[in] ind Index of plan
  * @param[in] fileName Name of the file to store the plan in
  */
-void GeneratePlan::printPlan(const size_t ind, const std::string fileName) const
+void GeneratePlan::printPlan2D(const size_t ind, const std::string fileName) const
 {
     switch (ind) {
     case 1:
-        printPlan1(fileName);
+        printPlan2D1(fileName);
         break;
     
     default:
@@ -25,10 +26,12 @@ void GeneratePlan::printPlan(const size_t ind, const std::string fileName) const
 }
 
 /**
- * @brief Generates plan with index 1 and stores it in file
+ * @brief Generates 2D plan with index 1 and stores it in file
  * @param[in] fileName Name of the file to store the plan in
  */
-void GeneratePlan::printPlan1(const std::string fileName) const
+void GeneratePlan::printPlan2D1(const std::string fileName) const
 {
+    Grid2D grid(5,10);
+
     std::cout << fileName << std::endl;
 }

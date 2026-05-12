@@ -5,12 +5,14 @@
 
 #include "Point2D.h"
 
-Point2D::Point2D(unsigned int x, unsigned int y) : x(x), y(y) {}
+Point2D::Point2D() : x(0), y(0) {}
+
+Point2D::Point2D(int x, int y) : x(x), y(y) {}
 
 /**
  * @brief Gets the x coordinate
  */
-unsigned int Point2D::getX() const
+int Point2D::getX() const
 {
     return this->x;
 }
@@ -18,7 +20,7 @@ unsigned int Point2D::getX() const
 /**
  * @brief Gets the y coordinate
  */
-unsigned int Point2D::getY() const
+int Point2D::getY() const
 {
     return this->y;
 }

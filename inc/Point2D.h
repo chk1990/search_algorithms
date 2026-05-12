@@ -12,13 +12,14 @@
  */
 class Point2D {
     private:
-        unsigned int x;
-        unsigned int y;
+        int x; /**< x-coordinates of the map */
+        int y; /**< y-coordinates of the map */
 
     public:
-        Point2D(unsigned int x, unsigned int y);
-        unsigned int getX() const;
-        unsigned int getY() const;
+        Point2D();
+        Point2D(int x, int y);
+        int getX() const;
+        int getY() const;
 };
 
 #endif // H_POINT_2D_H
