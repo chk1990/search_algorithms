@@ -19,7 +19,6 @@ GeneratePlan<T>::GeneratePlan() {}
 template<typename T>
 void GeneratePlan<T>::printPlan2D(const size_t ind, const std::string fileName) const
 {
-    //std::cout << "Constructor GeneratePlan" << std::endl;
     switch (ind) {
     case 1:
         printPlan2D1(fileName);
