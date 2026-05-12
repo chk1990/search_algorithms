@@ -29,10 +29,10 @@ class Grid2D
       size_t width;  /**< Width of the map */
       T step; /**< Step in x- and y- direction between two points */
 
-      size_t index(const size_t row, const size_t col) const;
+      size_t index(const size_t col, const size_t row) const;
 
    public:
-      Grid2D(size_t heigth, size_t width, T step);
+      Grid2D(const size_t heigth, const size_t width, const T step);
 };
 
 #endif // H_GRID_2D_H

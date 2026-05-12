@@ -15,18 +15,22 @@
  * @param[in] step Horizontal and vertical distance between two points
  */
 template<typename T>
-Grid2D<T>::Grid2D(size_t heigth, size_t width, T step) : heigth(heigth),
+Grid2D<T>::Grid2D(const size_t heigth, const size_t width, const T step) : heigth(heigth),
                                                width(width),
                                                step(step),
                                                coordinates(std::make_unique<Point2D<T>[]>(heigth*width)),
                                                occupancy(std::make_unique<uint8_t[]>(heigth*width))
 {
-    //std::cout << "Constructor Grid2D" << std::endl;
-
     // initialize map content with "nothing"
-    std::fill(this->occupancy.get(), this->occupancy.get() + heigth*width, 0); // to be replaced
+    std::fill(this->occupancy.get(), this->occupancy.get() + heigth*width, 0);
 
     // populate map points with dimensions
+    for(size_t indY = 0; indY < heigth; ++indY) {
+        for(size_t indX = 0; indX < width; ++indX) {
+            std::cout << index(indX, indY) << std::endl;
+            //*(this->coordinates.get()).setX(indX * step);
+        }
+    }
 }
 
 /**
@@ -36,9 +40,9 @@ Grid2D<T>::Grid2D(size_t heigth, size_t width, T step) : heigth(heigth),
  * @return Index in member array
  */
 template<typename T>
-size_t Grid2D<T>::index(const size_t row, const size_t col) const
+size_t Grid2D<T>::index(const size_t col, const size_t row) const
 {
-    return row*this->width + col;
+    return row*(this->width) + col;
 }
 
 template class Grid2D<int>;
