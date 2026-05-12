@@ -24,3 +24,19 @@ int Point2D::getY() const
 {
     return this->y;
 }
+
+/**
+ * @brief Sets the x-coordinate of the point
+ */
+void Point2D::setX(int x)
+{
+    this->x = x;
+}
+
+/**
+ * @brief Sets the y-coordinate of the point
+ */
+void Point2D::setY(int y)
+{
+    this->y = y;
+}

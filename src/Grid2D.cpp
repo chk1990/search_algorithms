@@ -16,7 +16,10 @@ Grid2D::Grid2D(size_t heigth, size_t width) : heigth(heigth),
                                                width(width),
                                                coordinates(std::make_unique<Point2D[]>(heigth*width))
 {
+    // initialize map content with "nothing"
     std::fill(this->occupancy.get(), this->occupancy.get() + heigth*width, 0); // to be replaced
+
+    // populate map points with dimensions
 }
 
 /**

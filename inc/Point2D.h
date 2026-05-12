@@ -20,6 +20,8 @@ class Point2D {
         Point2D(int x, int y);
         int getX() const;
         int getY() const;
+        void setX(int x);
+        void setY(int y);
 };
 
 #endif // H_POINT_2D_H

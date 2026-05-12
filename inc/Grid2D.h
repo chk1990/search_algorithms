@@ -16,6 +16,7 @@
  * @brief Handles information of a 2D grid
  * 
  * The map is represented by dimensions in x and y. Width and heigth are represented by x and y respectively.
+ * 
  */
 class Grid2D
 {
