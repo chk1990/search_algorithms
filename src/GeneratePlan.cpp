@@ -3,18 +3,23 @@
  * @author Christoph Kolhoff
  */
 
+#include <iostream>
+
 #include "GeneratePlan.h"
 #include "Grid2D.h"
 
-GeneratePlan::GeneratePlan() {}
+template<typename T>
+GeneratePlan<T>::GeneratePlan() {}
 
 /**
  * @brief Specifies a 2D plan index, generates it and stores it
  * @param[in] ind Index of plan
  * @param[in] fileName Name of the file to store the plan in
  */
-void GeneratePlan::printPlan2D(const size_t ind, const std::string fileName) const
+template<typename T>
+void GeneratePlan<T>::printPlan2D(const size_t ind, const std::string fileName) const
 {
+    std::cout << "Constructor GeneratePlan" << std::endl;
     switch (ind) {
     case 1:
         printPlan2D1(fileName);
@@ -29,9 +34,14 @@ void GeneratePlan::printPlan2D(const size_t ind, const std::string fileName) con
  * @brief Generates 2D plan with index 1 and stores it in file
  * @param[in] fileName Name of the file to store the plan in
  */
-void GeneratePlan::printPlan2D1(const std::string fileName) const
+template<typename T>
+void GeneratePlan<T>::printPlan2D1(const std::string fileName) const
 {
-    Grid2D grid(5,10);
+    Grid2D<T> grid(5.0, 10.0, 1.0);
 
     std::cout << fileName << std::endl;
 }
+
+template class GeneratePlan<int>;
+template class GeneratePlan<float>;
+template class GeneratePlan<double>;

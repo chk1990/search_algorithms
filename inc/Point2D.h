@@ -9,19 +9,21 @@
 /**
  * @class Point2D
  * @brief Represents a point with 2D coordinates
+ *        The type T can be int, float, double.
  */
+template<typename T>
 class Point2D {
     private:
-        int x; /**< x-coordinates of the map */
-        int y; /**< y-coordinates of the map */
+        T x; /**< x-coordinates of the map */
+        T y; /**< y-coordinates of the map */
 
     public:
         Point2D();
-        Point2D(int x, int y);
-        int getX() const;
-        int getY() const;
-        void setX(int x);
-        void setY(int y);
+        Point2D(T x, T y);
+        T getX() const;
+        T getY() const;
+        void setX(T x);
+        void setY(T y);
 };
 
 #endif // H_POINT_2D_H

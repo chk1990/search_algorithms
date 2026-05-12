@@ -3,16 +3,21 @@
  * @author Christoph Kolhoff
  */
 
+#include <iostream>
+
 #include "Point2D.h"
 
-Point2D::Point2D() : x(0), y(0) {}
+template<typename T>
+Point2D<T>::Point2D() : x(0), y(0) {std::cout << "Constructor Point2D" << std::endl;}
 
-Point2D::Point2D(int x, int y) : x(x), y(y) {}
+template<typename T>
+Point2D<T>::Point2D(T x, T y) : x(x), y(y) {std::cout << "Constructor Point2D" << std::endl;}
 
 /**
  * @brief Gets the x coordinate
  */
-int Point2D::getX() const
+template<typename T>
+T Point2D<T>::getX() const
 {
     return this->x;
 }
@@ -20,7 +25,8 @@ int Point2D::getX() const
 /**
  * @brief Gets the y coordinate
  */
-int Point2D::getY() const
+template<typename T>
+T Point2D<T>::getY() const
 {
     return this->y;
 }
@@ -28,7 +34,8 @@ int Point2D::getY() const
 /**
  * @brief Sets the x-coordinate of the point
  */
-void Point2D::setX(int x)
+template<typename T>
+void Point2D<T>::setX(T x)
 {
     this->x = x;
 }
@@ -36,7 +43,12 @@ void Point2D::setX(int x)
 /**
  * @brief Sets the y-coordinate of the point
  */
-void Point2D::setY(int y)
+template<typename T>
+void Point2D<T>::setY(T y)
 {
     this->y = y;
 }
+
+template class Point2D<int>;
+template class Point2D<float>;
+template class Point2D<double>;

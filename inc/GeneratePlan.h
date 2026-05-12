@@ -16,8 +16,9 @@
 /**
  * @class GeneratePlan
  * @brief Prints all the plans to test
- *      A plan consists of multiple points that 
+ *        The type T can be int, float, double.
  */
+template<typename T>
 class GeneratePlan {
     public:
         GeneratePlan();
@@ -25,7 +26,7 @@ class GeneratePlan {
         void printPlan2D(const size_t ind, const std::string fileName) const;
 
     private:
-        std::unique_ptr<Grid2D> plan; /**< All information of the map */
+        std::unique_ptr<Grid2D<T>> plan; /**< All information of the map */
 
         void printPlan2D1(const std::string fileName) const;
 };
