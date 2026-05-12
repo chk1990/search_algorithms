@@ -21,7 +21,7 @@ Grid2D<T>::Grid2D(size_t heigth, size_t width, T step) : heigth(heigth),
                                                coordinates(std::make_unique<Point2D<T>[]>(heigth*width)),
                                                occupancy(std::make_unique<uint8_t[]>(heigth*width))
 {
-    std::cout << "Constructor Grid2D" << std::endl;
+    //std::cout << "Constructor Grid2D" << std::endl;
 
     // initialize map content with "nothing"
     std::fill(this->occupancy.get(), this->occupancy.get() + heigth*width, 0); // to be replaced

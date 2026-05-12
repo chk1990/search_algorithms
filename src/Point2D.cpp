@@ -7,11 +7,19 @@
 
 #include "Point2D.h"
 
+/**
+ * @brief Constructor for point in origin
+ */
 template<typename T>
-Point2D<T>::Point2D() : x(0), y(0) {std::cout << "Constructor Point2D" << std::endl;}
+Point2D<T>::Point2D() : x(0), y(0) {}
 
+/**
+ * @brief Constructor for point with given coordinates
+ * @param[in] x x-coordinate
+ * @param[in] y y-coordinate
+ */
 template<typename T>
-Point2D<T>::Point2D(T x, T y) : x(x), y(y) {std::cout << "Constructor Point2D" << std::endl;}
+Point2D<T>::Point2D(T x, T y) : x(x), y(y) {}
 
 /**
  * @brief Gets the x coordinate
