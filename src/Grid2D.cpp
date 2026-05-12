@@ -15,11 +15,23 @@
  * @param[in] step Horizontal and vertical distance between two points
  */
 template<typename T>
-Grid2D<T>::Grid2D(const size_t heigth, const size_t width, const T step) : heigth(heigth),
-                                               width(width),
-                                               step(step),
-                                               coordinates(std::make_unique<Point2D<T>[]>(heigth*width)),
-                                               occupancy(std::make_unique<uint8_t[]>(heigth*width))
+Grid2D<T>::Grid2D(const size_t heigth, const size_t width, const T step) : Grid2D(heigth, width, step, 0, 0) {}
+
+/**
+ * @brief Initialize a map with given dimensions
+ * @param[in] heigth Heigth of map
+ * @param[in] width Width of map
+ * @param[in] step Horizontal and vertical distance between two points
+ * @param[in] offX Offset in x-direction
+ * @param[in] offY Offset in y-direction
+ */
+template<typename T>
+Grid2D<T>::Grid2D(const size_t heigth, const size_t width, const T step,
+                  const T offX, const T offY) : heigth(heigth),
+                                                width(width),
+                                                step(step),
+                                                coordinates(std::make_unique<Point2D<T>[]>(heigth*width)),
+                                                occupancy(std::make_unique<uint8_t[]>(heigth*width))
 {
     // initialize map content with "nothing"
     std::fill(this->occupancy.get(), this->occupancy.get() + heigth*width, 0);
@@ -27,8 +39,9 @@ Grid2D<T>::Grid2D(const size_t heigth, const size_t width, const T step) : heigt
     // populate map points with dimensions
     for(size_t indY = 0; indY < heigth; ++indY) {
         for(size_t indX = 0; indX < width; ++indX) {
-            std::cout << index(indX, indY) << std::endl;
-            //*(this->coordinates.get()).setX(indX * step);
+            size_t pos = index(indX, indY);
+            (this->coordinates.get() + pos)->setX(indX * step + offX);
+            (this->coordinates.get() + pos)->setY(indY * step + offY);
         }
     }
 }
