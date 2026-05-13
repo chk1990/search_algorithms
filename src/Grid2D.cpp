@@ -10,38 +10,43 @@
 
 /**
  * @brief Initialize a map with given dimensions
- * @param[in] heigth Heigth of map
+ * @param[in] height Height of map
  * @param[in] width Width of map
  * @param[in] step Horizontal and vertical distance between two points
  */
 template<typename T>
-Grid2D<T>::Grid2D(const size_t heigth, const size_t width, const T step) : Grid2D(heigth, width, step, 0, 0) {}
+Grid2D<T>::Grid2D(const size_t height, const size_t width, const T step) : Grid2D(height, width, step, 0, 0) {}
 
 /**
  * @brief Initialize a map with given dimensions
- * @param[in] heigth Heigth of map
+ * @param[in] height Height of map
  * @param[in] width Width of map
  * @param[in] step Horizontal and vertical distance between two points
  * @param[in] offX Offset in x-direction
  * @param[in] offY Offset in y-direction
  */
 template<typename T>
-Grid2D<T>::Grid2D(const size_t heigth, const size_t width, const T step,
-                  const T offX, const T offY) : heigth(heigth),
+Grid2D<T>::Grid2D(const size_t height, const size_t width, const T step,
+                  const T offX, const T offY) : height(height),
                                                 width(width),
                                                 step(step),
-                                                coordinates(std::make_unique<Point2D<T>[]>(heigth*width)),
-                                                occupancy(std::make_unique<uint8_t[]>(heigth*width))
+                                                coordinates(std::make_unique<Point2D<T>[]>(height*width)),
+                                                occupancy(std::make_unique<uint8_t[]>(height*width))
 {
     // initialize map content with "nothing"
-    std::fill(this->occupancy.get(), this->occupancy.get() + heigth*width, 0);
+    std::fill(this->occupancy.get(), this->occupancy.get() + height*width, 0);
 
     // populate map points with dimensions
-    for(size_t indY = 0; indY < heigth; ++indY) {
+    Point2D<T>* points = this->coordinates.get();
+    for(size_t indY = 0; indY < height; ++indY) {
         for(size_t indX = 0; indX < width; ++indX) {
             size_t pos = index(indX, indY);
-            (this->coordinates.get() + pos)->setX(indX*step + offX);
-            (this->coordinates.get() + pos)->setY(indY*step + offY);
+
+            T xVal = indX*step + offX;
+            T yVal = indY*step + offY;
+
+            points[pos].setX(xVal);
+            points[pos].setY(yVal);
         }
     }
 }
@@ -59,12 +64,12 @@ size_t Grid2D<T>::index(const size_t col, const size_t row) const
 }
 
 /**
- * @brief Get the heigth of the grid
+ * @brief Get the height of the grid
  */
 template<typename T>
-size_t Grid2D<T>::getHeigt() const
+size_t Grid2D<T>::getHeight() const
 {
-    return this->heigth;
+    return this->height;
 }
 
 /**
@@ -83,6 +88,21 @@ template<typename T>
 T Grid2D<T>::getStep() const
 {
     return this->step;
+}
+
+/**
+ * @brief Returns the point at the given location
+ * @param[in] row Row index of interest
+ * @param[in] col Column index of interest
+ */
+template<typename T>
+Point2D<T> Grid2D<T>::getCoordinates(const size_t col, const size_t row) const
+{
+    size_t ind = index(col, row);
+    std::cout << col << " " << row << " " << width << " " << height << " " << ind << std::endl;
+    Point2D<T> pt = *(this->coordinates.get() + ind);
+ 
+    return pt;
 }
 
 template class Grid2D<int>;
