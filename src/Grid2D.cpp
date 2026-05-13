@@ -15,7 +15,7 @@
  * @param[in] step Horizontal and vertical distance between two points
  */
 template<typename T>
-Grid2D<T>::Grid2D(const size_t height, const size_t width, const T step) : Grid2D(height, width, step, 0, 0) {}
+Grid2D<T>::Grid2D(const size_t height, const size_t width, const T step) : Grid2D(height, width, step, static_cast<T>(0), static_cast<T>(0)) {}
 
 /**
  * @brief Initialize a map with given dimensions
@@ -38,6 +38,7 @@ Grid2D<T>::Grid2D(const size_t height, const size_t width, const T step,
 
     // populate map points with dimensions
     Point2D<T>* points = this->coordinates.get();
+    
     for(size_t indY = 0; indY < height; ++indY) {
         for(size_t indX = 0; indX < width; ++indX) {
             size_t pos = index(indX, indY);
@@ -60,7 +61,7 @@ Grid2D<T>::Grid2D(const size_t height, const size_t width, const T step,
 template<typename T>
 size_t Grid2D<T>::index(const size_t col, const size_t row) const
 {
-    return row*(this->width) + col;
+    return row*width + col;
 }
 
 /**
@@ -99,7 +100,7 @@ template<typename T>
 Point2D<T> Grid2D<T>::getCoordinates(const size_t col, const size_t row) const
 {
     size_t ind = index(col, row);
-    std::cout << col << " " << row << " " << width << " " << height << " " << ind << std::endl;
+    //std::cout << col << " " << row << " " << width << " " << height << " " << ind << std::endl;
     Point2D<T> pt = *(this->coordinates.get() + ind);
  
     return pt;

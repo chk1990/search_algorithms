@@ -59,7 +59,6 @@ TEST_F(ConstructorNoOffset, GetStep) {
 
 TEST_F(ConstructorNoOffset, CoordinateTest1X) {
     Point2D<float> pt = grid->getCoordinates(0, 0);
-
     float x = pt.getX();
 
     ASSERT_EQ(x, 0);
@@ -67,26 +66,23 @@ TEST_F(ConstructorNoOffset, CoordinateTest1X) {
 
 TEST_F(ConstructorNoOffset, CoordinateTest1Y) {
     Point2D<float> pt = grid->getCoordinates(0, 0);
-
     float y = pt.getY();
 
     ASSERT_EQ(y, 0);
 }
 
 TEST_F(ConstructorNoOffset, CoordinateTest2X) {
-    Point2D<float> pt = grid->getCoordinates(4, 9);
-
+    Point2D<float> pt = grid->getCoordinates(8, 3);
     float x = pt.getX();
 
-    ASSERT_EQ(x, 8.0);
+    ASSERT_EQ(x, 16.0);
 }
 
 TEST_F(ConstructorNoOffset, CoordinateTest2Y) {
-    Point2D<float> pt = grid->getCoordinates(4, 9);
-
+    Point2D<float> pt = grid->getCoordinates(8, 3);
     float y = pt.getY();
 
-    ASSERT_EQ(y, 18.0);
+    ASSERT_EQ(y, 6.0);
 }
 
 TEST_F(ConstructorWithOffset, GetWidth) {
