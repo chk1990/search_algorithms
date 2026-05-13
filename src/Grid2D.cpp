@@ -59,19 +59,19 @@ size_t Grid2D<T>::index(const size_t col, const size_t row) const
 }
 
 /**
- * @brief
+ * @brief Get the heigth of the grid
  */
 template<typename T>
-size_t Grid2D<T>::getHeigt()
+size_t Grid2D<T>::getHeigt() const
 {
     return this->heigth;
 }
 
 /**
- * @brief
+ * @brief Get the width of the grid
  */
 template<typename T>
-size_t Grid2D<T>::getWidth()
+size_t Grid2D<T>::getWidth() const
 {
     return this->width;
 }

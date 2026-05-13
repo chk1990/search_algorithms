@@ -35,8 +35,8 @@ class Grid2D
       Grid2D(const size_t heigth, const size_t width, const T step);
       Grid2D(const size_t heigth, const size_t width, const T step, const T offX, const T offY);
 
-      size_t getHeigt();
-      size_t getWidth();
+      size_t getHeigt() const;
+      size_t getWidth() const;
 };
 
 #endif // H_GRID_2D_H
