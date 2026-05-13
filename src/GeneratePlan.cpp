@@ -36,7 +36,9 @@ void GeneratePlan<T>::printPlan2D(const size_t ind, const std::string fileName) 
 template<typename T>
 void GeneratePlan<T>::printPlan2D1(const std::string fileName) const
 {
-    Grid2D<T> grid(5.0, 10.0, 1.0);
+    size_t width = 5;
+    size_t height = 10;
+    Grid2D<T> grid(5, 10, 1.0);
 }
 
 template class GeneratePlan<int>;

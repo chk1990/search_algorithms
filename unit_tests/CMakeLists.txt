@@ -60,3 +60,18 @@ target_link_libraries(test_Grid2D
 )
 
 gtest_discover_tests(test_Grid2D)
+
+# ============================================
+# Tests for class GeneratePlan
+
+add_executable(test_GeneratePlan
+    test_GeneratePlan.cpp
+)
+
+target_link_libraries(test_GeneratePlan
+    core
+    GTest::gtest_main
+    GTest::gmock
+)
+
+gtest_discover_tests(test_GeneratePlan)
