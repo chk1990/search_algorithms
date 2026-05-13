@@ -1,3 +1,4 @@
 # build artifacts
 build/
 docs/
+unit_tests/build/

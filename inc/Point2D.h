@@ -9,6 +9,7 @@
 /**
  * @class Point2D
  * @brief Represents a point with 2D coordinates
+ * 
  *        The type T can be int, float, double.
  */
 template<typename T>

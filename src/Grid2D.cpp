@@ -40,8 +40,8 @@ Grid2D<T>::Grid2D(const size_t heigth, const size_t width, const T step,
     for(size_t indY = 0; indY < heigth; ++indY) {
         for(size_t indX = 0; indX < width; ++indX) {
             size_t pos = index(indX, indY);
-            (this->coordinates.get() + pos)->setX(indX * step + offX);
-            (this->coordinates.get() + pos)->setY(indY * step + offY);
+            (this->coordinates.get() + pos)->setX(indX*step + offX);
+            (this->coordinates.get() + pos)->setY(indY*step + offY);
         }
     }
 }
