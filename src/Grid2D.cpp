@@ -15,7 +15,7 @@
  * @param[in] step Horizontal and vertical distance between two points
  */
 template<typename T>
-Grid2D<T>::Grid2D(const size_t height, const size_t width, const T step) : Grid2D(height, width, step, static_cast<T>(0), static_cast<T>(0)) {}
+Grid2D<T>::Grid2D(const size_t width, const size_t height, const T step) : Grid2D(width, height, step, static_cast<T>(0), static_cast<T>(0)) {}
 
 /**
  * @brief Initialize a map with given dimensions
@@ -26,9 +26,9 @@ Grid2D<T>::Grid2D(const size_t height, const size_t width, const T step) : Grid2
  * @param[in] offY Offset in y-direction
  */
 template<typename T>
-Grid2D<T>::Grid2D(const size_t height, const size_t width, const T step,
-                  const T offX, const T offY) : height(height),
-                                                width(width),
+Grid2D<T>::Grid2D(const size_t width, const size_t height, const T step,
+                  const T offX, const T offY) : width(width),
+                                                height(height),
                                                 step(step),
                                                 coordinates(std::make_unique<Point2D<T>[]>(height*width)),
                                                 occupancy(std::make_unique<uint8_t[]>(height*width))
@@ -38,7 +38,7 @@ Grid2D<T>::Grid2D(const size_t height, const size_t width, const T step,
 
     // populate map points with dimensions
     Point2D<T>* points = this->coordinates.get();
-    
+
     for(size_t indY = 0; indY < height; ++indY) {
         for(size_t indX = 0; indX < width; ++indX) {
             size_t pos = index(indX, indY);
@@ -99,8 +99,23 @@ T Grid2D<T>::getStep() const
 template<typename T>
 Point2D<T> Grid2D<T>::getCoordinates(const size_t col, const size_t row) const
 {
-    size_t ind = index(col, row);
-    //std::cout << col << " " << row << " " << width << " " << height << " " << ind << std::endl;
+    size_t c = col;
+    if(col >= width) {
+        c = width - 1;
+    }
+    else if(col < 0) {
+        c = 0;
+    }
+
+    size_t r = row;
+    if(row >= height) {
+        r = height - 1;
+    }
+    else if(row < 0) {
+        r = 0;
+    }
+
+    size_t ind = index(c, r);
     Point2D<T> pt = *(this->coordinates.get() + ind);
  
     return pt;

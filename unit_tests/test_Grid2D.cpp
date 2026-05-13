@@ -11,8 +11,8 @@ struct ConstructorNoOffset : public testing::Test
 
     void SetUp()
     {
-        float x = 5.0;
-        float y = 10.0;
+        float x = 10.0;
+        float y = 5.0;
         float step = 2.0;
 
         grid = new Grid2D<float>(x, y, step);
@@ -30,8 +30,8 @@ struct ConstructorWithOffset : public testing::Test
 
     void SetUp()
     {
-        float x = 5.0;
-        float y = 10.0;
+        float x = 10.0;
+        float y = 5.0;
         float step = 2.0;
         float xOff = -1.0;
         float yOff = -2.0;
@@ -72,17 +72,31 @@ TEST_F(ConstructorNoOffset, CoordinateTest1Y) {
 }
 
 TEST_F(ConstructorNoOffset, CoordinateTest2X) {
-    Point2D<float> pt = grid->getCoordinates(8, 3);
+    Point2D<float> pt = grid->getCoordinates(9, 4);
     float x = pt.getX();
 
-    ASSERT_EQ(x, 16.0);
+    ASSERT_EQ(x, 18.0);
 }
 
 TEST_F(ConstructorNoOffset, CoordinateTest2Y) {
-    Point2D<float> pt = grid->getCoordinates(8, 3);
+    Point2D<float> pt = grid->getCoordinates(9, 4);
     float y = pt.getY();
 
-    ASSERT_EQ(y, 6.0);
+    ASSERT_EQ(y, 8.0);
+}
+
+TEST_F(ConstructorNoOffset, CoordinateTest2XOut) {
+    Point2D<float> pt = grid->getCoordinates(10, 4);
+    float x = pt.getX();
+
+    ASSERT_EQ(x, 18.0);
+}
+
+TEST_F(ConstructorNoOffset, CoordinateTest2YOut) {
+    Point2D<float> pt = grid->getCoordinates(2, 5);
+    float y = pt.getY();
+
+    ASSERT_EQ(y, 8.0);
 }
 
 TEST_F(ConstructorWithOffset, GetWidth) {

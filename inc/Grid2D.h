@@ -32,8 +32,8 @@ class Grid2D
       size_t index(const size_t col, const size_t row) const;
 
    public:
-      Grid2D(const size_t height, const size_t width, const T step);
-      Grid2D(const size_t height, const size_t width, const T step, const T offX, const T offY);
+      Grid2D(const size_t width, const size_t height, const T step);
+      Grid2D(const size_t width, const size_t height, const T step, const T offX, const T offY);
 
       Point2D<T> getCoordinates(const size_t col, const size_t row) const;
       T getStep() const;
