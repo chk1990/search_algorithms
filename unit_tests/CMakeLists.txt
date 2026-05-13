@@ -45,3 +45,18 @@ target_link_libraries(test_Point2D
 )
 
 gtest_discover_tests(test_Point2D)
+
+# ============================================
+# Tests for class Grid2D
+
+add_executable(test_Grid2D
+    test_Grid2D.cpp
+)
+
+target_link_libraries(test_Grid2D
+    core
+    GTest::gtest_main
+    GTest::gmock
+)
+
+gtest_discover_tests(test_Grid2D)

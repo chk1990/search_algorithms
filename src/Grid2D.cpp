@@ -76,6 +76,15 @@ size_t Grid2D<T>::getWidth() const
     return this->width;
 }
 
+/**
+ * @brief Get the step size of the grid
+ */
+template<typename T>
+T Grid2D<T>::getStep() const
+{
+    return this->step;
+}
+
 template class Grid2D<int>;
 template class Grid2D<float>;
 template class Grid2D<double>;

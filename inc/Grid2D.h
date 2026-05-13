@@ -37,6 +37,7 @@ class Grid2D
 
       size_t getHeigt() const;
       size_t getWidth() const;
+      T getStep() const;
 };
 
 #endif // H_GRID_2D_H
