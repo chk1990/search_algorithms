@@ -7,44 +7,11 @@
 #define H_GRID_2D_H
 
 #include <cstddef>
+#include <iostream>
 #include <memory>
 
+#include "Occupancy.h"
 #include "Point2D.h"
-
-/**
- * @enum Occupancy
- * @brief Describes the state of a point of the map
- */
-enum Occupancy 
-{
-   UNEXPLORED, /**< Point is not explored or somehow onknown */
-   FREE, /**< Point is free and can be accessed */
-   OBSTACLE /**< Point contains an obstacle and cannot be accessed */
-};
-
-/*
-std::ostream& operator<<(std::ostream& os, const Occupancy oc) {
-   switch (oc) {
-      case FREE:
-         os << " ";
-         break;
-
-      case OBSTACLE:
-         os << "X";
-         break;
-
-      case UNEXPLORED:
-         os << "?";
-         break;
-      
-      default:
-         os << "!";
-         break;
-   }
-
-   return os;
-}
-*/
 
 /**
  * @class Grid2D

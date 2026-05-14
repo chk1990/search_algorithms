@@ -61,7 +61,7 @@ Grid2D<T>::Grid2D(const size_t width, const size_t height, const T step,
 template <typename T>
 size_t Grid2D<T>::index(const size_t col, const size_t row) const
 {
-    return row * width + col;
+    return row*width + col;
 }
 
 /**
@@ -149,7 +149,24 @@ void Grid2D<T>::printContent() const
                 std::cout << "# ";
             }
 
-            std::cout << occ[ind];
+            switch (occ[ind]) {
+                case Occupancy::FREE:
+                    std::cout << " ";
+                    break;
+
+                case Occupancy::OBSTACLE:
+                std::cout << "X";
+                break;
+
+                case Occupancy::UNEXPLORED:
+                std::cout << "?";
+                break;
+            
+                default:
+                    break;
+            }
+
+            //std::cout << occ[ind];
 
             if(indX == width - 1) {
                 // right limit
