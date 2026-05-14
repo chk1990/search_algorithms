@@ -11,6 +11,13 @@
 
 #include "Point2D.h"
 
+enum Occupancy 
+{
+   UNEXPLORED,
+   FREE,
+   OBSTACLE
+};
+
 /**
  * @class Grid2D
  * @brief Handles information of a 2D grid
@@ -23,7 +30,7 @@ class Grid2D
 {
    private:
       std::unique_ptr<Point2D<T>[]> coordinates; /**< Coordinates of the map */
-      std::unique_ptr<uint8_t[]> occupancy;   /**< Content of the map */
+      std::unique_ptr<uint8_t[]> occupancy; /**< Content of the map. */
 
       size_t height; /**< Height of the map */
       size_t width;  /**< Width of the map */
@@ -35,10 +42,14 @@ class Grid2D
       Grid2D(const size_t width, const size_t height, const T step);
       Grid2D(const size_t width, const size_t height, const T step, const T offX, const T offY);
 
+      void setOccupancy();
+
       Point2D<T> getCoordinates(const size_t col, const size_t row) const;
       T getStep() const;
       size_t getHeight() const;
       size_t getWidth() const;
+      void printContent() const;
+      void printCoordinates() const;
 };
 
 #endif // H_GRID_2D_H

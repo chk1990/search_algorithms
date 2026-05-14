@@ -25,6 +25,7 @@ class Point2D {
         T getY() const;
         void setX(T x);
         void setY(T y);
+        void printCoordinates() const;
 };
 
 #endif // H_POINT_2D_H
