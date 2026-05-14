@@ -168,6 +168,7 @@ void Grid2D<T>::printCoordinates() const
  * @brief Set a point of the map as unknown in occupancy
  * @param[in] col Column of interest
  * @param[in] row Row of interest
+ * @todo Unit Test
  */
 template <typename T>
 void Grid2D<T>::setOccupancyUnexplored(const size_t col, const size_t row)
@@ -181,6 +182,7 @@ void Grid2D<T>::setOccupancyUnexplored(const size_t col, const size_t row)
  * @brief Set a point of the map as unknown in occupancy
  * @param[in] col Column of interest
  * @param[in] row Row of interest
+ * @todo Unit Test
  */
 template <typename T>
 void Grid2D<T>::setOccupancyFree(const size_t col, const size_t row)
@@ -194,6 +196,7 @@ void Grid2D<T>::setOccupancyFree(const size_t col, const size_t row)
  * @brief Set a point of the map as unknown in occupancy
  * @param[in] col Column of interest
  * @param[in] row Row of interest
+ * @todo Unit Test
  */
 template <typename T>
 void Grid2D<T>::setOccupancyObstacle(const size_t col, const size_t row)
@@ -201,6 +204,42 @@ void Grid2D<T>::setOccupancyObstacle(const size_t col, const size_t row)
     Occupancy* occ =  occupancy.get();
     size_t ind = index(col, row);
     occ[ind] = Occupancy::OBSTACLE;
+}
+
+/**
+ * @brief Returns if the point if free
+ * @param[in] col Column of interest
+ * @param[in] row Row of interest
+ * @todo Unit Test
+ */
+template <typename T>
+bool Grid2D<T>::isFree(const size_t col, const size_t row) const
+{
+    return occupancy.get()[index(col, row)] == Occupancy::FREE;
+}
+
+/**
+ * @brief Returns if the point if free
+ * @param[in] col Column of interest
+ * @param[in] row Row of interest
+ * @todo Unit Test
+ */
+template <typename T>
+bool Grid2D<T>::isObstacle(const size_t col, const size_t row) const
+{
+    return occupancy.get()[index(col, row)] == Occupancy::OBSTACLE;
+}
+
+/**
+ * @brief Returns if the point if free
+ * @param[in] col Column of interest
+ * @param[in] row Row of interest
+ * @todo Unit Test
+ */
+template <typename T>
+bool Grid2D<T>::isUnexplored(const size_t col, const size_t row) const
+{
+    return occupancy.get()[index(col, row)] == Occupancy::UNEXPLORED;
 }
 
 template class Grid2D<int>;
