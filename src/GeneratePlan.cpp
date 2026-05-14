@@ -40,7 +40,11 @@ void GeneratePlan<T>::printPlan2D1(const std::string fileName) const
     size_t height = 5;
     Grid2D<T> grid(width, height, 1.0);
 
-    //grid.printCoordinates();
+    grid.setOccupancyObstacle(0, 0);
+    grid.setOccupancyObstacle(1, 1);
+    grid.setOccupancyObstacle(2, 2);
+    grid.setOccupancyObstacle(3, 3);
+
     grid.printContent();
 }
 

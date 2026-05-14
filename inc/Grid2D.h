@@ -46,7 +46,9 @@ class Grid2D
       Grid2D(const size_t width, const size_t height, const T step);
       Grid2D(const size_t width, const size_t height, const T step, const T offX, const T offY);
 
-      void setOccupancy();
+      void setOccupancyUnexplored(const size_t col, const size_t row);
+      void setOccupancyFree(const size_t col, const size_t row);
+      void setOccupancyObstacle(const size_t col, const size_t row);
 
       Point2D<T> getCoordinates(const size_t col, const size_t row) const;
       T getStep() const;
