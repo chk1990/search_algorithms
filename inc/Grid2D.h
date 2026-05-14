@@ -22,6 +22,30 @@ enum Occupancy
    OBSTACLE /**< Point contains an obstacle and cannot be accessed */
 };
 
+/*
+std::ostream& operator<<(std::ostream& os, const Occupancy oc) {
+   switch (oc) {
+      case FREE:
+         os << " ";
+         break;
+
+      case OBSTACLE:
+         os << "X";
+         break;
+
+      case UNEXPLORED:
+         os << "?";
+         break;
+      
+      default:
+         os << "!";
+         break;
+   }
+
+   return os;
+}
+*/
+
 /**
  * @class Grid2D
  * @brief Handles information of a 2D grid
