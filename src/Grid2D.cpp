@@ -166,8 +166,6 @@ void Grid2D<T>::printContent() const
                     break;
             }
 
-            //std::cout << occ[ind];
-
             if(indX == width - 1) {
                 // right limit
                 std::cout << " #" << std::endl;

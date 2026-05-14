@@ -39,12 +39,15 @@ void GeneratePlan<T>::genPlan2D1(const std::string filename)
     size_t height = 20;
     Grid2D<T> grid(width, height, 1.0);
 
-    for(size_t indX = 0; indX <= 5; ++indX) {
-        grid.setObstacle(indX, 2);
-
-        grid.setObstacle(indX, 7);
+    for(size_t indX = 0; indX <= 15; ++indX) {
+        grid.setObstacle(indX, 3);
+        grid.setObstacle(indX, 11);
     }
 
+    for(size_t indX = 12; indX < width; ++indX) {
+        grid.setObstacle(indX, 7);
+        grid.setObstacle(indX, 15);
+    }
 
     grid.printContent();
 }
