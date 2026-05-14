@@ -127,18 +127,47 @@ Point2D<T> Grid2D<T>::getCoordinates(const size_t col, const size_t row) const
 template <typename T>
 void Grid2D<T>::printContent() const
 {
+    // upper border line
+    for(size_t indX = 0; indX <= width + 1; ++indX) {
+        std::cout << "#";
+
+        if(indX <= width) {
+            std::cout << " ";
+        } else {
+            std::cout << std::endl;
+        }
+    }
+
     Occupancy *occ = occupancy.get();
     for(size_t indY = 0; indY < height; ++indY) {
         for(size_t indX = 0; indX < width; ++indX) {
 
             size_t ind = index(indX, indY);
+
+            if(indX == 0) {
+                // left limit
+                std::cout << "# ";
+            }
+
             std::cout << occ[ind];
 
             if(indX == width - 1) {
-                std::cout << std::endl;
+                // right limit
+                std::cout << " #" << std::endl;
             } else {
                 std::cout << " ";
             }
+        }
+    }
+
+    // lower border line
+    for(size_t indX = 0; indX <= width + 1; ++indX) {
+        std::cout << "#";
+
+        if(indX <= width) {
+            std::cout << " ";
+        } else {
+            std::cout << std::endl;
         }
     }
 }

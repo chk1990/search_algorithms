@@ -35,14 +35,14 @@ void GeneratePlan<T>::genPlan2D(const size_t ind, const std::string filename)
 template<typename T>
 void GeneratePlan<T>::genPlan2D1(const std::string filename)
 {
-    size_t width = 20;
-    size_t height = 10;
+    size_t width = 30;
+    size_t height = 20;
     Grid2D<T> grid(width, height, 1.0);
 
     for(size_t indX = 0; indX <= 5; ++indX) {
         grid.setObstacle(indX, 2);
 
-        grid.setObstacle(indX, 5);
+        grid.setObstacle(indX, 7);
     }
 
 
