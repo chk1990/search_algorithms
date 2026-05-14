@@ -12,7 +12,7 @@
 #include "Point2D.h"
 
 /**
- * @class Occupancy
+ * @enum Occupancy
  * @brief Describes the state of a point of the map
  */
 enum Occupancy 
@@ -46,9 +46,9 @@ class Grid2D
       Grid2D(const size_t width, const size_t height, const T step);
       Grid2D(const size_t width, const size_t height, const T step, const T offX, const T offY);
 
-      void setOccupancyUnexplored(const size_t col, const size_t row);
-      void setOccupancyFree(const size_t col, const size_t row);
-      void setOccupancyObstacle(const size_t col, const size_t row);
+      void setUnexplored(const size_t col, const size_t row);
+      void setFree(const size_t col, const size_t row);
+      void setObstacle(const size_t col, const size_t row);
       bool isFree(const size_t col, const size_t row) const;
       bool isObstacle(const size_t col, const size_t row) const;
       bool isUnexplored(const size_t col, const size_t row) const;

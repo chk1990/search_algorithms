@@ -6,7 +6,6 @@
 #include <iostream>
 
 #include "GeneratePlan.h"
-#include "Grid2D.h"
 
 template<typename T>
 GeneratePlan<T>::GeneratePlan() {}
@@ -14,14 +13,14 @@ GeneratePlan<T>::GeneratePlan() {}
 /**
  * @brief Specifies a 2D plan index, generates it and stores it
  * @param[in] ind Index of plan
- * @param[in] fileName Name of the file to store the plan in
+ * @param[in] filename Name of the file to store the plan in
  */
 template<typename T>
-void GeneratePlan<T>::printPlan2D(const size_t ind, const std::string fileName) const
+void GeneratePlan<T>::genPlan2D(const size_t ind, const std::string filename)
 {
     switch (ind) {
     case 1:
-        printPlan2D1(fileName);
+        genPlan2D1(filename);
         break;
     
     default:
@@ -31,23 +30,23 @@ void GeneratePlan<T>::printPlan2D(const size_t ind, const std::string fileName) 
 
 /**
  * @brief Generates 2D plan with index 1 and stores it in file
- * @param[in] fileName Name of the file to store the plan in
+ * @param[in] filename Name of the file to store the plan in
  */
 template<typename T>
-void GeneratePlan<T>::printPlan2D1(const std::string fileName) const
+void GeneratePlan<T>::genPlan2D1(const std::string filename)
 {
-    size_t width = 10;
-    size_t height = 5;
+    size_t width = 20;
+    size_t height = 10;
     Grid2D<T> grid(width, height, 1.0);
 
-    grid.setOccupancyObstacle(0, 0);
-    grid.setOccupancyObstacle(1, 1);
-    grid.setOccupancyObstacle(2, 2);
-    grid.setOccupancyObstacle(3, 3);
+    for(size_t indX = 0; indX <= 5; ++indX) {
+        grid.setObstacle(indX, 2);
+
+        grid.setObstacle(indX, 5);
+    }
+
 
     grid.printContent();
-
-    // export to file
 }
 
 template class GeneratePlan<int>;

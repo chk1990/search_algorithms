@@ -94,6 +94,40 @@ TEST_F(ConstructorNoOffset, CoordinateTest2YOut2) {
     ASSERT_EQ(x, 4.0);
 }
 
+TEST_F(ConstructorNoOffset, SetFree) {
+    bool freeInit = grid->isFree(0,0);
+
+    grid->setObstacle(0, 0);
+
+    bool freeInter = grid->isFree(0, 0);
+
+    grid->setFree(0, 0);
+
+    bool freeEnd = grid->isFree(0, 0);
+
+    ASSERT_EQ(free && !freeInit && freeEnd, true);
+}
+
+TEST_F(ConstructorNoOffset, SetObstacle) {
+    bool obstInit = grid->isObstacle(2, 3);
+
+    grid->setObstacle(2, 3);
+
+    bool obstEnd = grid->isObstacle(2, 3);
+
+    ASSERT_EQ(!obstInit && obstEnd, true);
+}
+
+TEST_F(ConstructorNoOffset, SetUnexplored) {
+    bool unexplInit = grid->isUnexplored(2, 3);
+
+    grid->setObstacle(2, 3);
+
+    bool unexplEnd = grid->isUnexplored(2, 3);
+
+    ASSERT_EQ(unexplInit && !unexplEnd, true);
+}
+
 // ----------------------------------------
 // Tests with offset
 

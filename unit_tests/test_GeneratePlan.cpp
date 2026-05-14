@@ -7,6 +7,21 @@
 
 using ::testing::Exactly;
 
+struct ConstructorNoOffset : public testing::Test
+{
+    GeneratePlan<float> gen;
+
+    void SetUp()
+    {
+        //
+    }
+
+    void TearDown()
+    {
+        //
+    }
+};
+
 /*
 TEST(T, U) {
 
@@ -15,12 +30,6 @@ TEST(T, U) {
 */
 
 int main(int argc, char* argv[]) {
-    //testing::InitGoogleTest(&argc, argv);
-    //return RUN_ALL_TESTS();
-
-    GeneratePlan<float> gen;
-
-    gen.printPlan2D(1, "plan.dat");
-
-    return 0;
+    testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }

@@ -39,8 +39,8 @@ Grid2D<T>::Grid2D(const size_t width, const size_t height, const T step,
     // populate map points with dimensions
     Point2D<T> *points = this->coordinates.get();
 
-    for (size_t indY = 0; indY < height; ++indY) {
-        for (size_t indX = 0; indX < width; ++indX) {
+    for(size_t indY = 0; indY < height; ++indY) {
+        for(size_t indX = 0; indX < width; ++indX) {
             size_t pos = index(indX, indY);
 
             T xVal = indX * step + offX;
@@ -100,18 +100,18 @@ template <typename T>
 Point2D<T> Grid2D<T>::getCoordinates(const size_t col, const size_t row) const
 {
     size_t c = col;
-    if (col >= width) {
+    if(col >= width) {
         c = width - 1;
     }
-    else if (col < 0) {
+    else if(col < 0) {
         c = 0;
     }
 
     size_t r = row;
-    if (row >= height) {
+    if(row >= height) {
         r = height - 1;
     }
-    else if (row < 0) {
+    else if(row < 0) {
         r = 0;
     }
 
@@ -128,13 +128,13 @@ template <typename T>
 void Grid2D<T>::printContent() const
 {
     Occupancy *occ = occupancy.get();
-    for (size_t indY = 0; indY < height; ++indY) {
-        for (size_t indX = 0; indX < width; ++indX) {
+    for(size_t indY = 0; indY < height; ++indY) {
+        for(size_t indX = 0; indX < width; ++indX) {
 
             size_t ind = index(indX, indY);
             std::cout << occ[ind];
 
-            if (indX == width - 1) {
+            if(indX == width - 1) {
                 std::cout << std::endl;
             } else {
                 std::cout << " ";
@@ -150,12 +150,12 @@ template <typename T>
 void Grid2D<T>::printCoordinates() const
 {
     Point2D<T> *points = coordinates.get();
-    for (size_t indY = 0; indY < height; ++indY) {
-        for (size_t indX = 0; indX < width; ++indX) {
+    for(size_t indY = 0; indY < height; ++indY) {
+        for(size_t indX = 0; indX < width; ++indX) {
             size_t ind = index(indX, indY);
             points[ind].printCoordinates();
 
-            if (indX == width - 1) {
+            if(indX == width - 1) {
                 std::cout << std::endl;
             } else {
                 std::cout << " ";
@@ -168,10 +168,9 @@ void Grid2D<T>::printCoordinates() const
  * @brief Set a point of the map as unknown in occupancy
  * @param[in] col Column of interest
  * @param[in] row Row of interest
- * @todo Unit Test
  */
 template <typename T>
-void Grid2D<T>::setOccupancyUnexplored(const size_t col, const size_t row)
+void Grid2D<T>::setUnexplored(const size_t col, const size_t row)
 {
     Occupancy* occ =  occupancy.get();
     size_t ind = index(col, row);
@@ -182,10 +181,9 @@ void Grid2D<T>::setOccupancyUnexplored(const size_t col, const size_t row)
  * @brief Set a point of the map as unknown in occupancy
  * @param[in] col Column of interest
  * @param[in] row Row of interest
- * @todo Unit Test
  */
 template <typename T>
-void Grid2D<T>::setOccupancyFree(const size_t col, const size_t row)
+void Grid2D<T>::setFree(const size_t col, const size_t row)
 {
     Occupancy* occ =  occupancy.get();
     size_t ind = index(col, row);
@@ -196,10 +194,9 @@ void Grid2D<T>::setOccupancyFree(const size_t col, const size_t row)
  * @brief Set a point of the map as unknown in occupancy
  * @param[in] col Column of interest
  * @param[in] row Row of interest
- * @todo Unit Test
  */
 template <typename T>
-void Grid2D<T>::setOccupancyObstacle(const size_t col, const size_t row)
+void Grid2D<T>::setObstacle(const size_t col, const size_t row)
 {
     Occupancy* occ =  occupancy.get();
     size_t ind = index(col, row);
@@ -210,7 +207,6 @@ void Grid2D<T>::setOccupancyObstacle(const size_t col, const size_t row)
  * @brief Returns if the point if free
  * @param[in] col Column of interest
  * @param[in] row Row of interest
- * @todo Unit Test
  */
 template <typename T>
 bool Grid2D<T>::isFree(const size_t col, const size_t row) const
@@ -222,7 +218,6 @@ bool Grid2D<T>::isFree(const size_t col, const size_t row) const
  * @brief Returns if the point if free
  * @param[in] col Column of interest
  * @param[in] row Row of interest
- * @todo Unit Test
  */
 template <typename T>
 bool Grid2D<T>::isObstacle(const size_t col, const size_t row) const
@@ -234,7 +229,6 @@ bool Grid2D<T>::isObstacle(const size_t col, const size_t row) const
  * @brief Returns if the point if free
  * @param[in] col Column of interest
  * @param[in] row Row of interest
- * @todo Unit Test
  */
 template <typename T>
 bool Grid2D<T>::isUnexplored(const size_t col, const size_t row) const

@@ -6,7 +6,6 @@
 #ifndef H_GENERATE_PLAN_H
 #define H_GENERATE_PLAN_H
 
-#include<iostream>
 #include<memory>
 #include<string>
 #include<vector>
@@ -23,12 +22,12 @@ class GeneratePlan {
     public:
         GeneratePlan();
         
-        void printPlan2D(const size_t ind, const std::string fileName) const;
+        void genPlan2D(const size_t ind, const std::string filename);
 
     private:
         std::unique_ptr<Grid2D<T>> plan; /**< All information of the map */
 
-        void printPlan2D1(const std::string fileName) const;
+        void genPlan2D1(const std::string filename);
 };
 
 #endif // H_GENERATE_PLAN_H
