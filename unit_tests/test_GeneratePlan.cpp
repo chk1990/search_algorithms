@@ -18,9 +18,9 @@ int main(int argc, char* argv[]) {
     //testing::InitGoogleTest(&argc, argv);
     //return RUN_ALL_TESTS();
 
-    GeneratePlan<float> generator();
+    GeneratePlan<float> gen;
 
-    generator.printPlan2D(1, "plan.dat");
+    gen.printPlan2D(1, "plan.dat");
 
     return 0;
 }
