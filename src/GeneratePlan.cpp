@@ -46,6 +46,8 @@ void GeneratePlan<T>::printPlan2D1(const std::string fileName) const
     grid.setOccupancyObstacle(3, 3);
 
     grid.printContent();
+
+    // export to file
 }
 
 template class GeneratePlan<int>;
