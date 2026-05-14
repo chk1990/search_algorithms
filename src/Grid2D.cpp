@@ -31,10 +31,10 @@ Grid2D<T>::Grid2D(const size_t width, const size_t height, const T step,
                                                 height(height),
                                                 step(step),
                                                 coordinates(std::make_unique<Point2D<T>[]>(height*width)),
-                                                occupancy(std::make_unique<uint8_t[]>(height*width))
+                                                occupancy(std::make_unique<Occupancy[]>(height*width))
 {
     // initialize map content with "nothing"
-    std::fill(this->occupancy.get(), this->occupancy.get() + height*width, 0);
+    std::fill(this->occupancy.get(), this->occupancy.get() + height*width, Occupancy::UNEXPLORED);
 
     // populate map points with dimensions
     Point2D<T>* points = this->coordinates.get();
@@ -127,7 +127,7 @@ Point2D<T> Grid2D<T>::getCoordinates(const size_t col, const size_t row) const
 template<typename T>
 void Grid2D<T>::printContent() const
 {
-    uint8_t* occ = occupancy.get();
+    Occupancy* occ = occupancy.get();
     for(size_t indY = 0; indY < height; ++indY) {
         for(size_t indX = 0; indX < width; ++indX) {
             

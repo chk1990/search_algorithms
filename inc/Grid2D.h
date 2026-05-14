@@ -11,6 +11,10 @@
 
 #include "Point2D.h"
 
+/**
+ * @class Occupancy
+ * @brief Describes the state of a point of the map
+ */
 enum Occupancy 
 {
    UNEXPLORED,
@@ -30,7 +34,7 @@ class Grid2D
 {
    private:
       std::unique_ptr<Point2D<T>[]> coordinates; /**< Coordinates of the map */
-      std::unique_ptr<uint8_t[]> occupancy; /**< Content of the map. */
+      std::unique_ptr<Occupancy[]> occupancy; /**< Content of the map. */
 
       size_t height; /**< Height of the map */
       size_t width;  /**< Width of the map */
