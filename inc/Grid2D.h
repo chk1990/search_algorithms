@@ -52,6 +52,7 @@ class Grid2D
       size_t getWidth() const;
       void printContent() const;
       void printCoordinates() const;
+      void printPlanFile(std::string filename) const;
 };
 
 template class Grid2D<int>;

@@ -50,6 +50,5 @@ void GeneratePlan<T>::genPlan2D1(const std::string filename)
     }
 
     grid.printContent();
-
-    //
+    grid.printPlanFile(filename);
 }

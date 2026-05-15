@@ -3,6 +3,7 @@
  * @author Christoph Kolhoff
  */
 
+ #include <fstream>
 #include <iostream>
 #include <memory>
 
@@ -284,4 +285,34 @@ template <typename T>
 bool Grid2D<T>::isDiscovered(const size_t col, const size_t row) const
 {
     return discovered.get()[index(col, row)];
+}
+
+/**
+ * @brief Prints the plan to a file
+ * @param[in] filename Name of the file
+ */
+template <typename T>
+void Grid2D<T>::printPlanFile(std::string filename) const
+{
+    std::ofstream fileStream;
+    fileStream.open(filename);
+
+    fileStream << width << std::endl << height << std::endl << step << std::endl;
+
+    Occupancy* occ = occupancy.get();
+    for(size_t indY = 0; indY < height; ++indY) {
+        for(size_t indX = 0; indX < width; ++indX) {
+            fileStream << occ[index(indX, indY)];
+        }
+    }
+    fileStream << std::endl;
+
+    bool* dis = discovered.get();
+    for(size_t indY = 0; indY < height; ++indY) {
+        for(size_t indX = 0; indX < width; ++indX) {
+            fileStream << dis[index(indX, indY)];
+        }
+    }
+
+    fileStream.close();
 }
