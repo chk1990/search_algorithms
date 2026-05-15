@@ -26,6 +26,7 @@ class Grid2D
    private:
       std::unique_ptr<Point2D<T>[]> coordinates; /**< Coordinates of the map */
       std::unique_ptr<Occupancy[]> occupancy; /**< Content of the map. */
+      std::unique_ptr<bool[]> discovered; /**< Discovery state */
 
       size_t height; /**< Height of the map */
       size_t width;  /**< Width of the map */
@@ -37,12 +38,10 @@ class Grid2D
       Grid2D(const size_t width, const size_t height, const T step);
       Grid2D(const size_t width, const size_t height, const T step, const T offX, const T offY);
 
-      void setUnexplored(const size_t col, const size_t row);
       void setFree(const size_t col, const size_t row);
       void setObstacle(const size_t col, const size_t row);
       bool isFree(const size_t col, const size_t row) const;
       bool isObstacle(const size_t col, const size_t row) const;
-      bool isUnexplored(const size_t col, const size_t row) const;
 
       Point2D<T> getCoordinates(const size_t col, const size_t row) const;
       T getStep() const;

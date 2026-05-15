@@ -16,10 +16,6 @@ std::ostream& operator<<(std::ostream& os, const Occupancy oc) {
       case OBSTACLE:
          os << "X";
          break;
-
-      case UNEXPLORED:
-         os << "?";
-         break;
       
       default:
          os << "!";

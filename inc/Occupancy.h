@@ -12,7 +12,6 @@
  */
 enum Occupancy
 {
-   UNEXPLORED, /**< Point is not explored or somehow onknown */
    FREE, /**< Point is free and can be accessed */
    OBSTACLE /**< Point contains an obstacle and cannot be accessed */
 };
