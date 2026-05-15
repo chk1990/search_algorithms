@@ -253,6 +253,39 @@ bool Grid2D<T>::isObstacle(const size_t col, const size_t row) const
     return occupancy.get()[index(col, row)] == Occupancy::OBSTACLE;
 }
 
+/**
+ * @brief Sets the state of the point as discovered
+ * @param[in] col Column of interest
+ * @param[in] row Row of interest
+ */
+template <typename T>
+void Grid2D<T>::setDiscovered(const size_t col, const size_t row)
+{
+    //
+}
+
+/**
+ * @brief Sets the state of the point as undiscovered
+ * @param[in] col Column of interest
+ * @param[in] row Row of interest
+ */
+template <typename T>
+void Grid2D<T>::setUndiscovered(const size_t col, const size_t row)
+{
+    //
+}
+
+/**
+ * @brief Checks if the point is discovered
+ * @param[in] col Column of interest
+ * @param[in] row Row of interest
+ */
+template <typename T>
+bool Grid2D<T>::isDiscovered(const size_t col, const size_t row) const
+{
+    return discovered.get()[index(col, row)];
+}
+
 template class Grid2D<int>;
 template class Grid2D<float>;
 template class Grid2D<double>;
