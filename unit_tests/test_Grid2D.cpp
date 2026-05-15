@@ -1,3 +1,8 @@
+/**
+ * @file test_Grid2D.cpp
+ * @author Christoph Kolhoff
+ */
+
 #include<iostream>
 
 #include <gtest/gtest.h>

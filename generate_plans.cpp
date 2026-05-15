@@ -1,3 +1,8 @@
+/**
+ * @file generate_plans.cpp
+ * @author Christoph Kolhoff
+ */
+
 #include<iostream>
 
 #include "GeneratePlan.h"

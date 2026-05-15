@@ -288,11 +288,11 @@ bool Grid2D<T>::isDiscovered(const size_t col, const size_t row) const
 }
 
 /**
- * @brief Prints the plan to a file
+ * @brief Exports the plan to a file
  * @param[in] filename Name of the file
  */
 template <typename T>
-void Grid2D<T>::printPlanFile(std::string filename) const
+void Grid2D<T>::exportPlanFile(const std::string filename) const
 {
     std::ofstream fileStream;
     fileStream.open(filename);
@@ -315,4 +315,20 @@ void Grid2D<T>::printPlanFile(std::string filename) const
     }
 
     fileStream.close();
+}
+
+/**
+ * @brief Imports the plan from a file
+ * @param[in] filename Name of the file
+ * @todo Complete and test
+ */
+template<typename T>
+void Grid2D<T>::importPlanFile(const std::string filename)
+{
+    std::ifstream is;
+    is.open(filename);
+
+    //
+
+    is.close();
 }
