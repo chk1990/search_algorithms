@@ -285,7 +285,3 @@ bool Grid2D<T>::isDiscovered(const size_t col, const size_t row) const
 {
     return discovered.get()[index(col, row)];
 }
-
-template class Grid2D<int>;
-template class Grid2D<float>;
-template class Grid2D<double>;

@@ -30,4 +30,8 @@ class GeneratePlan {
         void genPlan2D1(const std::string filename);
 };
 
+template class GeneratePlan<int>;
+template class GeneratePlan<float>;
+template class GeneratePlan<double>;
+
 #endif // H_GENERATE_PLAN_H

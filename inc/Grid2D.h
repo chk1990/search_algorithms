@@ -54,4 +54,8 @@ class Grid2D
       void printCoordinates() const;
 };
 
+template class Grid2D<int>;
+template class Grid2D<float>;
+template class Grid2D<double>;
+
 #endif // H_GRID_2D_H

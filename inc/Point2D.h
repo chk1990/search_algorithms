@@ -28,4 +28,8 @@ class Point2D {
         void printCoordinates() const;
 };
 
+template class Point2D<int>;
+template class Point2D<float>;
+template class Point2D<double>;
+
 #endif // H_POINT_2D_H

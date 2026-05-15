@@ -65,7 +65,3 @@ void Point2D<T>::printCoordinates() const
 {
     std::cout << "(" << getX() << ", " << getY() << ")";
 }
-
-template class Point2D<int>;
-template class Point2D<float>;
-template class Point2D<double>;
