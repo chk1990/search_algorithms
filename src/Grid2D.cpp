@@ -244,7 +244,7 @@ bool Grid2D<T>::isFree(const size_t col, const size_t row) const
 }
 
 /**
- * @brief Returns if the point if free
+ * @brief Returns if the point is an obstacle
  * @param[in] col Column of interest
  * @param[in] row Row of interest
  */
