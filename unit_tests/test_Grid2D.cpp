@@ -95,7 +95,7 @@ TEST_F(ConstructorNoOffset, CoordinateTest2YOut2) {
 }
 
 TEST_F(ConstructorNoOffset, SetFree) {
-    bool freeInit = grid->isFree(0,0);
+    bool freeInit = grid->isFree(0, 0);
 
     grid->setObstacle(0, 0);
 
@@ -105,7 +105,7 @@ TEST_F(ConstructorNoOffset, SetFree) {
 
     bool freeEnd = grid->isFree(0, 0);
 
-    ASSERT_EQ(free && !freeInit && freeEnd, true);
+    ASSERT_EQ(freeInit && !freeInter && freeEnd, true);
 }
 
 TEST_F(ConstructorNoOffset, SetObstacle) {
@@ -118,14 +118,17 @@ TEST_F(ConstructorNoOffset, SetObstacle) {
     ASSERT_EQ(!obstInit && obstEnd, true);
 }
 
-TEST_F(ConstructorNoOffset, SetUnexplored) {
-    bool unexplInit = grid->isUnexplored(2, 3);
+TEST_F(ConstructorNoOffset, IsDiscovered) {
+    bool ud = grid->isDiscovered(10, 4);
 
-    grid->setObstacle(2, 3);
+    ASSERT_EQ(ud, false);
+}
 
-    bool unexplEnd = grid->isUnexplored(2, 3);
+TEST_F(ConstructorNoOffset, SetDiscovered) {
+    grid->setDiscovered(10, 4);
+    bool d = grid->isDiscovered(10, 4);
 
-    ASSERT_EQ(unexplInit && !unexplEnd, true);
+    ASSERT_EQ(d, true);
 }
 
 // ----------------------------------------

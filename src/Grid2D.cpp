@@ -261,7 +261,7 @@ bool Grid2D<T>::isObstacle(const size_t col, const size_t row) const
 template <typename T>
 void Grid2D<T>::setDiscovered(const size_t col, const size_t row)
 {
-    //
+    discovered.get()[index(col, row)] = true;
 }
 
 /**
@@ -272,7 +272,7 @@ void Grid2D<T>::setDiscovered(const size_t col, const size_t row)
 template <typename T>
 void Grid2D<T>::setUndiscovered(const size_t col, const size_t row)
 {
-    //
+    discovered.get()[index(col, row)] = false;
 }
 
 /**
