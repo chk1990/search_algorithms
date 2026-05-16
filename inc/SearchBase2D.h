@@ -10,12 +10,18 @@
 
 #include "Grid2D.h"
 
+template<typename T>
 class SearchBase2D {
     private:
-        std::unique_ptr<Grid2D<float>> grid;
+        std::unique_ptr<Grid2D<T>> grid;
     
     public:
         SearchBase2D(const std::string filename);
+        ~SearchBase2D() {};        
 };
+
+template class SearchBase2D<int>;
+template class SearchBase2D<float>;
+template class SearchBase2D<double>;
 
 #endif // H_SEARCH_BASE_H

@@ -17,7 +17,7 @@
  * @class Grid2D
  * @brief Handles information of a 2D grid
  * 
- * The map is represented by dimensions in x and y. Width and height are represented by x and y respectively.
+ * The map is represented by dimensions in x and y. Width and height are represented by x and y respectively. All distances in x- and y-direction are equidistant.
  * The type T can be int, float, double.
  */
 template<typename T>
@@ -33,6 +33,8 @@ class Grid2D
       T step; /**< Step in x- and y- direction between two points */
 
       size_t index(const size_t col, const size_t row) const;
+      void populatePoints();
+      void populatePoints(const T xOff, const T yOff);
 
    public:
       Grid2D();

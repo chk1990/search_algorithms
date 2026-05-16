@@ -48,19 +48,7 @@ Grid2D<T>::Grid2D(const size_t width, const size_t height, const T step,
     std::fill(this->discovered.get(), this->discovered.get() + height * width, false);
 
     // populate map points with dimensions
-    Point2D<T> *points = this->coordinates.get();
-
-    for(size_t indY = 0; indY < height; ++indY) {
-        for(size_t indX = 0; indX < width; ++indX) {
-            size_t pos = index(indX, indY);
-
-            T xVal = indX * step + offX;
-            T yVal = indY * step + offY;
-
-            points[pos].setX(xVal);
-            points[pos].setY(yVal);
-        }
-    }
+    populatePoints();
 }
 
 /**
@@ -73,6 +61,37 @@ template <typename T>
 size_t Grid2D<T>::index(const size_t col, const size_t row) const
 {
     return row*width + col;
+}
+
+/**
+ * @brief Populate point coordinates of grid
+ */
+template <typename T>
+void Grid2D<T>::populatePoints()
+{
+    populatePoints(static_cast<T>(0), static_cast<T>(0));
+}
+
+/**
+ * @brief Populate point coordinates of grid with offset
+ * @param[in] xOff Offset in x-direction
+ * @param[in] yOff Offset in y-direction
+ */
+template <typename T>
+void Grid2D<T>::populatePoints(const T xOff, const T yOff)
+{
+    Point2D<T> *points = this->coordinates.get();
+    for(size_t indY = 0; indY < height; ++indY) {
+        for(size_t indX = 0; indX < width; ++indX) {
+            size_t pos = index(indX, indY);
+
+            T xVal = indX * step + xOff;
+            T yVal = indY * step + yOff;
+
+            points[pos].setX(xVal);
+            points[pos].setY(yVal);
+        }
+    }
 }
 
 /**
@@ -387,4 +406,7 @@ void Grid2D<T>::importPlanFile(const std::string filename)
     }
 
     is.close();
+
+    // populate point dimensions
+    populatePoints();
 }
