@@ -6,9 +6,9 @@
 #ifndef H_GRID_2D_H
 #define H_GRID_2D_H
 
-#include <cstddef>
-#include <iostream>
-#include <memory>
+#include<cstddef>
+#include<iostream>
+#include<memory>
 
 #include "Occupancy.h"
 #include "Point2D.h"
@@ -35,6 +35,7 @@ class Grid2D
       size_t index(const size_t col, const size_t row) const;
 
    public:
+      Grid2D();
       Grid2D(const size_t width, const size_t height, const T step);
       Grid2D(const size_t width, const size_t height, const T step, const T offX, const T offY);
 

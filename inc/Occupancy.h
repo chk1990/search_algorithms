@@ -12,8 +12,8 @@
  */
 enum Occupancy
 {
-   FREE, /**< Point is free and can be accessed */
-   OBSTACLE /**< Point contains an obstacle and cannot be accessed */
+   FREE = 0, /**< Point is free and can be accessed */
+   OBSTACLE = 1 /**< Point contains an obstacle and cannot be accessed */
 };
 
 #endif // H_OCCUPANCY_H

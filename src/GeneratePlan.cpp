@@ -3,7 +3,7 @@
  * @author Christoph Kolhoff
  */
 
-#include <iostream>
+#include<iostream>
 
 #include "GeneratePlan.h"
 

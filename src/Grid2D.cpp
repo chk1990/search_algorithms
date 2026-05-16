@@ -3,11 +3,19 @@
  * @author Christoph Kolhoff
  */
 
- #include <fstream>
-#include <iostream>
-#include <memory>
+#include<cstring>
+#include<fstream>
+#include<iostream>
+#include<limits.h>
+#include<memory>
 
 #include "Grid2D.h"
+
+/**
+ * @brief Initialize a map with default dimensions
+ */
+template <typename T>
+Grid2D<T>::Grid2D() : Grid2D(static_cast<T>(0), static_cast<T>(0), static_cast<T>(0), static_cast<T>(0), static_cast<T>(0)) {}
 
 /**
  * @brief Initialize a map with given dimensions
@@ -37,6 +45,7 @@ Grid2D<T>::Grid2D(const size_t width, const size_t height, const T step,
 {
     // initialize map content with "nothing"
     std::fill(this->occupancy.get(), this->occupancy.get() + height * width, Occupancy::FREE);
+    std::fill(this->discovered.get(), this->discovered.get() + height * width, false);
 
     // populate map points with dimensions
     Point2D<T> *points = this->coordinates.get();
@@ -140,7 +149,7 @@ void Grid2D<T>::printContent() const
         }
     }
 
-    Occupancy *occ = occupancy.get();
+    Occupancy* occ = occupancy.get();
     for(size_t indY = 0; indY < height; ++indY) {
         for(size_t indX = 0; indX < width; ++indX) {
 
@@ -290,12 +299,22 @@ bool Grid2D<T>::isDiscovered(const size_t col, const size_t row) const
 /**
  * @brief Exports the plan to a file
  * @param[in] filename Name of the file
+ * 
+ * The exported file contains data as follows:\n
+ * Line 1: Width of the map\n
+ * Line 2: Height of the map\n
+ * Line 3: Content of the map (free, obstancles, ...)\n
+ * Line 4: Discovery state\n
  */
 template <typename T>
 void Grid2D<T>::exportPlanFile(const std::string filename) const
 {
     std::ofstream fileStream;
     fileStream.open(filename);
+    if(!fileStream.is_open()) {
+        perror("Failed to open file");
+        return;
+    }
 
     fileStream << width << std::endl << height << std::endl << step << std::endl;
 
@@ -328,7 +347,45 @@ void Grid2D<T>::importPlanFile(const std::string filename)
     std::ifstream is;
     is.open(filename);
 
-    //
+    if(!is.is_open()) {
+        perror("Failed to open file");
+        return;
+    }
+
+    // determine width, height and step
+    char c[256];
+    is.getline(c, 256);
+    this->width = std::stoi(c);
+
+    is.getline(c, 256);
+    this->height = std::stoi(c);
+
+    is.getline(c, 256);
+    this->step = std::stoi(c);
+
+    // populate other arrays
+    coordinates = std::make_unique<Point2D<T>[]>(this->height*this->width);
+    occupancy = std::make_unique<Occupancy[]>(this->height*this->width);
+    discovered = std::make_unique<bool[]>(this->height*this->width);
+
+    Occupancy* occ = occupancy.get();
+    for(size_t indArr = 0; indArr < width*height; ++indArr) {
+        int i = is.get() - '0';
+        occ[indArr] = static_cast<Occupancy>(i);
+    }
+
+    is.get(); // remove '\n'
+
+    bool* dis = discovered.get();
+    for(size_t indArr = 0; indArr < width*height; ++indArr) {
+        int i = is.get() - '0';
+        
+        if(i == 1) {
+            dis[indArr] = true;
+        } else {
+            dis[indArr] = false;
+        }
+    }
 
     is.close();
 }
