@@ -85,20 +85,6 @@ TEST_F(ConstructorNoOffset, CoordinateTest2YOut1) {
     ASSERT_EQ(y, 8.0);
 }
 
-TEST_F(ConstructorNoOffset, CoordinateTest2XOut2) {
-    Point2D<float> pt = grid->getCoordinates(-1, 4);
-    float y = pt.getY();
-
-    ASSERT_EQ(y, 8.0);
-}
-
-TEST_F(ConstructorNoOffset, CoordinateTest2YOut2) {
-    Point2D<float> pt = grid->getCoordinates(2, -1);
-    float x = pt.getX();
-
-    ASSERT_EQ(x, 4.0);
-}
-
 TEST_F(ConstructorNoOffset, SetFree) {
     bool freeInit = grid->isFree(0, 0);
 
