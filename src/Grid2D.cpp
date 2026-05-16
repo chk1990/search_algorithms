@@ -47,8 +47,7 @@ Grid2D<T>::Grid2D(const size_t width, const size_t height, const T step,
     std::fill(this->occupancy.get(), this->occupancy.get() + height * width, Occupancy::FREE);
     std::fill(this->discovered.get(), this->discovered.get() + height * width, false);
 
-    // populate map points with dimensions
-    populatePoints();
+    populatePoints(offX, offY);
 }
 
 /**
@@ -407,6 +406,5 @@ void Grid2D<T>::importPlanFile(const std::string filename)
 
     is.close();
 
-    // populate point dimensions
     populatePoints();
 }

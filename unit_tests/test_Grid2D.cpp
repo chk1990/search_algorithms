@@ -176,7 +176,7 @@ TEST_F(ConstructorWithOffset, CoordinateTest1X) {
     Point2D<float> pt = grid->getCoordinates(0, 0);
     float x = pt.getX();
 
-    ASSERT_EQ(x, -1);
+    ASSERT_EQ(x, -1.0);
 }
 
 TEST_F(ConstructorWithOffset, CoordinateTest1Y) {
