@@ -9,5 +9,7 @@
 
 int main(int argc, char* argv[]) {
 
+    SearchBase2D base("./data_environment/plan1.dat");
+
     return 0;
 }
