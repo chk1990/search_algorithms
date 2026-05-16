@@ -12,9 +12,9 @@
 
 template<typename T>
 class SearchBase2D {
-    private:
+    protected:
         std::unique_ptr<Grid2D<T>> grid;
-    
+
     public:
         SearchBase2D(const std::string filename);
         ~SearchBase2D() {};        
