@@ -10,7 +10,11 @@
 
 template<typename T>
 class BreadthFirstSearch2D {
-    //
+    // std::queue
 };
+
+template class BreadthFirstSearch2D<int>;
+template class BreadthFirstSearch2D<float>;
+template class BreadthFirstSearch2D<double>;
 
 #endif // H_BREADTH_FIRST_SEARCH_H

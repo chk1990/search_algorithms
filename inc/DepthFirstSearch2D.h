@@ -10,7 +10,11 @@
 
 template<typename T>
 class DepthFirstSearch2D {
-    //
+    // std::stack
 };
+
+template class DepthFirstSearch2D<int>;
+template class DepthFirstSearch2D<float>;
+template class DepthFirstSearch2D<double>;
 
 #endif // H_DEPTH_FIRST_SEARCH_H
