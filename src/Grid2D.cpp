@@ -121,6 +121,18 @@ T Grid2D<T>::getStep() const
 }
 
 /**
+ * @brief Determines the index of a point to find
+ * @param[in] point Point to find in grid
+ * @return Index of point
+ * @todo COmplete and test
+ */
+template <typename T>
+size_t Grid2D<T>::getIndex(Point2D<T> point) const
+{
+    return 0;
+}
+
+/**
  * @brief Returns the point at the given location
  * @param[in] row Row index of interest
  * @param[in] col Column index of interest

@@ -53,6 +53,7 @@ class Grid2D
       T getStep() const;
       size_t getHeight() const;
       size_t getWidth() const;
+      size_t getIndex(Point2D<T> point) const;
       void printContent() const;
       void printCoordinates() const;
       void exportPlanFile(const std::string filename) const;

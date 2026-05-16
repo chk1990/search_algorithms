@@ -6,11 +6,13 @@
 #ifndef H_DEPTH_FIRST_SEARCH_H
 #define H_DEPTH_FIRST_SEARCH_H
 
+#include<stack>
+
 #include "SearchBase2D.h"
 
 template<typename T>
-class DepthFirstSearch2D {
-    // std::stack
+class DepthFirstSearch2D  : public SearchBase2D<T> {
+    std::stack<T> stack;
 };
 
 template class DepthFirstSearch2D<int>;
