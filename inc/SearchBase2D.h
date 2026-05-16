@@ -13,7 +13,7 @@
 template<typename T>
 class SearchBase2D {
     protected:
-        std::unique_ptr<Grid2D<T>> grid;
+        std::unique_ptr<Grid2D<T>> grid; /**< Contains information on the points on the grid */
 
     public:
         SearchBase2D(const std::string filename);

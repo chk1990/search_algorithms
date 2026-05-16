@@ -6,14 +6,43 @@
 #ifndef H_ASTAR_H
 #define H_ASTAR_H
 
+#include<iostream>
 #include<queue>
+#include<tuple>
+#include<vector>
 
 #include "SearchBase2D.h"
 
+/**
+ * @class AStar2D
+ * @brief Class to perform a search by the A* algorithm on a given environment.
+ */
 template<typename T>
 class AStar2D : public SearchBase2D<T> {
     private:
-        std::priority_queue<T> prQueue;
+        using pointDistance = std::tuple<T, Point2D<T>>; /**< Element to represent distant iniformation of a point */
+
+        /**
+         * @brief Wrapper for sorting expression of points in priority queue
+         * 
+         *      Lambda needs to be wrapped into static function because lambdas cannot directly be defined as members.
+         *      If the priority queue is not defined as member variable, the lambda expression can directly passed to the definition.
+         */
+        static auto makeComparator() {
+            return [](const pointDistance& a, const pointDistance& b) {
+                return std::get<0>(a) > std::get<0>(b);
+            };
+        }
+
+        using Comparator = decltype(makeComparator()); /**< Defines the given lambda as comparison element */
+
+        std::priority_queue<pointDistance,
+                            std::vector<pointDistance>,
+                            Comparator> prioQueue; /**< Priority queue to sort the following points to investigate by distance. */
+
+    public:
+        AStar2D(const std::string filename);
+        void print() {std::cout << "Test" << std::endl;}
 };
 
 template class AStar2D<int>;
