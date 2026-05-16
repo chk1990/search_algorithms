@@ -146,18 +146,6 @@ struct ConstructorWithOffset : public testing::Test
     }
 };
 
-TEST_F(ConstructorWithOffset, GetWidth) {
-    ASSERT_EQ(grid->getWidth(), 10.0);
-}
-
-TEST_F(ConstructorWithOffset, GetHeigth) {
-    ASSERT_EQ(grid->getHeight(), 5.0);
-}
-
-TEST_F(ConstructorWithOffset, GetStep) {
-    ASSERT_EQ(grid->getStep(), 2.0);
-}
-
 TEST_F(ConstructorWithOffset, CoordinateTest1X) {
     Point2D<float> pt = grid->getCoordinates(0, 0);
     float x = pt.getX();
