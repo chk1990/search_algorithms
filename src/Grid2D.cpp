@@ -339,7 +339,6 @@ void Grid2D<T>::exportPlanFile(const std::string filename) const
 /**
  * @brief Imports the plan from a file
  * @param[in] filename Name of the file
- * @todo Complete and test
  */
 template<typename T>
 void Grid2D<T>::importPlanFile(const std::string filename)
