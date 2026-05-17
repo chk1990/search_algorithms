@@ -3,6 +3,8 @@
  * @author Christoph Kolhoff
  */
 
+#include<cmath>
+
 #include "AStar2D.h"
 
 /**
@@ -10,7 +12,7 @@
  * @param[in] filename Name of the file containing the plan
  */
 template<typename T>
-AStar2D<T>::AStar2D(const std::string filename) : SearchBase2D<T>(filename), prioQueue(makeComparator())
+AStar2D<T>::AStar2D(const std::string& filename) : SearchBase2D<T>(filename), prioQueue(makeComparator())
 {
     //
 }
@@ -22,19 +24,21 @@ AStar2D<T>::AStar2D(const std::string filename) : SearchBase2D<T>(filename), pri
  * @todo complete and test
  */
 template<typename T>
-void AStar2D<T>::findPath(const Point2D<T> start, const Point2D<T> goal)
+void AStar2D<T>::findPath(const Point2D<T>& start, const Point2D<T>& goal)
 {
     //
 }
 
 /**
- * @brief Computes the heuristic from current point to the goal
+ * @brief Computes the heuristic from current point to the goal as Euclidean Distance
  * @param[in] start Point to start
  * @param[in] goal Desired end of path
- * @todo complete and test
+ * @return Euclidean distance of points
  */
 template<typename T>
-T AStar2D<T>::compHeuristic(const Point2D<T> current, const Point2D<T> goal) const
+T AStar2D<T>::compHeuristic(const Point2D<T>& current, const Point2D<T>& goal) const
 {
-    return static_cast<T>(0);
+    T dist = std::sqrt(pow(goal.getX() - current.getX(), 2) + pow(goal.getY() - current.getY(), 2));
+
+    return dist;
 }

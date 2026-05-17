@@ -75,3 +75,18 @@ target_link_libraries(test_GeneratePlan
 )
 
 gtest_discover_tests(test_GeneratePlan)
+
+# ============================================
+# Tests for class AStar
+
+add_executable(test_AStar2D
+    test_AStar2D.cpp
+)
+
+target_link_libraries(test_AStar2D
+    core
+    GTest::gtest_main
+    GTest::gmock
+)
+
+gtest_discover_tests(test_AStar2D)

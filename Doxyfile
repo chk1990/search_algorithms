@@ -159,7 +159,7 @@ WARN_FORMAT                  = "$file:$line: $text"
 
 INPUT                        = src \
                                inc \
-                               unit_tests \
+                               tests \
                                examples \
                                README.md
 

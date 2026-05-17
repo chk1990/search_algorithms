@@ -49,15 +49,15 @@ class Grid2D
       bool isObstacle(const size_t col, const size_t row) const;
       bool isDiscovered(const size_t col, const size_t row) const;
 
-      Point2D<T> getCoordinates(const size_t col, const size_t row) const;
+      Point2D<T>& getCoordinates(const size_t col, const size_t row) const;
       T getStep() const;
       size_t getHeight() const;
       size_t getWidth() const;
-      size_t getIndex(const Point2D<T> point) const;
+      size_t getIndex(const Point2D<T>& point) const;
       void printContent() const;
       void printCoordinates() const;
-      void exportPlanFile(const std::string filename) const;
-      void importPlanFile(const std::string filename);
+      void exportPlanFile(const std::string& filename) const;
+      void importPlanFile(const std::string& filename);
 };
 
 template class Grid2D<int>;

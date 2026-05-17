@@ -5,8 +5,8 @@
 
 #include<iostream>
 
-#include <gtest/gtest.h>
-#include <gmock/gmock.h>
+#include<gtest/gtest.h>
+#include<gmock/gmock.h>
 
 #include "Grid2D.h"
 
@@ -122,15 +122,6 @@ TEST_F(ConstructorNoOffset, SetDiscovered) {
     ASSERT_EQ(d, true);
 }
 
-/**
- * @defgroup ConstructorNoOffset Testing Grid2D class with no offset in grid origin
- * @{
- */
-
-/**
- * @test ConstructorNoOffset.GetIndex
- * Tests method Grid2D::getIndex(const Point2D<T> point)
- */
 TEST_F(ConstructorNoOffset, GetIndex) {
     Point2D<float> pt(2.0, 6.0);
     
@@ -138,8 +129,6 @@ TEST_F(ConstructorNoOffset, GetIndex) {
 
     ASSERT_EQ(ind, 31);
 }
-
-/** @} */
 
 // ----------------------------------------
 // Tests with offset

@@ -126,7 +126,7 @@ T Grid2D<T>::getStep() const
  * @return Index of point
  */
 template <typename T>
-size_t Grid2D<T>::getIndex(const Point2D<T> point) const
+size_t Grid2D<T>::getIndex(const Point2D<T>& point) const
 {
     for(size_t ind = 0; ind < width*height; ++ind) {
         if(point.getX() == coordinates.get()[ind].getX() && point.getY() == coordinates.get()[ind].getY()) {
@@ -143,7 +143,7 @@ size_t Grid2D<T>::getIndex(const Point2D<T> point) const
  * @param[in] col Column index of interest
  */
 template <typename T>
-Point2D<T> Grid2D<T>::getCoordinates(const size_t col, const size_t row) const
+Point2D<T>& Grid2D<T>::getCoordinates(const size_t col, const size_t row) const
 {
     size_t c = col;
     if(col >= width) {
@@ -162,7 +162,7 @@ Point2D<T> Grid2D<T>::getCoordinates(const size_t col, const size_t row) const
     }
 
     size_t ind = index(c, r);
-    Point2D<T> pt = *(this->coordinates.get() + ind);
+    Point2D<T>& pt = *(this->coordinates.get() + ind);
 
     return pt;
 }
@@ -342,7 +342,7 @@ bool Grid2D<T>::isDiscovered(const size_t col, const size_t row) const
  * Line 4: Discovery state\n
  */
 template <typename T>
-void Grid2D<T>::exportPlanFile(const std::string filename) const
+void Grid2D<T>::exportPlanFile(const std::string& filename) const
 {
     std::ofstream fileStream;
     fileStream.open(filename);
@@ -376,7 +376,7 @@ void Grid2D<T>::exportPlanFile(const std::string filename) const
  * @param[in] filename Name of the file
  */
 template<typename T>
-void Grid2D<T>::importPlanFile(const std::string filename)
+void Grid2D<T>::importPlanFile(const std::string& filename)
 {
     std::ifstream is;
     is.open(filename);

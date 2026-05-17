@@ -18,10 +18,10 @@ class SearchBase2D {
         std::unique_ptr<std::vector<Point2D<T>>> path; /**< All points of the path found by the algorithm */
 
     public:
-        SearchBase2D(const std::string filename);
+        SearchBase2D(const std::string& filename);
         ~SearchBase2D() {};
 
-        virtual void findPath(const Point2D<T> start, const Point2D<T> goal) = 0;
+        virtual void findPath(const Point2D<T>& start, const Point2D<T>& goal) = 0;
 };
 
 template class SearchBase2D<int>;
