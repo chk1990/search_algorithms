@@ -124,11 +124,16 @@ T Grid2D<T>::getStep() const
  * @brief Determines the index of a point to find
  * @param[in] point Point to find in grid
  * @return Index of point
- * @todo COmplete and test
  */
 template <typename T>
-size_t Grid2D<T>::getIndex(Point2D<T> point) const
+size_t Grid2D<T>::getIndex(const Point2D<T> point) const
 {
+    for(size_t ind = 0; ind < width*height; ++ind) {
+        if(point.getX() == coordinates.get()[ind].getX() && point.getY() == coordinates.get()[ind].getY()) {
+            return ind;
+        }
+    }
+
     return 0;
 }
 

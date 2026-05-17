@@ -89,22 +89,6 @@ docs/html/
 
 ---
 
-## Testing
-
-If Google Test is configured:
-
-```bash
-ctest --test-dir build
-```
-
-or:
-
-```bash
-./build/test_search_algorithms
-```
-
----
-
 ## Code Style
 
 General conventions:

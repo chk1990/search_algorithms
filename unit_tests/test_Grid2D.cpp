@@ -18,8 +18,8 @@ struct ConstructorNoOffset : public testing::Test
 
     void SetUp()
     {
-        float x = 10.0;
-        float y = 5.0;
+        size_t x = 10;
+        size_t y = 5;
         float step = 2.0;
 
         grid = new Grid2D<float>(x, y, step);
@@ -121,6 +121,25 @@ TEST_F(ConstructorNoOffset, SetDiscovered) {
 
     ASSERT_EQ(d, true);
 }
+
+/**
+ * @defgroup ConstructorNoOffset Testing Grid2D class with no offset in grid origin
+ * @{
+ */
+
+/**
+ * @test ConstructorNoOffset.GetIndex
+ * Tests method Grid2D::getIndex(const Point2D<T> point)
+ */
+TEST_F(ConstructorNoOffset, GetIndex) {
+    Point2D<float> pt(2.0, 6.0);
+    
+    size_t ind = grid->getIndex(pt);
+
+    ASSERT_EQ(ind, 31);
+}
+
+/** @} */
 
 // ----------------------------------------
 // Tests with offset

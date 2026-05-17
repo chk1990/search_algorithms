@@ -14,3 +14,27 @@ AStar2D<T>::AStar2D(const std::string filename) : SearchBase2D<T>(filename), pri
 {
     //
 }
+
+/**
+ * @brief Finds the path from start to goal if the path is available
+ * @param[in] start Point to start
+ * @param[in] goal Desired end of path
+ * @todo complete and test
+ */
+template<typename T>
+void AStar2D<T>::findPath(const Point2D<T> start, const Point2D<T> goal)
+{
+    //
+}
+
+/**
+ * @brief Computes the heuristic from current point to the goal
+ * @param[in] start Point to start
+ * @param[in] goal Desired end of path
+ * @todo complete and test
+ */
+template<typename T>
+T AStar2D<T>::compHeuristic(const Point2D<T> current, const Point2D<T> goal) const
+{
+    return static_cast<T>(0);
+}

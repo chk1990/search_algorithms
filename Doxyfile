@@ -159,7 +159,7 @@ WARN_FORMAT                  = "$file:$line: $text"
 
 INPUT                        = src \
                                inc \
-                               tests \
+                               unit_tests \
                                examples \
                                README.md
 
@@ -342,17 +342,30 @@ EXPAND_ONLY_PREDEF           = NO
 
 SEARCH_INCLUDES              = YES
 
-INCLUDE_PATH                 = include
+INCLUDE_PATH                 = inc
 
 INCLUDE_FILE_PATTERNS        = *.h \
                                *.hpp \
                                *.hxx
 
-PREDEFINED                   = DOXYGEN_SHOULD_SKIP_THIS
+#PREDEFINED                   = DOXYGEN_SHOULD_SKIP_THIS
+#PREDEFINED             += TEST(x,y)=void test_##x##_##y()
+#PREDEFINED             += TEST_F(x,y)=void test_##x##_##y()
+#PREDEFINED             += TEST_P(x,y)=void test_##x##_##y()
+#PREDEFINED             += TYPED_TEST(x,y)=void test_##x##_##y()
+#PREDEFINED             += TYPED_TEST_P(x,y)=void test_##x##_##y()
+#PREDEFINED += TEST(name,test)=void test_##name##_##test()
+#PREDEFINED += TEST_F(fixture,test)=void test_##fixture##_##test()
+#PREDEFINED += TEST_P(fixture,test)=void test_##fixture##_##test()
+#PREDEFINED += TYPED_TEST(fixture,test)=void test_##fixture##_##test()
+PREDEFINED += TEST_F(fixture,test)=void fixture##_##test()
 
-EXPAND_AS_DEFINED            =
+EXPAND_AS_DEFINED += TEST
+EXPAND_AS_DEFINED += TEST_F
+EXPAND_AS_DEFINED += TEST_P
+EXPAND_AS_DEFINED += TYPED_TEST
 
-SKIP_FUNCTION_MACROS         = YES
+SKIP_FUNCTION_MACROS         = NO
 
 #------------------------------------------------------------------------------
 # Tagfiles / externe Referenzen
@@ -405,5 +418,5 @@ EXTENSION_MAPPING            = ixx=C++ \
                                cppm=C++
 
 #------------------------------------------------------------------------------
-# Ende
+# End
 #------------------------------------------------------------------------------

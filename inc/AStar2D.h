@@ -6,7 +6,6 @@
 #ifndef H_ASTAR_H
 #define H_ASTAR_H
 
-#include<iostream>
 #include<queue>
 #include<tuple>
 #include<vector>
@@ -20,7 +19,7 @@
 template<typename T>
 class AStar2D : public SearchBase2D<T> {
     private:
-        using pointDistance = std::tuple<T, Point2D<T>>; /**< Element to represent distant iniformation of a point */
+        using pointDistance = std::tuple<T, Point2D<T>>; /**< Element to represent distant information of a point */
 
         /**
          * @brief Wrapper for sorting expression of points in priority queue
@@ -40,9 +39,11 @@ class AStar2D : public SearchBase2D<T> {
                             std::vector<pointDistance>,
                             Comparator> prioQueue; /**< Priority queue to sort the following points to investigate by distance. */
 
+        T compHeuristic(const Point2D<T> current, const Point2D<T> goal) const;
+
     public:
         AStar2D(const std::string filename);
-        void print() {std::cout << "Test" << std::endl;}
+        void findPath(const Point2D<T> start, const Point2D<T> goal) override;
 };
 
 template class AStar2D<int>;
