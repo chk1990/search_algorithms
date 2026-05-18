@@ -12,7 +12,11 @@
 
 template<typename T>
 class BreadthFirstSearch2D : public SearchBase2D<T> {
-    std::queue<T> queue;
+    private:
+        std::queue<T> queue;
+
+    public:
+        void findPath(const Point2D<T>& start, const Point2D<T>& goal);
 };
 
 template class BreadthFirstSearch2D<int>;

@@ -12,7 +12,11 @@
 
 template<typename T>
 class DepthFirstSearch2D  : public SearchBase2D<T> {
-    std::stack<T> stack;
+    private:
+        std::stack<T> stack;
+
+    public:
+        void findPath(const Point2D<T>& start, const Point2D<T>& goal);
 };
 
 template class DepthFirstSearch2D<int>;
