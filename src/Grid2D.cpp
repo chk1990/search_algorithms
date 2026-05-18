@@ -203,6 +203,10 @@ void Grid2D<T>::printContent() const
                 case Occupancy::OBSTACLE:
                 std::cout << "X";
                 break;
+
+                case Occupancy::PATH:
+                std::cout << "+";
+                break;
             
                 default:
                     break;
@@ -296,6 +300,51 @@ template <typename T>
 bool Grid2D<T>::isObstacle(const size_t col, const size_t row) const
 {
     return occupancy.get()[index(col, row)] == Occupancy::OBSTACLE;
+}
+
+/**
+ * @brief Sets the state of the point as part of the path
+ * @param[in] col Column of interest
+ * @param[in] row Row of interest
+ */
+template <typename T>
+void Grid2D<T>::setPath(const size_t col, const size_t row)
+{
+    size_t ind = index(col, row);
+    setPath(ind);
+}
+
+/**
+ * @brief Returns if the point is part of the path
+ * @param[in] ind Index of interest
+ */
+template <typename T>
+bool Grid2D<T>::isPath(const size_t ind) const
+{
+    return occupancy.get()[ind] == Occupancy::PATH;
+}
+
+/**
+ * @brief Returns if the point is part of the path
+ * @param[in] col Column of interest
+ * @param[in] row Row of interest
+ */
+template <typename T>
+bool Grid2D<T>::isPath(const size_t col, const size_t row) const
+{
+    size_t ind = index(col, row);
+    return isPath(ind);
+}
+
+/**
+ * @brief Sets the state of the point as part of the path
+ * @param[in] ind Index of interest
+ */
+template <typename T>
+void Grid2D<T>::setPath(const size_t ind)
+{
+    Occupancy* occ = occupancy.get();
+    occ[ind] = Occupancy::PATH;
 }
 
 /**

@@ -109,6 +109,16 @@ TEST_F(ConstructorNoOffset, SetObstacle) {
     ASSERT_EQ(!obstInit && obstEnd, true);
 }
 
+TEST_F(ConstructorNoOffset, SetPath) {
+    bool pathInit = grid->isPath(2, 3);
+
+    grid->setPath(2, 3);
+
+    bool pathEnd = grid->isPath(2, 3);
+
+    ASSERT_EQ(!pathInit && pathEnd, true);
+}
+
 TEST_F(ConstructorNoOffset, IsDiscovered) {
     bool ud = grid->isDiscovered(10, 4);
 

@@ -26,6 +26,10 @@ AStar2D<T>::AStar2D(const std::string& filename) : SearchBase2D<T>(filename), pr
 template<typename T>
 void AStar2D<T>::findPath(const Point2D<T>& start, const Point2D<T>& goal)
 {
+    size_t indStart = this->grid.get()->getIndex(start);
+    size_t indGoal = this->grid.get()->getIndex(goal);
+    
+    this->grid.get()->setPath(indStart);
     this->grid.get()->printContent();
 }
 

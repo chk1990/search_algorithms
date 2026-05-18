@@ -26,13 +26,11 @@ SearchBase2D<T>::SearchBase2D(const std::string& filename)
 template<typename T>
 void SearchBase2D<T>::add2path(const Point2D<T>& point)
 {
-    // add point to list of path points
-    path.get()->push_back(point);
-
     // determine index of point
     size_t ind = grid.get()->getIndex(point);
 
     this->setPath(0, 0);
+    path.get()->push_back(ind);
 }
 
 /**
@@ -41,8 +39,10 @@ void SearchBase2D<T>::add2path(const Point2D<T>& point)
 template <typename T>
 void SearchBase2D<T>::setPath(const size_t col, const size_t row)
 {
-    Grid2D<T>* g = grid.get();
-    size_t ind = g->index(col, row);
+    size_t ind = grid.get()->index(col, row);
+    path.get()->push_back(ind);
 
-   grid.get()->setDiscovered(col, row);
+    Grid2D<T>* g = grid.get();
+    grid.get()->setPath(col, row);
+    grid.get()->setDiscovered(col, row);
 }

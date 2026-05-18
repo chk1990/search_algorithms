@@ -15,7 +15,7 @@ template<typename T>
 class SearchBase2D {
     protected:
         std::unique_ptr<Grid2D<T>> grid; /**< Contains information on the points on the grid */
-        std::unique_ptr<std::vector<Point2D<T>>> path; /**< All points of the path found by the algorithm */
+        std::unique_ptr<std::vector<size_t>> path; /**< All points of the path found by the algorithm */
 
     public:
         SearchBase2D(const std::string& filename);
