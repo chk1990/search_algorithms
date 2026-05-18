@@ -129,7 +129,7 @@ template <typename T>
 size_t Grid2D<T>::getIndex(const Point2D<T>& point) const
 {
     for(size_t ind = 0; ind < width*height; ++ind) {
-        if(point.getX() == coordinates.get()[ind].getX() && point.getY() == coordinates.get()[ind].getY()) {
+        if(point.getX() == this->coordinates.get()[ind].getX() && point.getY() == this->coordinates.get()[ind].getY()) {
             return ind;
         }
     }
@@ -184,7 +184,7 @@ void Grid2D<T>::printContent() const
         }
     }
 
-    Occupancy* occ = occupancy.get();
+    Occupancy* occ = this->occupancy.get();
     for(size_t indY = 0; indY < height; ++indY) {
         for(size_t indX = 0; indX < width; ++indX) {
 
@@ -201,12 +201,12 @@ void Grid2D<T>::printContent() const
                     break;
 
                 case Occupancy::OBSTACLE:
-                std::cout << "X";
-                break;
+                    std::cout << "X";
+                    break;
 
                 case Occupancy::PATH:
-                std::cout << "+";
-                break;
+                    std::cout << "+";
+                    break;
             
                 default:
                     break;
@@ -239,9 +239,9 @@ void Grid2D<T>::printContent() const
 template <typename T>
 void Grid2D<T>::printCoordinates() const
 {
-    Point2D<T> *points = coordinates.get();
-    for(size_t indY = 0; indY < height; ++indY) {
-        for(size_t indX = 0; indX < width; ++indX) {
+    Point2D<T> *points = this->coordinates.get();
+    for(size_t indY = 0; indY < this->height; ++indY) {
+        for(size_t indX = 0; indX < this->width; ++indX) {
             size_t ind = index(indX, indY);
             points[ind].printCoordinates();
 
@@ -262,7 +262,7 @@ void Grid2D<T>::printCoordinates() const
 template <typename T>
 void Grid2D<T>::setFree(const size_t col, const size_t row)
 {
-    Occupancy* occ =  occupancy.get();
+    Occupancy* occ =  this->occupancy.get();
     size_t ind = index(col, row);
     occ[ind] = Occupancy::FREE;
 }
@@ -275,7 +275,7 @@ void Grid2D<T>::setFree(const size_t col, const size_t row)
 template <typename T>
 void Grid2D<T>::setObstacle(const size_t col, const size_t row)
 {
-    Occupancy* occ =  occupancy.get();
+    Occupancy* occ =  this->occupancy.get();
     size_t ind = index(col, row);
     occ[ind] = Occupancy::OBSTACLE;
 }
@@ -288,7 +288,7 @@ void Grid2D<T>::setObstacle(const size_t col, const size_t row)
 template <typename T>
 bool Grid2D<T>::isFree(const size_t col, const size_t row) const
 {
-    return occupancy.get()[index(col, row)] == Occupancy::FREE;
+    return this->occupancy.get()[index(col, row)] == Occupancy::FREE;
 }
 
 /**
@@ -299,7 +299,7 @@ bool Grid2D<T>::isFree(const size_t col, const size_t row) const
 template <typename T>
 bool Grid2D<T>::isObstacle(const size_t col, const size_t row) const
 {
-    return occupancy.get()[index(col, row)] == Occupancy::OBSTACLE;
+    return this->occupancy.get()[index(col, row)] == Occupancy::OBSTACLE;
 }
 
 /**
@@ -321,7 +321,7 @@ void Grid2D<T>::setPath(const size_t col, const size_t row)
 template <typename T>
 bool Grid2D<T>::isPath(const size_t ind) const
 {
-    return occupancy.get()[ind] == Occupancy::PATH;
+    return this->occupancy.get()[ind] == Occupancy::PATH;
 }
 
 /**
@@ -343,7 +343,7 @@ bool Grid2D<T>::isPath(const size_t col, const size_t row) const
 template <typename T>
 void Grid2D<T>::setPath(const size_t ind)
 {
-    Occupancy* occ = occupancy.get();
+    Occupancy* occ = this->occupancy.get();
     occ[ind] = Occupancy::PATH;
 }
 
@@ -356,7 +356,7 @@ template <typename T>
 void Grid2D<T>::setDiscovered(const size_t col, const size_t row)
 {
     size_t ind = index(col, row);
-    discovered.get()[ind] = true;
+    this->discovered.get()[ind] = true;
 }
 
 /**
@@ -366,7 +366,7 @@ void Grid2D<T>::setDiscovered(const size_t col, const size_t row)
 template <typename T>
 void Grid2D<T>::setDiscovered(const size_t ind)
 {
-    discovered.get()[ind] = true;
+    this->discovered.get()[ind] = true;
 }
 
 /**
@@ -377,7 +377,7 @@ void Grid2D<T>::setDiscovered(const size_t ind)
 template <typename T>
 void Grid2D<T>::setUndiscovered(const size_t col, const size_t row)
 {
-    discovered.get()[index(col, row)] = false;
+    this->discovered.get()[index(col, row)] = false;
 }
 
 /**
@@ -388,7 +388,7 @@ void Grid2D<T>::setUndiscovered(const size_t col, const size_t row)
 template <typename T>
 bool Grid2D<T>::isDiscovered(const size_t col, const size_t row) const
 {
-    return discovered.get()[index(col, row)];
+    return this->discovered.get()[index(col, row)];
 }
 
 /**
@@ -411,19 +411,19 @@ void Grid2D<T>::exportPlanFile(const std::string& filename) const
         return;
     }
 
-    fileStream << width << std::endl << height << std::endl << step << std::endl;
+    fileStream << this->width << std::endl << this->height << std::endl << this->step << std::endl;
 
-    Occupancy* occ = occupancy.get();
-    for(size_t indY = 0; indY < height; ++indY) {
-        for(size_t indX = 0; indX < width; ++indX) {
+    Occupancy* occ = this->occupancy.get();
+    for(size_t indY = 0; indY < this->height; ++indY) {
+        for(size_t indX = 0; indX < this->width; ++indX) {
             fileStream << occ[index(indX, indY)];
         }
     }
     fileStream << std::endl;
 
     bool* dis = discovered.get();
-    for(size_t indY = 0; indY < height; ++indY) {
-        for(size_t indX = 0; indX < width; ++indX) {
+    for(size_t indY = 0; indY < this->height; ++indY) {
+        for(size_t indX = 0; indX < this->width; ++indX) {
             fileStream << dis[index(indX, indY)];
         }
     }
@@ -458,20 +458,20 @@ void Grid2D<T>::importPlanFile(const std::string& filename)
     this->step = std::stoi(c);
 
     // populate other arrays
-    coordinates = std::make_unique<Point2D<T>[]>(this->height*this->width);
-    occupancy = std::make_unique<Occupancy[]>(this->height*this->width);
-    discovered = std::make_unique<bool[]>(this->height*this->width);
+    this->coordinates = std::make_unique<Point2D<T>[]>(this->height*this->width);
+    this->occupancy = std::make_unique<Occupancy[]>(this->height*this->width);
+    this->discovered = std::make_unique<bool[]>(this->height*this->width);
 
     Occupancy* occ = occupancy.get();
-    for(size_t indArr = 0; indArr < width*height; ++indArr) {
+    for(size_t indArr = 0; indArr < this->width*this->height; ++indArr) {
         int i = is.get() - '0';
         occ[indArr] = static_cast<Occupancy>(i);
     }
 
     is.get(); // remove '\n'
 
-    bool* dis = discovered.get();
-    for(size_t indArr = 0; indArr < width*height; ++indArr) {
+    bool* dis = this->discovered.get();
+    for(size_t indArr = 0; indArr < this->width*this->height; ++indArr) {
         int i = is.get() - '0';
         
         if(i == 1) {

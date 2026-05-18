@@ -12,8 +12,8 @@
 template<typename T>
 SearchBase2D<T>::SearchBase2D(const std::string& filename)
 {
-    grid = std::make_unique<Grid2D<T>>();
-    grid.get()->importPlanFile(filename);
+    this->grid = std::make_unique<Grid2D<T>>();
+    this->grid.get()->importPlanFile(filename);
 
     //grid.get()->printContent();
     //grid.get()->printCoordinates();
@@ -30,7 +30,7 @@ void SearchBase2D<T>::add2path(const Point2D<T>& point)
     size_t ind = grid.get()->getIndex(point);
 
     this->setPath(0, 0);
-    path.get()->push_back(ind);
+    this->path.get()->push_back(ind);
 }
 
 /**
@@ -39,10 +39,10 @@ void SearchBase2D<T>::add2path(const Point2D<T>& point)
 template <typename T>
 void SearchBase2D<T>::setPath(const size_t col, const size_t row)
 {
-    size_t ind = grid.get()->index(col, row);
-    path.get()->push_back(ind);
-
-    Grid2D<T>* g = grid.get();
-    grid.get()->setPath(col, row);
-    grid.get()->setDiscovered(col, row);
+    Grid2D<T>* g = this->grid.get();
+    size_t ind = g->index(col, row);
+    this->path.get()->push_back(ind);
+    
+    g->setPath(col, row);
+    g->setDiscovered(col, row);
 }
