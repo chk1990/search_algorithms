@@ -16,11 +16,11 @@ target_include_directories(generate_plans
     PRIVATE inc
 )
 
-add_executable(search_base
-    search_base.cpp
+add_executable(astar
+    astar.cpp
     ${SRC_FILES}
 )
 
-target_include_directories(search_base
+target_include_directories(astar
     PRIVATE inc
 )

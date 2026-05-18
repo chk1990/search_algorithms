@@ -9,7 +9,8 @@
 
 int main(int argc, char* argv[]) {
 
-    AStar2D<float> base("./data_environment/plan1.dat");
+    AStar2D<float> search("./data_environment/plan1.dat");
+    search.findPath(Point2D<float>(2.0, 2.0), Point2D<float>(10.0, 10.0));
 
     return 0;
 }
