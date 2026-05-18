@@ -32,7 +32,6 @@ class Grid2D
       size_t width;  /**< Width of the map */
       T step; /**< Step in x- and y- direction between two points */
 
-      size_t index(const size_t col, const size_t row) const;
       void populatePoints();
       void populatePoints(const T xOff, const T yOff);
 
@@ -44,10 +43,12 @@ class Grid2D
       void setFree(const size_t col, const size_t row);
       void setObstacle(const size_t col, const size_t row);
       void setDiscovered(const size_t col, const size_t row);
+      void setDiscovered(const size_t ind);
       void setUndiscovered(const size_t col, const size_t row);
       bool isFree(const size_t col, const size_t row) const;
       bool isObstacle(const size_t col, const size_t row) const;
       bool isDiscovered(const size_t col, const size_t row) const;
+      size_t index(const size_t col, const size_t row) const;
 
       Point2D<T>& getCoordinates(const size_t col, const size_t row) const;
       T getStep() const;

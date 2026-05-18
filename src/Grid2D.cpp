@@ -121,7 +121,7 @@ T Grid2D<T>::getStep() const
 }
 
 /**
- * @brief Determines the index of a point to find
+ * @brief Determines the index of a point to find in the grid
  * @param[in] point Point to find in grid
  * @return Index of point
  */
@@ -306,7 +306,18 @@ bool Grid2D<T>::isObstacle(const size_t col, const size_t row) const
 template <typename T>
 void Grid2D<T>::setDiscovered(const size_t col, const size_t row)
 {
-    discovered.get()[index(col, row)] = true;
+    size_t ind = index(col, row);
+    discovered.get()[ind] = true;
+}
+
+/**
+ * @brief Sets the state of the point as discovered
+ * @param[in] ind Index of interest
+ */
+template <typename T>
+void Grid2D<T>::setDiscovered(const size_t ind)
+{
+    discovered.get()[ind] = true;
 }
 
 /**

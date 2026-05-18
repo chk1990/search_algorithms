@@ -22,6 +22,8 @@ class SearchBase2D {
         ~SearchBase2D() {};
 
         virtual void findPath(const Point2D<T>& start, const Point2D<T>& goal) = 0;
+        void add2path(const Point2D<T>& point);
+        void setPath(const size_t col, const size_t row);
 };
 
 template class SearchBase2D<int>;
