@@ -33,10 +33,9 @@ The main goals of this repository are:
 
 - clean and understandable implementations,
 - modern C++ design,
-- separation of algorithm and visualization logic,
 - extensibility for experimentation,
 - educational readability,
-- reproducible behavior.
+- fun
 
 ---
 
@@ -46,14 +45,12 @@ The main goals of this repository are:
 
 A C++20 compatible compiler is recommended.
 
-Examples:
-- GCC 13+
-- Clang 17+
-- MSVC 2022+
+- G++ 13.3+ recommended
+- Clang 17+ or MSVC 2022+ may also work
 
 ### Build System
 
-- CMake 3.16 or newer
+- CMake 3.20 or newer recommended
 
 ---
 
@@ -63,42 +60,15 @@ Examples:
 search_algorithms/
 ├── include/        # Public headers
 ├── src/            # Source files
-├── tests/          # Unit tests
+├── unit_tests/     # Unit tests
+|   ├── build/
+|   └── compile.sh 
 ├── docs/           # Documentation
 ├── build/          # Build output (generated)
+├── compile.sh
+├── Doxyfile
 └── CMakeLists.txt
 ```
-
----
-
-## Documentation
-
-The project may use Doxygen for API documentation generation.
-
-Example:
-
-```bash
-doxygen Doxyfile
-```
-
-Generated documentation is typically located in:
-
-```text
-docs/html/
-```
-
----
-
-## Code Style
-
-General conventions:
-
-- modern C++20 style,
-- RAII principles,
-- const correctness,
-- minimal raw pointer ownership,
-- clear naming conventions,
-- modular design.
 
 ---
 
@@ -118,8 +88,6 @@ Use at your own risk.
 ## License
 
 This project is licensed under the MIT License.
-
-See the LICENSE file for details.
 
 ---
 
