@@ -28,8 +28,9 @@ void AStar2D<T>::findPath(const Point2D<T>& start, const Point2D<T>& goal)
 {
     size_t indStart = this->grid.get()->getIndex(start);
     size_t indGoal = this->grid.get()->getIndex(goal);
-    
+
     this->grid.get()->setPath(indStart);
+    this->grid.get()->setPath(indGoal);
     this->grid.get()->printContent();
 }
 
