@@ -44,5 +44,5 @@ void SearchBase2D<T>::setPath(const size_t col, const size_t row)
     Grid2D<T>* g = grid.get();
     size_t ind = g->index(col, row);
 
-    //bool* dis = g->setDiscovered(ind);
+   grid.get()->setDiscovered(col, row);
 }
