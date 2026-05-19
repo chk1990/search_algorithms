@@ -26,6 +26,13 @@ struct AStar2DTest : public testing::Test
     }
 };
 
+TEST_F(AStar2DTest, SetGetGoal) {
+    astar->setGoal(Point2D<float>(10.0, 8.0));
+
+    Point2D<float> pt = astar->getGoal();
+    EXPECT_EQ(10.0 == pt.getX() && 8.0 == pt.getY(), true);
+}
+
 int main(int argc, char* argv[]) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

@@ -10,9 +10,8 @@
  * @param[in] filename Name of file that contains the plan
  */
 template<typename T>
-SearchBase2D<T>::SearchBase2D(const std::string& filename)
+SearchBase2D<T>::SearchBase2D(const std::string& filename) : goal(std::make_unique<Point2D<T>>()), grid(std::make_unique<Grid2D<T>>()), path(std::make_unique<std::vector<size_t>>())
 {
-    this->grid = std::make_unique<Grid2D<T>>();
     this->grid.get()->importPlanFile(filename);
 }
 
@@ -75,14 +74,14 @@ void SearchBase2D<T>::setBegin(const Point2D<T>& point)
 template <typename T>
 void SearchBase2D<T>::setGoal(const Point2D<T>& point)
 {
-    this->goal = point;
+    this->goal = std::make_unique<Point2D<T>>(point);
 }
 
 /**
  * @brief Gets goals of path
  */
 template <typename T>
-Point2D<T> SearchBase2D<T>::getGoal() const
+Point2D<T>& SearchBase2D<T>::getGoal() const
 {
-    return this->goal;
+    return *(this->goal.get());
 }

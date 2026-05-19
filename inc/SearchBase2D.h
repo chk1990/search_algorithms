@@ -18,7 +18,7 @@
 template<typename T>
 class SearchBase2D {
     private:
-        Point2D<T> goal; /**< Goal to be found */
+        std::unique_ptr<Point2D<T>> goal; /**< Goal to be found */
 
     protected:
         std::unique_ptr<Grid2D<T>> grid; /**< Contains information on the points on the grid */
@@ -35,7 +35,7 @@ class SearchBase2D {
         virtual void findPath(const Point2D<T>& start) = 0;
         void setBegin(const Point2D<T>& point);
         void setGoal(const Point2D<T>& point);
-        Point2D<T> getGoal() const;
+        Point2D<T>& getGoal() const;
 };
 
 template class SearchBase2D<int>;
