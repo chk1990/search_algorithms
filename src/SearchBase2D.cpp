@@ -22,11 +22,20 @@ SearchBase2D<T>::SearchBase2D(const std::string& filename) : goal(std::make_uniq
 template<typename T>
 void SearchBase2D<T>::add2path(const Point2D<T>& point)
 {
-    // determine index of point
-    size_t ind = this->grid.get()->getIndex(point);
-
-    this->setPath(ind);
+    size_t ind = this->grid.get()->index(point);
+    this->setPath(point);
     this->path.get()->push_back(ind);
+}
+
+/**
+ * @brief Declare a point as part of a path
+ * @param[in] point Point to add
+ */
+template<typename T>
+void SearchBase2D<T>::setPath(const Point2D<T>& point)
+{
+    size_t ind = this->grid.get()->index(point);
+    this->setPath(ind);
 }
 
 /**
@@ -64,7 +73,11 @@ void SearchBase2D<T>::setPath(const size_t col, const size_t row)
 template <typename T>
 void SearchBase2D<T>::setBegin(const Point2D<T>& point)
 {
-    this->add2path(point);
+    size_t ind = this->grid.get()->index(point);
+    this->grid->setPath(ind);
+
+    std::vector<size_t>* p = this->path.get();
+    p->push_back(ind);
 }
 
 /**
@@ -79,7 +92,7 @@ void SearchBase2D<T>::setGoal(const Point2D<T>& point)
 
     // determine index
     Grid2D<T>* g = this->grid.get();
-    size_t ind = g->getIndex(point);
+    size_t ind = g->index(point);
 
     g->setPath(ind);
 }
@@ -91,4 +104,20 @@ template <typename T>
 Point2D<T>& SearchBase2D<T>::getGoal() const
 {
     return *(this->goal.get());
+}
+
+/**
+ * @brief Declare a point as part of a path
+ * @param[in] ind Index of interest
+ */
+template <typename T>
+Point2D<T> SearchBase2D<T>::getPath(size_t ind) const
+{    
+    std::vector<size_t> pth = *(this->path.get());
+    size_t indPt = pth[ind];
+
+    Grid2D<T>* g = this->grid.get();
+    Point2D<T> pt = g->getCoordinates(indPt);
+    
+    return pt;
 }

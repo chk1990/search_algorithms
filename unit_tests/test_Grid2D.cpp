@@ -146,7 +146,7 @@ TEST_F(ConstructorNoOffset, SetDiscovered) {
 TEST_F(ConstructorNoOffset, GetIndex) {
     Point2D<float> pt(2.0, 6.0);
     
-    size_t ind = grid->getIndex(pt);
+    size_t ind = grid->index(pt);
 
     ASSERT_EQ(ind, 31);
 }

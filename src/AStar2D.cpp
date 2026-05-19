@@ -25,9 +25,7 @@ AStar2D<T>::AStar2D(const std::string& filename) : SearchBase2D<T>(filename), pr
 template<typename T>
 void AStar2D<T>::findPath(const Point2D<T>& start)
 {
-    size_t indStart = this->grid.get()->getIndex(start);
-
-    this->grid.get()->setPath(indStart);
+    this->grid.get()->setPath(start);
     this->grid.get()->printContent();
 
     // go through adjacent nodes
@@ -52,6 +50,5 @@ template<typename T>
 T AStar2D<T>::compHeuristic(const Point2D<T>& current, const Point2D<T>& goal) const
 {
     T dist = std::sqrt(pow(goal.getX() - current.getX(), 2) + pow(goal.getY() - current.getY(), 2));
-
     return dist;
 }

@@ -27,6 +27,7 @@ class SearchBase2D {
         void add2path(const Point2D<T>& point);
         void setPath(const size_t col, const size_t row);
         void setPath(const size_t ind);
+        void setPath(const Point2D<T>& point);
 
     public:
         SearchBase2D(const std::string& filename);
@@ -36,6 +37,7 @@ class SearchBase2D {
         void setBegin(const Point2D<T>& point);
         void setGoal(const Point2D<T>& point);
         Point2D<T>& getGoal() const;
+        Point2D<T> getPath(size_t ind) const;
 };
 
 template class SearchBase2D<int>;

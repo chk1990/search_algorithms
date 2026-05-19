@@ -126,10 +126,11 @@ T Grid2D<T>::getStep() const
  * @return Index of point
  */
 template <typename T>
-size_t Grid2D<T>::getIndex(const Point2D<T>& point) const
+size_t Grid2D<T>::index(const Point2D<T>& point) const
 {
+    Point2D<T>* coors = this->coordinates.get();
     for(size_t ind = 0; ind < this->width*this->height; ++ind) {
-        if(point.getX() == this->coordinates.get()[ind].getX() && point.getY() == this->coordinates.get()[ind].getY()) {
+        if(point.getX() == coors[ind].getX() && point.getY() == coors[ind].getY()) {
             return ind;
         }
     }
@@ -162,8 +163,19 @@ Point2D<T>& Grid2D<T>::getCoordinates(const size_t col, const size_t row) const
     }
 
     size_t ind = index(c, r);
-    Point2D<T>& pt = *(this->coordinates.get() + ind);
+    Point2D<T>& pt = getCoordinates(ind);
 
+    return pt;
+}
+
+/**
+ * @brief Returns the point at the given location
+ * @param[in] ind Index of interest
+ */
+template <typename T>
+Point2D<T>& Grid2D<T>::getCoordinates(const size_t ind) const
+{
+    Point2D<T>& pt = *(this->coordinates.get() + ind);
     return pt;
 }
 
@@ -321,7 +333,7 @@ void Grid2D<T>::setPath(const size_t col, const size_t row)
 template <typename T>
 void Grid2D<T>::setPath(const Point2D<T>& pt)
 {
-    size_t ind = this->getIndex(pt);
+    size_t ind = this->index(pt);
     this->setPath(ind);
 }
 
@@ -354,7 +366,7 @@ bool Grid2D<T>::isPath(const size_t col, const size_t row) const
 template <typename T>
 bool Grid2D<T>::isPath(const Point2D<T>& pt) const
 {
-    size_t ind = this->getIndex(pt);
+    size_t ind = this->index(pt);
     return this->isPath(ind);
 }
 
@@ -367,6 +379,7 @@ void Grid2D<T>::setPath(const size_t ind)
 {
     Occupancy* occ = this->occupancy.get();
     occ[ind] = Occupancy::PATH;
+    this->setDiscovered(ind);
 }
 
 /**
