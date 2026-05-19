@@ -63,18 +63,17 @@ void SearchBase2D<T>::setPath(const size_t col, const size_t row)
  * @param[in] row Row of interest
  */
 template <typename T>
-void setBegin(const Point2D<T>& point)
+void SearchBase2D<T>::setBegin(const Point2D<T>& point)
 {
     add2path(point);
 }
 
 /**
  * @brief Set goals of path
- * @param[in] col Column of interest
- * @param[in] row Row of interest
+ * @param[in] point Goal point
  */
 template <typename T>
-void setGoal(const Point2D<T>& point)
+void SearchBase2D<T>::setGoal(const Point2D<T>& point)
 {
-    //
+    this->goal = point;
 }

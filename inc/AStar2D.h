@@ -43,7 +43,7 @@ class AStar2D : public SearchBase2D<T> {
 
     public:
         AStar2D(const std::string& filename);
-        void findPath(const Point2D<T>& start, const Point2D<T>& goal) override;
+        void findPath(const Point2D<T>& start) override;
 };
 
 template class AStar2D<int>;

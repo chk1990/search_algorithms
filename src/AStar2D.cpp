@@ -20,17 +20,15 @@ AStar2D<T>::AStar2D(const std::string& filename) : SearchBase2D<T>(filename), pr
 /**
  * @brief Finds the path from start to goal if the path is available
  * @param[in] start Point to start
- * @param[in] goal Desired end of path
  * @todo complete and test
  */
 template<typename T>
-void AStar2D<T>::findPath(const Point2D<T>& start, const Point2D<T>& goal)
+void AStar2D<T>::findPath(const Point2D<T>& start)
 {
     size_t indStart = this->grid.get()->getIndex(start);
-    size_t indGoal = this->grid.get()->getIndex(goal);
 
     this->grid.get()->setPath(indStart);
-    this->grid.get()->setPath(indGoal);
+    //this->grid.get()->setPath(indGoal);
     this->grid.get()->printContent();
 }
 
