@@ -14,9 +14,6 @@ SearchBase2D<T>::SearchBase2D(const std::string& filename)
 {
     this->grid = std::make_unique<Grid2D<T>>();
     this->grid.get()->importPlanFile(filename);
-
-    //grid.get()->printContent();
-    //grid.get()->printCoordinates();
 }
 
 /**
@@ -29,20 +26,55 @@ void SearchBase2D<T>::add2path(const Point2D<T>& point)
     // determine index of point
     size_t ind = grid.get()->getIndex(point);
 
-    this->setPath(0, 0);
+    setPath(ind);
     this->path.get()->push_back(ind);
 }
 
 /**
  * @brief Declare a point as part of a path
+ * @param[in] ind Index of interest
+ */
+template <typename T>
+void SearchBase2D<T>::setPath(const size_t ind)
+{
+    Grid2D<T>* g = this->grid.get();
+    g->setPath(ind);
+    g->setDiscovered(ind);
+
+    this->path.get()->push_back(ind);
+}
+
+/**
+ * @brief Declare a point as part of a path
+ * @param[in] col Column of interest
+ * @param[in] row Row of interest
  */
 template <typename T>
 void SearchBase2D<T>::setPath(const size_t col, const size_t row)
 {
     Grid2D<T>* g = this->grid.get();
     size_t ind = g->index(col, row);
-    g->setPath(col, row);
-    g->setDiscovered(col, row);
+    setPath(ind);
+}
 
-    this->path.get()->push_back(ind);
+/**
+ * @brief Set begin of path
+ * @param[in] col Column of interest
+ * @param[in] row Row of interest
+ */
+template <typename T>
+void setBegin(const Point2D<T>& point)
+{
+    add2path(point);
+}
+
+/**
+ * @brief Set goals of path
+ * @param[in] col Column of interest
+ * @param[in] row Row of interest
+ */
+template <typename T>
+void setGoal(const Point2D<T>& point)
+{
+    //
 }

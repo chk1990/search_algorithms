@@ -356,7 +356,7 @@ template <typename T>
 void Grid2D<T>::setDiscovered(const size_t col, const size_t row)
 {
     size_t ind = index(col, row);
-    this->discovered.get()[ind] = true;
+    this->setDiscovered(ind);
 }
 
 /**
