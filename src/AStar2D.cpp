@@ -29,6 +29,17 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
 
     this->grid.get()->setPath(indStart);
     this->grid.get()->printContent();
+
+    // go through adjacent nodes
+    for(int indY = -1; indY <= 1; ++indY) {
+        for(int indX = -1; indX <= 1; ++indX) {
+            if(indX == 0 && indY == 0) {
+                continue;
+            }
+
+            //
+        }
+    }
 }
 
 /**

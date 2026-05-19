@@ -63,5 +63,5 @@ void Point2D<T>::setY(T y)
 template<typename T>
 void Point2D<T>::printCoordinates() const
 {
-    std::cout << "(" << getX() << ", " << getY() << ")";
+    std::cout << "(" << this->getX() << ", " << this->getY() << ")";
 }
