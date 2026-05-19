@@ -77,7 +77,12 @@ void SearchBase2D<T>::setBegin(const Point2D<T>& point)
     this->grid->setPath(ind);
 
     std::vector<size_t>* p = this->path.get();
-    p->emplace_back(ind);
+
+    if(p->size() == 0) {
+        p->emplace_back(ind);
+    } else {
+        p->at(0) = ind;
+    }
 }
 
 /**
