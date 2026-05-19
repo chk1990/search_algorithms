@@ -315,6 +315,17 @@ void Grid2D<T>::setPath(const size_t col, const size_t row)
 }
 
 /**
+ * @brief Sets the state of the point as part of the path
+ * @param[in] point Point to find in grid
+ */
+template <typename T>
+void Grid2D<T>::setPath(const Point2D<T>& pt)
+{
+    size_t ind = this->getIndex(pt);
+    this->setPath(ind);
+}
+
+/**
  * @brief Returns if the point is part of the path
  * @param[in] ind Index of interest
  */
@@ -333,6 +344,17 @@ template <typename T>
 bool Grid2D<T>::isPath(const size_t col, const size_t row) const
 {
     size_t ind = this->index(col, row);
+    return this->isPath(ind);
+}
+
+/**
+ * @brief Returns if the point is part of the path
+ * @param[in] point Point to find in grid
+ */
+template <typename T>
+bool Grid2D<T>::isPath(const Point2D<T>& pt) const
+{
+    size_t ind = this->getIndex(pt);
     return this->isPath(ind);
 }
 

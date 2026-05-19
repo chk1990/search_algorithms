@@ -44,11 +44,13 @@ class Grid2D
       void setObstacle(const size_t col, const size_t row);
       void setPath(const size_t col, const size_t row);   
       void setPath(const size_t ind);
+      void setPath(const Point2D<T>& pt);
       void setDiscovered(const size_t col, const size_t row);
       void setDiscovered(const size_t ind);
       void setUndiscovered(const size_t col, const size_t row);
       bool isFree(const size_t col, const size_t row) const;
       bool isPath(const size_t ind) const;
+      bool isPath(const Point2D<T>& pt) const;
       bool isPath(const size_t col, const size_t row) const;
       bool isObstacle(const size_t col, const size_t row) const;
       bool isDiscovered(const size_t col, const size_t row) const;
