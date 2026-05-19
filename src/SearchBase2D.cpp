@@ -24,9 +24,9 @@ template<typename T>
 void SearchBase2D<T>::add2path(const Point2D<T>& point)
 {
     // determine index of point
-    size_t ind = grid.get()->getIndex(point);
+    size_t ind = this->grid.get()->getIndex(point);
 
-    setPath(ind);
+    this->setPath(ind);
     this->path.get()->push_back(ind);
 }
 
@@ -54,7 +54,7 @@ void SearchBase2D<T>::setPath(const size_t col, const size_t row)
 {
     Grid2D<T>* g = this->grid.get();
     size_t ind = g->index(col, row);
-    setPath(ind);
+    this->setPath(ind);
 }
 
 /**
@@ -65,7 +65,7 @@ void SearchBase2D<T>::setPath(const size_t col, const size_t row)
 template <typename T>
 void SearchBase2D<T>::setBegin(const Point2D<T>& point)
 {
-    add2path(point);
+    this->add2path(point);
 }
 
 /**
