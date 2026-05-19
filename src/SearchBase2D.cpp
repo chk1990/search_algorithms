@@ -70,11 +70,18 @@ void SearchBase2D<T>::setBegin(const Point2D<T>& point)
 /**
  * @brief Set goals of path
  * @param[in] point Goal point
+ * @post The point is not added to internal path
  */
 template <typename T>
 void SearchBase2D<T>::setGoal(const Point2D<T>& point)
 {
     this->goal = std::make_unique<Point2D<T>>(point);
+
+    // determine index
+    Grid2D<T>* g = this->grid.get();
+    size_t ind = g->getIndex(point);
+
+    g->setPath(ind);
 }
 
 /**
