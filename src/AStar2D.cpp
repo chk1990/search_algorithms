@@ -25,7 +25,6 @@ AStar2D<T>::AStar2D(const std::string& filename) : SearchBase2D<T>(filename), pr
 template<typename T>
 void AStar2D<T>::findPath(const Point2D<T>& start)
 {
-    this->grid.get()->setPath(start);
     this->grid.get()->printContent();
 
     // go through adjacent nodes
@@ -35,7 +34,7 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
                 continue;
             }
 
-            //
+            //Point2D<T> pt = 
         }
     }
 }
