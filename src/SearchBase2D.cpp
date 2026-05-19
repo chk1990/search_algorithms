@@ -77,3 +77,12 @@ void SearchBase2D<T>::setGoal(const Point2D<T>& point)
 {
     this->goal = point;
 }
+
+/**
+ * @brief Gets goals of path
+ */
+template <typename T>
+Point2D<T> SearchBase2D<T>::getGoal() const
+{
+    return this->goal;
+}

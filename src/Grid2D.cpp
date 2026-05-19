@@ -82,7 +82,7 @@ void Grid2D<T>::populatePoints(const T xOff, const T yOff)
     Point2D<T> *points = this->coordinates.get();
     for(size_t indY = 0; indY < this->height; ++indY) {
         for(size_t indX = 0; indX < this->width; ++indX) {
-            size_t pos = index(indX, indY);
+            size_t pos = this->index(indX, indY);
 
             T xVal = indX * this->step + xOff;
             T yVal = indY * this->step + yOff;
