@@ -24,7 +24,7 @@ void SearchBase2D<T>::add2path(const Point2D<T>& point)
 {
     size_t ind = this->grid.get()->index(point);
     this->setPath(point);
-    this->path.get()->push_back(ind);
+    this->path.get()->emplace_back(ind);
 }
 
 /**
@@ -49,7 +49,7 @@ void SearchBase2D<T>::setPath(const size_t ind)
     g->setPath(ind);
     g->setDiscovered(ind);
 
-    this->path.get()->push_back(ind);
+    this->path.get()->emplace_back(ind);
 }
 
 /**
@@ -77,7 +77,7 @@ void SearchBase2D<T>::setBegin(const Point2D<T>& point)
     this->grid->setPath(ind);
 
     std::vector<size_t>* p = this->path.get();
-    p->push_back(ind);
+    p->emplace_back(ind);
 }
 
 /**
