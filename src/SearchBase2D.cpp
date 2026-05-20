@@ -16,6 +16,43 @@ SearchBase2D<T>::SearchBase2D(const std::string& filename) : goal(std::make_uniq
 }
 
 /**
+ * @brief Print the content of the grid
+ */
+template<typename T>
+void SearchBase2D<T>::printGrid() const
+{
+    this->grid.get()->printContent();
+}
+
+/**
+ * @brief Returns the width of the grid
+ */
+template<typename T>
+size_t SearchBase2D<T>::getGridWidth() const
+{
+    return this->grid.get()->getWidth();
+}
+
+/**
+ * @brief Returns the height of the grid
+ */
+template<typename T>
+size_t SearchBase2D<T>::getGridHeight() const
+{
+    return this->grid.get()->getHeight();
+}
+
+
+/**
+ * @brief Returns the step size of the grid
+ */
+template<typename T>
+size_t SearchBase2D<T>::getGridStep() const
+{
+    return this->grid.get()->getStep();
+}
+
+/**
  * @brief Add a point to the path
  * @param[in] point Point to add
  */
@@ -124,5 +161,28 @@ Point2D<T> SearchBase2D<T>::getPath(size_t ind) const
     const Grid2D<T>* g = this->grid.get();
     const Point2D<T> pt = g->getCoordinates(indPt);
     
+    return pt;
+}
+
+
+template <typename T>
+Point2D<T> SearchBase2D<T>::getMinLimPoint() const
+{
+    Point2D<T> pt = this->grid.get()->getCoordinates(0);
+
+    return pt;
+}
+
+/**
+ * @brief
+ */
+template <typename T>
+Point2D<T> SearchBase2D<T>::getMaxLimPoint() const
+{
+    const size_t width = this->getGridWidth();
+    const size_t height = this->getGridHeight();
+
+    Point2D<T> pt = this->grid.get()->getCoordinates(width*height - 1);
+
     return pt;
 }

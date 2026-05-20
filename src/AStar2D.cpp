@@ -25,12 +25,15 @@ AStar2D<T>::AStar2D(const std::string& filename) : SearchBase2D<T>(filename), pr
 template<typename T>
 void AStar2D<T>::findPath(const Point2D<T>& start)
 {
-    this->grid.get()->printContent();
+    //this->grid.get()->printContent();
+    this->printGrid();
 
-    const size_t width = this->grid.get()->getWidth();
-    const size_t height = this->grid.get()->getHeight();
-    const Point2D<T> ptLim1 = this->grid.get()->getCoordinates(0);
-    const Point2D<T> ptLim2 = this->grid.get()->getCoordinates(width*height - 1);
+    const size_t width = this->getGridWidth();
+    //this->grid.get()->getWidth();
+    const size_t height = this->getGridHeight();
+    //this->grid.get()->getHeight();
+    const Point2D<T> ptLim1 = this->getMinLimPoint();
+    const Point2D<T> ptLim2 = this->getMaxLimPoint();
 
     // coordinates of grid limits
     const T minX = ptLim1.getX();
@@ -41,7 +44,8 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
     // go through adjacent nodes
     const T currX = start.getX();
     const T currY = start.getY();
-    const T step = this->grid.get()->getStep();
+    const T step = this->getGridStep();
+    //this->grid.get()->getStep();
 
     for(int indY = -1; indY <= 1; ++indY) {
         for(int indX = -1; indX <= 1; ++indX) {
