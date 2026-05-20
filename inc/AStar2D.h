@@ -15,7 +15,6 @@
 /**
  * @class AStar2D
  * @brief Class to perform a search by the A* algorithm on a given environment.
- * @todo Move prioQueue to unique pointer
  */
 template<typename T>
 class AStar2D : public SearchBase2D<T> {
@@ -36,9 +35,9 @@ class AStar2D : public SearchBase2D<T> {
 
         using Comparator = decltype(makeComparator()); /**< Defines the given lambda as comparison element */
 
-        std::priority_queue<pointDistance,
+        std::unique_ptr<std::priority_queue<pointDistance,
                             std::vector<pointDistance>,
-                            Comparator> prioQueue; /**< Priority queue to sort the following points to investigate by distance. */
+                            Comparator>> prioQueue; /**< Priority queue to sort the following points to investigate by distance. */
 
         T compHeuristic(const Point2D<T>& current, const Point2D<T> &desired) const;
         T compHeuristicGoal(const Point2D<T>& current) const override;

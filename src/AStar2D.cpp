@@ -12,28 +12,27 @@
  * @param[in] filename Name of the file containing the plan
  */
 template<typename T>
-AStar2D<T>::AStar2D(const std::string& filename) : SearchBase2D<T>(filename), prioQueue(makeComparator())
+AStar2D<T>::AStar2D(const std::string& filename) : SearchBase2D<T>(filename),
+                                                   prioQueue(std::make_unique<std::priority_queue<pointDistance,
+                                                   std::vector<pointDistance>,
+                                                   Comparator>>())
 {
     /*
-    //this->prioQueue(makeComparator());
-
     pointDistance p1 = {10.0, 12};
     pointDistance p2 = {6.0, 50};
     pointDistance p3 = {8.0, 4};
 
-    //std::cout << prioQueue.size() << std::endl;
+    auto* pq = this->prioQueue.get();
+    pq->push(p1);
+    pq->push(p2);
+    pq->push(p3);
 
-    prioQueue.push(p1);
-    prioQueue.push(p2);
-    prioQueue.push(p3);
+    while(pq->size() != 0) {
+        pointDistance elem = pq->top();
 
-    //std::cout << prioQueue.size() << std::endl;
+        std::cout << "(" << std::get<0>(elem) << ", " << std::get<1>(elem) << ")" << std::endl;
 
-    while(prioQueue.size() != 0) {
-        pointDistance pq = prioQueue.top();
-        std::cout << "(" << std::get<0>(pq) << ", " << std::get<1>(pq) << ")" << std::endl;
-
-        prioQueue.pop();
+        pq->pop();
     }
     */
 }
@@ -91,7 +90,7 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
             const Point2D<T> pt(x, y);
             T heur = compHeuristicGoal(pt);
 
-            // add to prio queue
+            // TODO: add to prio queue
         }
     }
 }
@@ -109,7 +108,7 @@ void AStar2D<T>::addToFringe(const size_t ind, const T cost)
     const T estimDist = this->compHeuristicGoal(currPt);
 
     const pointDistance f = {estimDist, ind};
-    //this->prioQueue->push(f);
+    //this->prioQueue->push(f); // TODO
 }
 
 /**
