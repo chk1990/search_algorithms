@@ -25,9 +25,9 @@ class SearchBase2D {
         void setPath(const size_t col, const size_t row);
         void setPath(const size_t ind);
         void setPath(const Point2D<T>& point);
-
-    protected:
         void add2path(const Point2D<T>& point);
+        virtual void addToFringe(const size_t ind, const T cost) = 0;
+        virtual T compHeuristicGoal(const Point2D<T>& current) const = 0;
 
     public:
         SearchBase2D(const std::string& filename);

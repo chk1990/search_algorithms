@@ -120,6 +120,10 @@ void SearchBase2D<T>::setBegin(const Point2D<T>& point)
     } else {
         p->at(0) = ind;
     }
+
+    const T cost = this->compHeuristicGoal(point);
+
+    this->addToFringe(ind, cost);
 }
 
 /**

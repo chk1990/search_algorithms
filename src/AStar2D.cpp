@@ -76,6 +76,17 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
     }
 }
 
+/**
+ * @brief Adds a point to the priority queue
+ * @param[in] ind Index of point to add
+ * @param[in] cost Cost determined by A* algorithm
+ * @todo complete and test
+ */
+template<typename T>
+void AStar2D<T>::addToFringe(const size_t ind, const T cost)
+{
+    //
+}
 
 /**
  * @brief Computes the heuristic from current point to the goal as Euclidean Distance

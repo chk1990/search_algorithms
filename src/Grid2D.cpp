@@ -518,5 +518,5 @@ void Grid2D<T>::importPlanFile(const std::string& filename)
 
     is.close();
 
-    populatePoints();
+    this->populatePoints();
 }

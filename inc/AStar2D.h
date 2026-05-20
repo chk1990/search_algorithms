@@ -19,7 +19,7 @@
 template<typename T>
 class AStar2D : public SearchBase2D<T> {
     private:
-        using pointDistance = std::tuple<T, Point2D<T>>; /**< Element to represent distant information of a point */
+        using pointDistance = std::tuple<T, size_t>; /**< Element to represent distant information of a point and its index */
 
         /**
          * @brief Wrapper for sorting expression of points in priority queue
@@ -40,7 +40,8 @@ class AStar2D : public SearchBase2D<T> {
                             Comparator> prioQueue; /**< Priority queue to sort the following points to investigate by distance. */
 
         T compHeuristic(const Point2D<T>& current, const Point2D<T> &desired) const;
-        T compHeuristicGoal(const Point2D<T>& current) const;
+        T compHeuristicGoal(const Point2D<T>& current) const override;
+        void addToFringe(const size_t ind, const T cost) override;
 
     public:
         AStar2D(const std::string& filename);
