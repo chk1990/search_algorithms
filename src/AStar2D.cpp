@@ -27,14 +27,47 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
 {
     this->grid.get()->printContent();
 
+    const size_t width = this->grid.get()->getWidth();
+    const size_t height = this->grid.get()->getHeight();
+    const Point2D<T> ptLim1 = this->grid.get()->getCoordinates(0);
+    const Point2D<T> ptLim2 = this->grid.get()->getCoordinates(width*height - 1);
+
+    // coordinates of grid limits
+    const T minX = ptLim1.getX();
+    const T maxX = ptLim2.getX();
+    const T minY = ptLim1.getY();
+    const T maxY = ptLim2.getY();
+
     // go through adjacent nodes
+    const T currX = start.getX();
+    const T currY = start.getY();
+    const T step = this->grid.get()->getStep();
+
     for(int indY = -1; indY <= 1; ++indY) {
         for(int indX = -1; indX <= 1; ++indX) {
             if(indX == 0 && indY == 0) {
                 continue;
             }
 
-            //Point2D<T> pt = 
+            // new point to investiate
+            const T x = currX + step * indX;
+            const T y = currY + step * indY;
+
+            /*
+            // check if r/c valid
+            if(x >= || x <= ) {
+                continue;
+            }
+
+            if(y >= || y <= ) {
+                continue;
+            }
+            */
+
+            const Point2D<T> pt(x, y);
+
+            // compute heuristic
+            T heur = compHeuristic(start, pt);
         }
     }
 }
@@ -48,6 +81,6 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
 template<typename T>
 T AStar2D<T>::compHeuristic(const Point2D<T>& current, const Point2D<T>& goal) const
 {
-    T dist = std::sqrt(pow(goal.getX() - current.getX(), 2) + pow(goal.getY() - current.getY(), 2));
+    const T dist = std::sqrt(pow(goal.getX() - current.getX(), 2) + pow(goal.getY() - current.getY(), 2));
     return dist;
 }

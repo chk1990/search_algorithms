@@ -60,8 +60,8 @@ void SearchBase2D<T>::setPath(const size_t ind)
 template <typename T>
 void SearchBase2D<T>::setPath(const size_t col, const size_t row)
 {
-    Grid2D<T>* g = this->grid.get();
-    size_t ind = g->index(col, row);
+    const Grid2D<T>* g = this->grid.get();
+    const size_t ind = g->index(col, row);
     this->setPath(ind);
 }
 
@@ -73,7 +73,7 @@ void SearchBase2D<T>::setPath(const size_t col, const size_t row)
 template <typename T>
 void SearchBase2D<T>::setBegin(const Point2D<T>& point)
 {
-    size_t ind = this->grid.get()->index(point);
+    const size_t ind = this->grid.get()->index(point);
     this->grid->setPath(ind);
 
     std::vector<size_t>* p = this->path.get();
@@ -117,12 +117,12 @@ Point2D<T>& SearchBase2D<T>::getGoal() const
  */
 template <typename T>
 Point2D<T> SearchBase2D<T>::getPath(size_t ind) const
-{    
-    std::vector<size_t> pth = *(this->path.get());
-    size_t indPt = pth[ind];
+{
+    const std::vector<size_t> pth = *(this->path.get());
+    const size_t indPt = pth[ind];
 
-    Grid2D<T>* g = this->grid.get();
-    Point2D<T> pt = g->getCoordinates(indPt);
+    const Grid2D<T>* g = this->grid.get();
+    const Point2D<T> pt = g->getCoordinates(indPt);
     
     return pt;
 }

@@ -35,8 +35,8 @@ void GeneratePlan<T>::genPlan2D(const size_t ind, const std::string filename)
 template<typename T>
 void GeneratePlan<T>::genPlan2D1(const std::string filename)
 {
-    size_t width = 30;
-    size_t height = 20;
+    const size_t width = 30;
+    const size_t height = 20;
     Grid2D<T> grid(width, height, 1.0);
 
     for(size_t indX = 0; indX <= 15; ++indX) {

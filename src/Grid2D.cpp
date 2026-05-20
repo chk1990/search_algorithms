@@ -448,7 +448,7 @@ void Grid2D<T>::exportPlanFile(const std::string& filename) const
 
     fileStream << this->width << std::endl << this->height << std::endl << this->step << std::endl;
 
-    Occupancy* occ = this->occupancy.get();
+    const Occupancy* occ = this->occupancy.get();
     for(size_t indY = 0; indY < this->height; ++indY) {
         for(size_t indX = 0; indX < this->width; ++indX) {
             fileStream << occ[this->index(indX, indY)];
@@ -456,7 +456,7 @@ void Grid2D<T>::exportPlanFile(const std::string& filename) const
     }
     fileStream << std::endl;
 
-    bool* dis = this->discovered.get();
+    const bool* dis = this->discovered.get();
     for(size_t indY = 0; indY < this->height; ++indY) {
         for(size_t indX = 0; indX < this->width; ++indX) {
             fileStream << dis[this->index(indX, indY)];
