@@ -153,7 +153,7 @@ Point2D<T>& SearchBase2D<T>::getGoal() const
  * @param[in] ind Index of interest
  */
 template <typename T>
-Point2D<T> SearchBase2D<T>::getPath(size_t ind) const
+Point2D<T> SearchBase2D<T>::getPath(const size_t ind) const
 {
     const std::vector<size_t> pth = *(this->path.get());
     const size_t indPt = pth[ind];
@@ -163,7 +163,6 @@ Point2D<T> SearchBase2D<T>::getPath(size_t ind) const
     
     return pt;
 }
-
 
 template <typename T>
 Point2D<T> SearchBase2D<T>::getMinLimPoint() const
