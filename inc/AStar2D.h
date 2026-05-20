@@ -39,7 +39,8 @@ class AStar2D : public SearchBase2D<T> {
                             std::vector<pointDistance>,
                             Comparator> prioQueue; /**< Priority queue to sort the following points to investigate by distance. */
 
-        T compHeuristic(const Point2D<T>& current, const Point2D<T> &goal) const;
+        T compHeuristic(const Point2D<T>& current, const Point2D<T> &desired) const;
+        T compHeuristicGoal(const Point2D<T>& current) const;
 
     public:
         AStar2D(const std::string& filename);

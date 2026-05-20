@@ -25,13 +25,10 @@ AStar2D<T>::AStar2D(const std::string& filename) : SearchBase2D<T>(filename), pr
 template<typename T>
 void AStar2D<T>::findPath(const Point2D<T>& start)
 {
-    //this->grid.get()->printContent();
     this->printGrid();
 
     const size_t width = this->getGridWidth();
-    //this->grid.get()->getWidth();
     const size_t height = this->getGridHeight();
-    //this->grid.get()->getHeight();
     const Point2D<T> ptLim1 = this->getMinLimPoint();
     const Point2D<T> ptLim2 = this->getMaxLimPoint();
 
@@ -45,7 +42,6 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
     const T currX = start.getX();
     const T currY = start.getY();
     const T step = this->getGridStep();
-    //this->grid.get()->getStep();
 
     for(int indY = -1; indY <= 1; ++indY) {
         for(int indX = -1; indX <= 1; ++indX) {
@@ -57,34 +53,51 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
             const T x = currX + step * indX;
             const T y = currY + step * indY;
 
-            /*
             // check if r/c valid
-            if(x >= || x <= ) {
+            if(x > maxX || x < minX) {
                 continue;
             }
 
-            if(y >= || y <= ) {
+            if(y > maxY || y < minY) {
                 continue;
             }
-            */
 
-            const Point2D<T> pt(x, y);
+            if(indX == 0 && indY == 0) {
+                continue;
+            }
 
             // compute heuristic
-            T heur = compHeuristic(start, pt);
+            const Point2D<T> pt(x, y);
+            T heur = compHeuristicGoal(pt);
+            std::cout << heur << std::endl;
+
+            // add tp prio queue
         }
     }
 }
 
+
 /**
  * @brief Computes the heuristic from current point to the goal as Euclidean Distance
- * @param[in] start Point to start
- * @param[in] goal Desired end of path
+ * @param[in] current Point to start
+ * @return Euclidean distance to path goal
+ */
+template<typename T>
+T AStar2D<T>::compHeuristicGoal(const Point2D<T>& current) const
+{
+    const Point2D<T> goal = this->getGoal();
+    return this->compHeuristic(current, goal);
+}
+
+/**
+ * @brief Computes the heuristic from current point to the desired point as Euclidean Distance
+ * @param[in] current Point to start
+ * @param[in] desired Desired end of path
  * @return Euclidean distance of points
  */
 template<typename T>
-T AStar2D<T>::compHeuristic(const Point2D<T>& current, const Point2D<T>& goal) const
+T AStar2D<T>::compHeuristic(const Point2D<T>& current, const Point2D<T>& desired) const
 {
-    const T dist = std::sqrt(pow(goal.getX() - current.getX(), 2) + pow(goal.getY() - current.getY(), 2));
+    const T dist = std::sqrt(pow(desired.getX() - current.getX(), 2) + pow(desired.getY() - current.getY(), 2));
     return dist;
 }
