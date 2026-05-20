@@ -189,3 +189,13 @@ Point2D<T> SearchBase2D<T>::getMaxLimPoint() const
 
     return pt;
 }
+
+/**
+ * @brief
+ * @param[in] ind Index of point to 
+ */
+template <typename T>
+Point2D<T> SearchBase2D<T>::getCoordinates(const size_t ind) const
+{
+    return this->grid.get()->getCoordinates(ind);
+}

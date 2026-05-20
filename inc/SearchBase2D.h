@@ -43,6 +43,7 @@ class SearchBase2D {
         size_t getGridStep() const;
         Point2D<T> getMinLimPoint() const;
         Point2D<T> getMaxLimPoint() const;
+        Point2D<T> getCoordinates(const size_t ind) const;
 
         void printGrid() const;
 };

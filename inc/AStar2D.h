@@ -15,6 +15,7 @@
 /**
  * @class AStar2D
  * @brief Class to perform a search by the A* algorithm on a given environment.
+ * @todo Move prioQueue to unique pointer
  */
 template<typename T>
 class AStar2D : public SearchBase2D<T> {

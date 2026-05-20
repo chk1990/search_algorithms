@@ -14,7 +14,28 @@
 template<typename T>
 AStar2D<T>::AStar2D(const std::string& filename) : SearchBase2D<T>(filename), prioQueue(makeComparator())
 {
-    //
+    /*
+    //this->prioQueue(makeComparator());
+
+    pointDistance p1 = {10.0, 12};
+    pointDistance p2 = {6.0, 50};
+    pointDistance p3 = {8.0, 4};
+
+    //std::cout << prioQueue.size() << std::endl;
+
+    prioQueue.push(p1);
+    prioQueue.push(p2);
+    prioQueue.push(p3);
+
+    //std::cout << prioQueue.size() << std::endl;
+
+    while(prioQueue.size() != 0) {
+        pointDistance pq = prioQueue.top();
+        std::cout << "(" << std::get<0>(pq) << ", " << std::get<1>(pq) << ")" << std::endl;
+
+        prioQueue.pop();
+    }
+    */
 }
 
 /**
@@ -69,9 +90,8 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
             // compute heuristic
             const Point2D<T> pt(x, y);
             T heur = compHeuristicGoal(pt);
-            std::cout << heur << std::endl;
 
-            // add tp prio queue
+            // add to prio queue
         }
     }
 }
@@ -85,7 +105,11 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
 template<typename T>
 void AStar2D<T>::addToFringe(const size_t ind, const T cost)
 {
-    //
+    const Point2D<T> currPt = this->getCoordinates(ind);
+    const T estimDist = this->compHeuristicGoal(currPt);
+
+    const pointDistance f = {estimDist, ind};
+    //this->prioQueue->push(f);
 }
 
 /**
