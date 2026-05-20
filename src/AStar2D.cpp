@@ -15,37 +15,23 @@ template<typename T>
 AStar2D<T>::AStar2D(const std::string& filename) : SearchBase2D<T>(filename),
                                                    prioQueue(std::make_unique<std::priority_queue<pointDistance,
                                                    std::vector<pointDistance>,
-                                                   Comparator>>())
+                                                   comparator>>())
 {
-    /*
-    pointDistance p1 = {10.0, 12};
-    pointDistance p2 = {6.0, 50};
-    pointDistance p3 = {8.0, 4};
-
-    auto* pq = this->prioQueue.get();
-    pq->push(p1);
-    pq->push(p2);
-    pq->push(p3);
-
-    while(pq->size() != 0) {
-        pointDistance elem = pq->top();
-
-        std::cout << "(" << std::get<0>(elem) << ", " << std::get<1>(elem) << ")" << std::endl;
-
-        pq->pop();
-    }
-    */
+    //
 }
 
 /**
  * @brief Finds the path from start to goal if the path is available
  * @param[in] start Point to start
- * @todo complete and test
+ * @todo Implement recursion
+ * @todo Test
  */
 template<typename T>
 void AStar2D<T>::findPath(const Point2D<T>& start)
 {
-    this->printGrid();
+    if(this->prioQueue.get()->empty()) {
+        return;
+    }
 
     const size_t width = this->getGridWidth();
     const size_t height = this->getGridHeight();
@@ -63,6 +49,8 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
     const T currY = start.getY();
     const T step = this->getGridStep();
 
+    // put all children to the queue
+    priorityQueue* pq = this->prioQueue.get();
     for(int indY = -1; indY <= 1; ++indY) {
         for(int indX = -1; indX <= 1; ++indX) {
             if(indX == 0 && indY == 0) {
@@ -86,20 +74,38 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
                 continue;
             }
 
-            // compute heuristic
-            const Point2D<T> pt(x, y);
-            T heur = compHeuristicGoal(pt);
+            const Point2D<T> pt(x, y);            
+            const size_t ind = this->getPointIndex(pt);
 
-            // TODO: add to prio queue
+            // check if node already discovered and mark children as discovered
+            if(this->isDiscovered(ind)) {
+                continue;
+            } else {
+                this->setDiscovered(ind);
+            }
+
+            // compute heuristic
+            const T heur = compHeuristicGoal(pt);
+
+            // add to prio queue
+            this->addToFringe(ind, heur);
         }
     }
+    
+    // print elements of priority queue
+    while(!pq->empty()) {
+        pointDistance pd = pq->top();
+        pq->pop();
+        std::cout << "(" << std::get<0>(pd) << " " << std::get<1>(pd) << ")" << std::endl;
+    }
+
+    // start recursion
 }
 
 /**
  * @brief Adds a point to the priority queue
  * @param[in] ind Index of point to add
  * @param[in] cost Cost determined by A* algorithm
- * @todo complete and test
  */
 template<typename T>
 void AStar2D<T>::addToFringe(const size_t ind, const T cost)
@@ -107,8 +113,8 @@ void AStar2D<T>::addToFringe(const size_t ind, const T cost)
     const Point2D<T> currPt = this->getCoordinates(ind);
     const T estimDist = this->compHeuristicGoal(currPt);
 
-    const pointDistance f = {estimDist, ind};
-    //this->prioQueue->push(f); // TODO
+    const pointDistance elem = {estimDist, ind};
+    this->prioQueue->push(elem);
 }
 
 /**

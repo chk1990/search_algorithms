@@ -423,7 +423,18 @@ void Grid2D<T>::setUndiscovered(const size_t col, const size_t row)
 template <typename T>
 bool Grid2D<T>::isDiscovered(const size_t col, const size_t row) const
 {
-    return this->discovered.get()[this->index(col, row)];
+    size_t ind = this->index(col, row);
+    return this->isDiscovered(ind);
+}
+
+/**
+ * @brief Checks if the point is discovered
+ * @param[in] ind Index of interest
+ */
+template <typename T>
+bool Grid2D<T>::isDiscovered(const size_t ind) const
+{
+    return this->discovered.get()[ind];
 }
 
 /**

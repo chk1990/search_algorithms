@@ -191,11 +191,41 @@ Point2D<T> SearchBase2D<T>::getMaxLimPoint() const
 }
 
 /**
- * @brief
- * @param[in] ind Index of point to 
+ * @brief Returns the point at the given location
+ * @param[in] ind Index of point
  */
 template <typename T>
 Point2D<T> SearchBase2D<T>::getCoordinates(const size_t ind) const
 {
     return this->grid.get()->getCoordinates(ind);
+}
+
+/**
+ * @brief Gets the point's index in the grid
+ * @param[in] point Point of interest
+ */
+template <typename T>
+size_t SearchBase2D<T>::getPointIndex(const Point2D<T>& point) const
+{
+    return this->grid.get()->index(point);
+}
+
+/**
+ * @brief Checks if the point is discovered
+ * @param[in] ind Index of point
+ */
+template <typename T>
+bool SearchBase2D<T>::isDiscovered(size_t ind) const
+{
+    return this->grid.get()->isDiscovered(ind);
+}
+
+/**
+ * @brief Sets the state of the point as discovered
+ * @param[in] point Point of interest
+ */
+template <typename T>
+void SearchBase2D<T>::setDiscovered(const size_t ind)
+{
+    this->grid.get()->setDiscovered(ind);
 }

@@ -33,11 +33,10 @@ class AStar2D : public SearchBase2D<T> {
             };
         }
 
-        using Comparator = decltype(makeComparator()); /**< Defines the given lambda as comparison element */
+        using comparator = decltype(makeComparator()); /**< Defines the given lambda as comparison element */
+        using priorityQueue = std::priority_queue<pointDistance, std::vector<pointDistance>, comparator>; /**< Represent the data structure of the used priority queue */
 
-        std::unique_ptr<std::priority_queue<pointDistance,
-                            std::vector<pointDistance>,
-                            Comparator>> prioQueue; /**< Priority queue to sort the following points to investigate by distance. */
+        std::unique_ptr<priorityQueue> prioQueue; /**< Priority queue to sort the following points to investigate by distance. */
 
         T compHeuristic(const Point2D<T>& current, const Point2D<T> &desired) const;
         T compHeuristicGoal(const Point2D<T>& current) const override;

@@ -41,6 +41,9 @@ class SearchBase2D {
         size_t getGridWidth() const;
         size_t getGridHeight() const;
         size_t getGridStep() const;
+        size_t getPointIndex(const Point2D<T>& point) const;
+        bool isDiscovered(size_t ind) const;
+        void setDiscovered(const size_t ind);
         Point2D<T> getMinLimPoint() const;
         Point2D<T> getMaxLimPoint() const;
         Point2D<T> getCoordinates(const size_t ind) const;

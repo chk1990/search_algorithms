@@ -54,6 +54,7 @@ class Grid2D
       bool isPath(const size_t col, const size_t row) const;
       bool isObstacle(const size_t col, const size_t row) const;
       bool isDiscovered(const size_t col, const size_t row) const;
+      bool isDiscovered(const size_t ind) const;
       size_t index(const size_t col, const size_t row) const;
 
       Point2D<T>& getCoordinates(const size_t col, const size_t row) const;
