@@ -17,7 +17,7 @@ struct AStar2DTest : public testing::Test
 
     void SetUp()
     {
-        astar = new AStar2D<float>("../data_environment/plan1.dat");
+        astar = new AStar2D<float>("./data_environment/plan1.dat");
     }
 
     void TearDown()
