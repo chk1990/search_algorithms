@@ -131,7 +131,7 @@ TEST_F(ConstructorNoOffset, SetPath2) {
 }
 
 TEST_F(ConstructorNoOffset, IsDiscovered) {
-    bool ud = grid->isDiscovered(10, 4);
+    bool ud = grid->isDiscovered(9, 3);
 
     ASSERT_EQ(ud, false);
 }

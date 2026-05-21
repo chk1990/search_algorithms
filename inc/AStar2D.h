@@ -45,6 +45,7 @@ class AStar2D : public SearchBase2D<T> {
     public:
         AStar2D(const std::string& filename);
         void findPath(const Point2D<T>& start) override;
+        void printPrioQueue() const;
 };
 
 template class AStar2D<int>;

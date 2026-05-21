@@ -93,13 +93,20 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
     }
     
     // print elements of priority queue
+    //this->printPrioQueue();
+
+    // start recursion
+}
+
+template<typename T>
+void AStar2D<T>::printPrioQueue() const
+{
+    priorityQueue* pq = this->prioQueue.get();
     while(!pq->empty()) {
         pointDistance pd = pq->top();
         pq->pop();
         std::cout << "(" << std::get<0>(pd) << " " << std::get<1>(pd) << ")" << std::endl;
     }
-
-    // start recursion
 }
 
 /**

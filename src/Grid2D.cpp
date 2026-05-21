@@ -4,6 +4,7 @@
  */
 
 #include<cstring>
+#include<errno.h>
 #include<fstream>
 #include<iostream>
 #include<limits.h>
@@ -59,7 +60,16 @@ Grid2D<T>::Grid2D(const size_t width, const size_t height, const T step,
 template <typename T>
 size_t Grid2D<T>::index(const size_t col, const size_t row) const
 {
-    return row*this->width + col;
+    size_t ind = row*this->width + col;
+    /*
+    if(ind >= this->width*this->height) {
+        errno = EINVAL;
+        perror("Invalid inputs if Grid2D<T>::index() due to too high index result");
+        exit(EXIT_FAILURE);
+    }
+    */
+
+    return ind;
 }
 
 /**

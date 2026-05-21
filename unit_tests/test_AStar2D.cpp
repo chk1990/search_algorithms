@@ -50,6 +50,12 @@ TEST_F(AStar2DTest, SetGetBegin2) {
     EXPECT_EQ(4.0 == pt.getX() && 8.0 == pt.getY(), true);
 }
 
+TEST_F(AStar2DTest, GetCoordinates) {
+    Point2D<float> pt = astar->getCoordinates(31);
+
+    EXPECT_EQ(1.0 == pt.getX() && 1.0 == pt.getY(), true);
+}
+
 int main(int argc, char* argv[]) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

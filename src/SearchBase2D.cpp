@@ -10,9 +10,12 @@
  * @param[in] filename Name of file that contains the plan
  */
 template<typename T>
-SearchBase2D<T>::SearchBase2D(const std::string& filename) : goal(std::make_unique<Point2D<T>>()), grid(std::make_unique<Grid2D<T>>()), path(std::make_unique<std::vector<size_t>>())
+SearchBase2D<T>::SearchBase2D(const std::string& filename) : goal(std::make_unique<Point2D<T>>()),
+                                                             grid(std::make_unique<Grid2D<T>>()),
+                                                             path(std::make_unique<std::vector<size_t>>())
 {
     this->grid.get()->importPlanFile(filename);
+    this->setGoal(Point2D<T>(static_cast<T>(0), static_cast<T>(0)));
 }
 
 /**
@@ -106,12 +109,13 @@ void SearchBase2D<T>::setPath(const size_t col, const size_t row)
  * @brief Set begin of path
  * @param[in] col Column of interest
  * @param[in] row Row of interest
+ * @pre SearchBase2D<T>::setGoal() must be called before
  */
 template <typename T>
 void SearchBase2D<T>::setBegin(const Point2D<T>& point)
 {
     const size_t ind = this->grid.get()->index(point);
-    this->grid->setPath(ind);
+    this->setPath(ind);
 
     std::vector<size_t>* p = this->path.get();
 
@@ -129,7 +133,7 @@ void SearchBase2D<T>::setBegin(const Point2D<T>& point)
 /**
  * @brief Set goals of path
  * @param[in] point Goal point
- * @post The point is not added to internal path
+ * @note The point is not added to internal path. If this method is not called, the origin is set as goal.
  */
 template <typename T>
 void SearchBase2D<T>::setGoal(const Point2D<T>& point)
@@ -168,6 +172,9 @@ Point2D<T> SearchBase2D<T>::getPath(const size_t ind) const
     return pt;
 }
 
+/**
+ * @brief Get the bottom-left point of the grid
+ */
 template <typename T>
 Point2D<T> SearchBase2D<T>::getMinLimPoint() const
 {
@@ -177,7 +184,7 @@ Point2D<T> SearchBase2D<T>::getMinLimPoint() const
 }
 
 /**
- * @brief
+ * @brief Get the top-right point of the grid
  */
 template <typename T>
 Point2D<T> SearchBase2D<T>::getMaxLimPoint() const
