@@ -61,12 +61,10 @@ search_algorithms/
 ├── include/        # Public headers
 ├── src/            # Source files
 ├── unit_tests/     # Unit tests
-|   ├── build/
-|   └── compile.sh 
 ├── docs/           # Documentation
 ├── build/          # Build output (generated)
-├── compile.sh
-├── Doxyfile
+├── compile.sh      # Compile everything easily
+├── Doxyfile        # Generate documentation
 └── CMakeLists.txt
 ```
 

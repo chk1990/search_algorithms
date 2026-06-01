@@ -102,7 +102,7 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
                 }
 
                 // cummulated distance from beginning to current node
-                T cumulDist = std::get<2>(elem);
+                T cumulDist = std::get<0>(elem);
 
                 // direct distance from current node to next one
                 T distCurrSucc = this->compHeuristic(successor, current);
@@ -116,10 +116,10 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
                 std::cout << currentInd << " " << indSuccessor << " " << cumulDist << " " << distCurrSucc << " " << heurDistSucc << std::endl;
 
                 // add new element tp priority queue
-                //this->addToFringe(indSuccessor, succHeur, currentInd);
+                this->addToFringe(indSuccessor, succHeur, currentInd);
             }
         }
-        //this->printPrioQueue();
+        this->printPrioQueue();
     }
     
     // print elements of priority queue
@@ -136,7 +136,7 @@ void AStar2D<T>::printPrioQueue() const
     while(!pq->empty()) {
         pointInfo pd = pq->top();
         pq->pop();
-        std::cout << "(" << std::get<0>(pd) << " " << std::get<1>(pd) << " " << std::get<2>(pd) << ")" << std::endl;
+        std::cout << "(" << std::get<0>(pd) << " " << std::get<2>(pd) << " " << std::get<1>(pd) << " " << ")" << std::endl;
     }
 }
 
