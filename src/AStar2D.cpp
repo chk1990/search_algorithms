@@ -3,6 +3,7 @@
  * @author Christoph Kolhoff
  */
 
+#include<algorithm>
 #include<cmath>
 
 #include "AStar2D.h"
@@ -24,15 +25,11 @@ AStar2D<T>::AStar2D(const std::string& filename) : SearchBase2D<T>(filename),
  * @brief Finds the path from start to goal if the path is available
  * @param[in] start Point to start
  * @todo Implement recursion
- * @todo Test
+ * @todo Test and complete
  */
 template<typename T>
 void AStar2D<T>::findPath(const Point2D<T>& start)
 {
-    if(this->prioQueue.get()->empty()) {
-        return;
-    }
-
     const size_t width = this->getGridWidth();
     const size_t height = this->getGridHeight();
     const Point2D<T> ptLim1 = this->getMinLimPoint();
@@ -51,53 +48,20 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
 
     // put all children to the queue
     priorityQueue* pq = this->prioQueue.get();
-    for(int indY = -1; indY <= 1; ++indY) {
-        for(int indX = -1; indX <= 1; ++indX) {
-            if(indX == 0 && indY == 0) {
-                continue;
-            }
+    size_t ind = (this->grid.get())->index(start);
 
-            // new point to investiate
-            const T x = currX + step * indX;
-            const T y = currY + step * indY;
-
-            // check if r/c valid
-            if(x > maxX || x < minX) {
-                continue;
-            }
-
-            if(y > maxY || y < minY) {
-                continue;
-            }
-
-            if(indX == 0 && indY == 0) {
-                continue;
-            }
-
-            const Point2D<T> pt(x, y);            
-            const size_t ind = this->getPointIndex(pt);
-
-            // check if node already discovered and mark children as discovered
-            if(this->isDiscovered(ind)) {
-                continue;
-            } else {
-                this->setDiscovered(ind);
-            }
-
-            // compute heuristic
-            const T heur = compHeuristicGoal(pt);
-
-            // add to prio queue
-            this->addToFringe(ind, heur);
-        }
-    }
+    this->setBegin(start);
+    /*while(!pq->empty()) {
+        //
+    }*/
     
     // print elements of priority queue
-    //this->printPrioQueue();
-
-    // start recursion
+    this->printPrioQueue();
 }
 
+/**
+ * @brief Print all elements of the priority queue
+ */
 template<typename T>
 void AStar2D<T>::printPrioQueue() const
 {
@@ -112,15 +76,12 @@ void AStar2D<T>::printPrioQueue() const
 /**
  * @brief Adds a point to the priority queue
  * @param[in] ind Index of point to add
- * @param[in] cost Cost determined by A* algorithm
+ * @param[in] cost Cost from begin to selected node
  */
 template<typename T>
 void AStar2D<T>::addToFringe(const size_t ind, const T cost)
 {
-    const Point2D<T> currPt = this->getCoordinates(ind);
-    const T estimDist = this->compHeuristicGoal(currPt);
-
-    const pointDistance elem = {estimDist, ind};
+    const pointDistance elem = {cost, ind};
     this->prioQueue->push(elem);
 }
 

@@ -15,7 +15,7 @@ SearchBase2D<T>::SearchBase2D(const std::string& filename) : goal(std::make_uniq
                                                              path(std::make_unique<std::vector<size_t>>())
 {
     this->grid.get()->importPlanFile(filename);
-    this->setGoal(Point2D<T>(static_cast<T>(0), static_cast<T>(0)));
+    //this->setGoal(Point2D<T>(static_cast<T>(0), static_cast<T>(0)));
 }
 
 /**
@@ -125,9 +125,13 @@ void SearchBase2D<T>::setBegin(const Point2D<T>& point)
         p->at(0) = ind;
     }
 
-    const T cost = this->compHeuristicGoal(point);
+    this->setDiscovered(ind);
+    //Grid2D<T>* g = this->grid.get();
+    //g->setBegin(ind);
 
-    this->addToFringe(ind, cost);
+    //const T cost = this->compHeuristicGoal(point);
+
+    this->addToFringe(ind, 0);
 }
 
 /**
@@ -145,6 +149,7 @@ void SearchBase2D<T>::setGoal(const Point2D<T>& point)
     size_t ind = g->index(point);
 
     g->setPath(ind);
+    this->setDiscovered(ind);
 }
 
 /**
