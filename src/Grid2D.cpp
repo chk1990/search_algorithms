@@ -12,6 +12,8 @@
 
 #include "Grid2D.h"
 
+constexpr size_t LEN_CHARS_IN() {return 256;}
+
 /**
  * @brief Initialize a map with default dimensions
  */
@@ -503,14 +505,14 @@ void Grid2D<T>::importPlanFile(const std::string& filename)
     }
 
     // determine width, height and step
-    char c[256];
-    is.getline(c, 256);
+    char c[LEN_CHARS_IN()];
+    is.getline(c, LEN_CHARS_IN());
     this->width = std::stoi(c);
 
-    is.getline(c, 256);
+    is.getline(c, LEN_CHARS_IN());
     this->height = std::stoi(c);
 
-    is.getline(c, 256);
+    is.getline(c, LEN_CHARS_IN());
     this->step = std::stoi(c);
 
     // populate other arrays
