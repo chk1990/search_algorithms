@@ -33,25 +33,6 @@ TEST_F(AStar2DTest, SetGetGoal) {
     EXPECT_EQ(10.0 == pt.getX() && 8.0 == pt.getY(), true);
 }
 
-/*
-TEST_F(AStar2DTest, SetGetBegin) {
-    astar->setBegin(Point2D<float>(2.0, 4.0));
-
-    Point2D<float> pt = astar->getPath(0);
-
-    EXPECT_EQ(2.0 == pt.getX() && 4.0 == pt.getY(), true);
-}
-
-TEST_F(AStar2DTest, SetGetBegin2) {
-    astar->setBegin(Point2D<float>(2.0, 4.0));
-    astar->setBegin(Point2D<float>(4.0, 8.0));
-
-    Point2D<float> pt = astar->getPath(0);
-
-    EXPECT_EQ(4.0 == pt.getX() && 8.0 == pt.getY(), true);
-}
-*/
-
 TEST_F(AStar2DTest, GetCoordinates) {
     Point2D<float> pt = astar->getCoordinates(31);
 

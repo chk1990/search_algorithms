@@ -50,7 +50,7 @@ size_t SearchBase2D<T>::getGridHeight() const
  * @brief Returns the step size of the grid
  */
 template<typename T>
-size_t SearchBase2D<T>::getGridStep() const
+T SearchBase2D<T>::getGridStep() const
 {
     return this->grid.get()->getStep();
 }
@@ -126,10 +126,6 @@ void SearchBase2D<T>::setBegin(const Point2D<T>& point)
     }
 
     this->setDiscovered(ind);
-    //Grid2D<T>* g = this->grid.get();
-    //g->setBegin(ind);
-
-    //const T cost = this->compHeuristicGoal(point);
 
     this->addToFringe(ind, 0);
 }

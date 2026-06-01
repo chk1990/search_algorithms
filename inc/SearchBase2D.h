@@ -17,11 +17,12 @@
  */
 template<typename T>
 class SearchBase2D {
-    protected:
+    private:
         std::unique_ptr<Point2D<T>> goal; /**< Goal to be found */
         std::unique_ptr<Grid2D<T>> grid; /**< Contains information on the points on the grid */
         std::unique_ptr<std::vector<size_t>> path; /**< All points of the path found by the algorithm */
 
+    protected:
         void setBegin(const Point2D<T>& point);
         void setPath(const size_t col, const size_t row);
         void setPath(const size_t ind);
@@ -40,7 +41,7 @@ class SearchBase2D {
         Point2D<T> getPath(const size_t ind) const;
         size_t getGridWidth() const;
         size_t getGridHeight() const;
-        size_t getGridStep() const;
+        T getGridStep() const;
         size_t getPointIndex(const Point2D<T>& point) const;
         bool isDiscovered(size_t ind) const;
         void setDiscovered(const size_t ind);

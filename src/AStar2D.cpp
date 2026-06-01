@@ -48,12 +48,24 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
 
     // put all children to the queue
     priorityQueue* pq = this->prioQueue.get();
-    size_t ind = (this->grid.get())->index(start);
-
+    size_t ind = this->getPointIndex(start);
     this->setBegin(start);
-    /*while(!pq->empty()) {
-        //
-    }*/
+
+    while(!pq->empty()) {
+        pointDistance elem = pq->top();
+        pq->pop();
+
+        for(auto dX = -1; dX <= 1; ++dX) {
+            for(auto dY = -1; dY <= 1; ++dY) {
+                if(dX == 0 && dY == 0) {
+                    continue;
+                }
+
+                T xVal = start.getX() + dX * this->getGridStep();
+                T yVal = start.getY() + dY * this->getGridStep();
+            }
+        }
+    }
     
     // print elements of priority queue
     this->printPrioQueue();

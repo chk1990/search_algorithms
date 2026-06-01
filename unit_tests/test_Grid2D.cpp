@@ -47,14 +47,14 @@ TEST_F(ConstructorNoOffset, CoordinateTest1X) {
     Point2D<float> pt = grid->getCoordinates(0, 0);
     float x = pt.getX();
 
-    ASSERT_EQ(x, 0);
+    ASSERT_EQ(x, static_cast<float>(0));
 }
 
 TEST_F(ConstructorNoOffset, CoordinateTest1Y) {
     Point2D<float> pt = grid->getCoordinates(0, 0);
     float y = pt.getY();
 
-    ASSERT_EQ(y, 0);
+    ASSERT_EQ(y, static_cast<float>(0));
 }
 
 TEST_F(ConstructorNoOffset, CoordinateTest2X) {
@@ -68,21 +68,21 @@ TEST_F(ConstructorNoOffset, CoordinateTest2Y) {
     Point2D<float> pt = grid->getCoordinates(9, 4);
     float y = pt.getY();
 
-    ASSERT_EQ(y, 8.0);
+    ASSERT_EQ(y, static_cast<float>(8.0));
 }
 
 TEST_F(ConstructorNoOffset, CoordinateTest2XOut1) {
     Point2D<float> pt = grid->getCoordinates(10, 4);
     float x = pt.getX();
 
-    ASSERT_EQ(x, 18.0);
+    ASSERT_EQ(x, static_cast<float>(18.0));
 }
 
 TEST_F(ConstructorNoOffset, CoordinateTest2YOut1) {
     Point2D<float> pt = grid->getCoordinates(2, 5);
     float y = pt.getY();
 
-    ASSERT_EQ(y, 8.0);
+    ASSERT_EQ(y, static_cast<float>(8.0));
 }
 
 TEST_F(ConstructorNoOffset, SetFree) {
@@ -152,6 +152,31 @@ TEST_F(ConstructorNoOffset, GetIndex) {
 }
 
 // ----------------------------------------
+// Tests with float step
+struct ConstructorFloatStepSize : public testing::Test
+{
+    Grid2D<float> *grid;
+
+    void SetUp()
+    {
+        size_t x = 10;
+        size_t y = 5;
+        float step = 2.1;
+
+        grid = new Grid2D<float>(x, y, step);
+    }
+
+    void TearDown()
+    {
+        delete grid;
+    }
+};
+
+TEST_F(ConstructorFloatStepSize, GetStep) {
+    ASSERT_EQ(grid->getStep(), static_cast<float>(2.1));
+}
+
+// ----------------------------------------
 // Tests with offset
 
 struct ConstructorWithOffset : public testing::Test
@@ -179,56 +204,56 @@ TEST_F(ConstructorWithOffset, CoordinateTest1X) {
     Point2D<float> pt = grid->getCoordinates(0, 0);
     float x = pt.getX();
 
-    ASSERT_EQ(x, -1.0);
+    ASSERT_EQ(x, static_cast<float>(-1.0));
 }
 
 TEST_F(ConstructorWithOffset, CoordinateTest1Y) {
     Point2D<float> pt = grid->getCoordinates(0, 0);
     float y = pt.getY();
 
-    ASSERT_EQ(y, -2);
+    ASSERT_EQ(y, static_cast<float>(-2));
 }
 
 TEST_F(ConstructorWithOffset, CoordinateTest2X) {
     Point2D<float> pt = grid->getCoordinates(9, 4);
     float x = pt.getX();
 
-    ASSERT_EQ(x, 17.0);
+    ASSERT_EQ(x, static_cast<float>(17.0));
 }
 
 TEST_F(ConstructorWithOffset, CoordinateTest2Y) {
     Point2D<float> pt = grid->getCoordinates(9, 4);
     float y = pt.getY();
 
-    ASSERT_EQ(y, 6.0);
+    ASSERT_EQ(y, static_cast<float>(6.0));
 }
 
 TEST_F(ConstructorWithOffset, CoordinateTest2XOut1) {
     Point2D<float> pt = grid->getCoordinates(10, 4);
     float x = pt.getX();
 
-    ASSERT_EQ(x, 17.0);
+    ASSERT_EQ(x, static_cast<float>(17.0));
 }
 
 TEST_F(ConstructorWithOffset, CoordinateTest2YOut1) {
     Point2D<float> pt = grid->getCoordinates(2, 5);
     float y = pt.getY();
 
-    ASSERT_EQ(y, 6.0);
+    ASSERT_EQ(y, static_cast<float>(6.0));
 }
 
 TEST_F(ConstructorWithOffset, CoordinateTest2XOut2) {
     Point2D<float> pt = grid->getCoordinates(-1, 4);
     float y = pt.getY();
 
-    ASSERT_EQ(y, 6.0);
+    ASSERT_EQ(y, static_cast<float>(6.0));
 }
 
 TEST_F(ConstructorWithOffset, CoordinateTest2YOut2) {
     Point2D<float> pt = grid->getCoordinates(2, -1);
     float x = pt.getX();
 
-    ASSERT_EQ(x, 3.0);
+    ASSERT_EQ(x, static_cast<float>(3.0));
 }
 
 int main(int argc, char* argv[]) {
