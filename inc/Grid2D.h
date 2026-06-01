@@ -41,6 +41,7 @@ class Grid2D
       Grid2D(const size_t width, const size_t height, const T step, const T offX, const T offY);
 
       void setFree(const size_t col, const size_t row);
+      void setObstacle(const size_t ind);
       void setObstacle(const size_t col, const size_t row);
       void setPath(const size_t col, const size_t row);   
       void setPath(const size_t ind);
@@ -52,6 +53,7 @@ class Grid2D
       bool isPath(const size_t ind) const;
       bool isPath(const Point2D<T>& pt) const;
       bool isPath(const size_t col, const size_t row) const;
+      bool isObstacle(const size_t ind) const;
       bool isObstacle(const size_t col, const size_t row) const;
       bool isDiscovered(const size_t col, const size_t row) const;
       bool isDiscovered(const size_t ind) const;

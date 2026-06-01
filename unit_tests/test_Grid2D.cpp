@@ -109,6 +109,16 @@ TEST_F(ConstructorNoOffset, SetObstacle) {
     ASSERT_EQ(!obstInit && obstEnd, true);
 }
 
+TEST_F(ConstructorNoOffset, SetObstacleInd) {
+    bool obstInit = grid->isObstacle(15);
+
+    grid->setObstacle(15);
+
+    bool obstEnd = grid->isObstacle(15);
+
+    ASSERT_EQ(!obstInit && obstEnd, true);
+}
+
 TEST_F(ConstructorNoOffset, SetPath1) {
     bool pathInit = grid->isPath(2, 3);
 

@@ -293,6 +293,17 @@ void Grid2D<T>::setFree(const size_t col, const size_t row)
 
 /**
  * @brief Set a point of the map as unknown in occupancy
+ * @param[in] ind Index of interest
+ */
+template <typename T>
+void Grid2D<T>::setObstacle(const size_t ind)
+{
+    Occupancy* occ =  this->occupancy.get();
+    occ[ind] = Occupancy::OBSTACLE;
+}
+
+/**
+ * @brief Set a point of the map as unknown in occupancy
  * @param[in] col Column of interest
  * @param[in] row Row of interest
  */
@@ -313,6 +324,16 @@ template <typename T>
 bool Grid2D<T>::isFree(const size_t col, const size_t row) const
 {
     return this->occupancy.get()[this->index(col, row)] == Occupancy::FREE;
+}
+
+/**
+ * @brief Returns if the point is an obstacle
+ * @param[in] ind Index of interest
+ */
+template <typename T>
+bool Grid2D<T>::isObstacle(const size_t ind) const
+{
+    return this->occupancy.get()[ind] == Occupancy::OBSTACLE;
 }
 
 /**

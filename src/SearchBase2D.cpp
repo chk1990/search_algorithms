@@ -127,7 +127,7 @@ void SearchBase2D<T>::setBegin(const Point2D<T>& point)
 
     this->setDiscovered(ind);
 
-    this->addToFringe(ind, 0);
+    this->addToFringe(ind, 0, -1);
 }
 
 /**
@@ -223,7 +223,7 @@ size_t SearchBase2D<T>::getPointIndex(const Point2D<T>& point) const
  * @param[in] ind Index of point
  */
 template <typename T>
-bool SearchBase2D<T>::isDiscovered(size_t ind) const
+bool SearchBase2D<T>::isDiscovered(const size_t ind) const
 {
     return this->grid.get()->isDiscovered(ind);
 }
@@ -236,4 +236,14 @@ template <typename T>
 void SearchBase2D<T>::setDiscovered(const size_t ind)
 {
     this->grid.get()->setDiscovered(ind);
+}
+
+/**
+ * @brief Checks if the point is an obstacle
+ * @param[in] ind Index of point
+ */
+template <typename T>
+bool SearchBase2D<T>::isObstacle(const size_t ind) const
+{
+    return this->grid.get()->isObstacle(ind);
 }

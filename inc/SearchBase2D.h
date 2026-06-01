@@ -28,7 +28,7 @@ class SearchBase2D {
         void setPath(const size_t ind);
         void setPath(const Point2D<T>& point);
         void add2path(const Point2D<T>& point);
-        virtual void addToFringe(const size_t ind, const T cost) = 0;
+        virtual void addToFringe(const size_t ind, const T cost, size_t predec) = 0;
         virtual T compHeuristicGoal(const Point2D<T>& current) const = 0;
 
     public:
@@ -43,8 +43,9 @@ class SearchBase2D {
         size_t getGridHeight() const;
         T getGridStep() const;
         size_t getPointIndex(const Point2D<T>& point) const;
-        bool isDiscovered(size_t ind) const;
+        bool isDiscovered(const size_t ind) const;
         void setDiscovered(const size_t ind);
+        bool isObstacle(const size_t ind) const;
         Point2D<T> getMinLimPoint() const;
         Point2D<T> getMaxLimPoint() const;
         Point2D<T> getCoordinates(const size_t ind) const;
