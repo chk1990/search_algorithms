@@ -37,7 +37,7 @@ void GeneratePlan<T>::genPlan2D1(const std::string filename)
 {
     const size_t width = 30;
     const size_t height = 20;
-    Grid2D<T> grid(width, height, 1.0);
+    Grid2D<T> grid(width, height, 1.5);
 
     for(size_t indX = 0; indX <= 15; ++indX) {
         grid.setObstacle(indX, 3);

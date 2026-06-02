@@ -144,8 +144,38 @@ void SearchBase2D<T>::setGoal(const Point2D<T>& point)
     Grid2D<T>* g = this->grid.get();
     size_t ind = g->index(point);
 
-    g->setPath(ind);
+    //g->setPath(ind);
+    this->setGridGoal(ind);
     this->setDiscovered(ind);
+}
+
+/**
+ * @brief Sets the point as goal in grid
+ * @param[in] ind Index of interest
+ */
+template <typename T>
+void SearchBase2D<T>::setGridGoal(const size_t ind)
+{
+    this->grid.get()->setGoal(ind);
+}
+
+/**
+ * @brief Checks if the given point is the goal
+ * @param[in] point Point to investigate
+ */
+template <typename T>
+bool SearchBase2D<T>::isGoal(const Point2D<T>& point) const
+{
+    /*
+    T xGoal = this->goal.get()->getX();
+    T yGoal = this->goal.get()->getY();
+    T xThis = point.getX();
+    T yThis = point.getY();
+
+    return xGoal == xThis && yGoal == yThis;
+    */
+   Point2D<T> goal = *(this->goal.get());
+   return point == goal;
 }
 
 /**

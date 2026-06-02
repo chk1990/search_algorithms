@@ -547,7 +547,7 @@ void Grid2D<T>::importPlanFile(const std::string& filename)
     this->height = std::stoi(c);
 
     is.getline(c, LEN_CHARS_IN());
-    this->step = std::stoi(c);
+    this->step = std::stof(c);
 
     // populate other arrays
     this->coordinates = std::make_unique<Point2D<T>[]>(this->height*this->width);
