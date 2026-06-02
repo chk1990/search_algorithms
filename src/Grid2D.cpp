@@ -75,6 +75,16 @@ size_t Grid2D<T>::index(const size_t col, const size_t row) const
 }
 
 /**
+ * @brief Marks the point as a goal
+ * @param[in] ind Index of interest
+ */
+template <typename T>
+void Grid2D<T>::setGoal(const size_t ind)
+{
+    this->occupancy.get()[ind] = Occupancy::GOAL;
+}
+
+/**
  * @brief Populate point coordinates of grid
  */
 template <typename T>
@@ -231,7 +241,10 @@ void Grid2D<T>::printContent() const
                 case Occupancy::PATH:
                     std::cout << "+";
                     break;
-            
+                case Occupancy::GOAL:
+                    std::cout << "G";
+                    break;
+
                 default:
                     break;
             }

@@ -43,6 +43,7 @@ class Grid2D
       void setFree(const size_t col, const size_t row);
       void setObstacle(const size_t ind);
       void setObstacle(const size_t col, const size_t row);
+      void setGoal(const size_t ind);
       void setPath(const size_t col, const size_t row);   
       void setPath(const size_t ind);
       void setPath(const Point2D<T>& pt);
