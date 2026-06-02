@@ -26,6 +26,8 @@ class Point2D {
         void setX(T x);
         void setY(T y);
         void printCoordinates() const;
+
+        bool operator==(const Point2D<T>& pt) const;
 };
 
 template class Point2D<int>;

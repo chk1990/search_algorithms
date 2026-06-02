@@ -65,3 +65,15 @@ void Point2D<T>::printCoordinates() const
 {
     std::cout << "(" << this->getX() << ", " << this->getY() << ")";
 }
+
+/**
+ * @brief Check if two points are equal
+ * @param[in] pt Point to compare this one to
+ */
+template<typename T>
+bool Point2D<T>::operator==(const Point2D<T>& pt) const {
+    bool xComp = this->getX() == pt.getX();
+    bool yComp = this->getY() == pt.getY();
+
+    return xComp && yComp;
+}

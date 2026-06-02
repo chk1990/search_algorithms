@@ -64,6 +64,33 @@ TEST(Test, SetY) {
     EXPECT_EQ(yDefault, 5.0);
 }
 
+TEST(Test, OperatorEqual1) {
+    Point2D<float> pt1 = Point2D<float>(1.0, 2.0);
+    Point2D<float> pt2 = Point2D<float>(1.0, 2.0);
+
+    bool equal = pt1 == pt2;
+
+    EXPECT_EQ(equal, true);
+}
+
+TEST(Test, OperatorEqual2) {
+    Point2D<float> pt1 = Point2D<float>(2.0, 2.0);
+    Point2D<float> pt2 = Point2D<float>(1.0, 2.0);
+
+    bool equal = pt1 == pt2;
+
+    EXPECT_EQ(equal, false);
+}
+
+TEST(Test, OperatorEqual3) {
+    Point2D<float> pt1 = Point2D<float>(1.0, 1.0);
+    Point2D<float> pt2 = Point2D<float>(1.0, 2.0);
+
+    bool equal = pt1 == pt2;
+
+    EXPECT_EQ(equal, false);
+}
+
 int main(int argc, char* argv[]) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
