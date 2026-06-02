@@ -63,13 +63,6 @@ template <typename T>
 size_t Grid2D<T>::index(const size_t col, const size_t row) const
 {
     size_t ind = row*this->width + col;
-    /*
-    if(ind >= this->width*this->height) {
-        errno = EINVAL;
-        perror("Invalid inputs if Grid2D<T>::index() due to too high index result");
-        exit(EXIT_FAILURE);
-    }
-    */
 
     return ind;
 }

@@ -24,6 +24,8 @@ AStar2D<T>::AStar2D(const std::string& filename) : SearchBase2D<T>(filename),
 /**
  * @brief Finds the path from start to goal if the path is available
  * @param[in] start Point to start
+ * @todo Ensure that goal is captured in nested loops
+ * @todo Exit from nested loops
  * @todo Track current point in each loop
  */
 template<typename T>
@@ -52,17 +54,6 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
 
         const size_t currentInd = std::get<1>(elem);
         const Point2D<T> current = this->getCoordinates(currentInd);
-        //current.printCoordinates();
-
-        if(this->isGoal(current)) {
-            // goal found
-            std::cout << "FOUND" << std::endl;
-            break;
-        }
-
-        //std::cout << "Current: ";
-        //current.printCoordinates();
-        //std::cout << std::endl;
 
         for(T dX = -1; dX <= 1; ++dX) {
             for(T dY = -1; dY <= 1; ++dY) {
@@ -71,44 +62,38 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
                 }
 
                 // determine successor and apply limitation
-                // TODO Correct???
                 T xVal = current.getX() + dX * step;
-                //std::cout << xVal << std::endl;
                 if(xVal < minX) {
                     xVal = minX;
                 }
-                //std::cout << xVal << std::endl;
 
                 if(xVal > maxX) {
                     xVal = maxX;
                 }
-                //std::cout << xVal << std::endl;
 
                 T yVal = current.getY() + dY * this->getGridStep();
                 //std::cout << yVal << std::endl;
                 if(yVal < minY) {
                     yVal = minY;
                 }
-                //std::cout << yVal << std::endl;
 
                 if(yVal > maxY) {
                     yVal = maxY;
                 }
-                //std::cout << yVal << std::endl;
 
                 const Point2D<T> successor(xVal, yVal);
                 const size_t indSuccessor = this->getPointIndex(successor);
-                //successor.printCoordinates();
-                //std::cout << std::endl;
                 
                 // check if it containd an obstacle
                 if(this->isObstacle(indSuccessor)) {
-                    /*
-                    std::cout << "Obstacle detected at ";
-                    successor.printCoordinates();
-                    std::cout << std::endl;
-                    */
                     continue;
+                }
+
+                if(this->isGoal(successor)) {
+                    std::cout << "FOUND" << std::endl;
+                    break;
+                    break;
+                    break;
                 }
 
                 if(this->isDiscovered(indSuccessor)) {
@@ -129,16 +114,11 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
 
                 // summing all distances and heuristics up
                 const T succHeur = heurDistSucc + cumulDist + distCurrSucc;
-                //std::cout << currentInd << " " << indSuccessor << " " << cumulDist << " " << distCurrSucc << " " << heurDistSucc << std::endl;
-
+                
                 // add new element tp priority queue
                 this->addToFringe(indSuccessor, succHeur, currentInd);
-                //std::cout << this->prioQueue.get()->size() << std::endl;
             }
         }
-        //std::cout << this->prioQueue.get()->size() << std::endl;
-        //this->printPrioQueue();
-        //std::cout <<  << std::endl;
     }
     
     // print elements of priority queue

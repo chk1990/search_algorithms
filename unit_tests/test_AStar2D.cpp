@@ -35,7 +35,6 @@ TEST_F(AStar2DTest, SetGetGoal) {
 
 TEST_F(AStar2DTest, IsGoal) {
     astar->setGoal(Point2D<float>(42.0, 27.0));
-    //Point2D<float> pt = astar->getGoal();
 
     EXPECT_EQ(astar->isGoal(Point2D<float>(42.0, 27.0)), true);
 }

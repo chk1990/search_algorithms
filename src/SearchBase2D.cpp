@@ -166,14 +166,6 @@ void SearchBase2D<T>::setGridGoal(const size_t ind)
 template <typename T>
 bool SearchBase2D<T>::isGoal(const Point2D<T>& point) const
 {
-    /*
-    T xGoal = this->goal.get()->getX();
-    T yGoal = this->goal.get()->getY();
-    T xThis = point.getX();
-    T yThis = point.getY();
-
-    return xGoal == xThis && yGoal == yThis;
-    */
    Point2D<T> goal = *(this->goal.get());
    return point == goal;
 }
