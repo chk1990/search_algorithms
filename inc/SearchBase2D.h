@@ -18,7 +18,7 @@
 template<typename T>
 class SearchBase2D {
     private:
-        std::unique_ptr<Point2D<T>> goal; /**< Goal to be found */
+        Point2D<T> goal; /**< Goal to be found */
         std::unique_ptr<Grid2D<T>> grid; /**< Contains information on the points on the grid */
         std::unique_ptr<std::vector<size_t>> path; /**< All points of the path found by the algorithm */
 
@@ -28,7 +28,7 @@ class SearchBase2D {
         void setPath(const size_t ind);
         void setPath(const Point2D<T>& point);
         void setGridGoal(const size_t ind);
-        void add2path(const Point2D<T>& point);
+        //void add2path(const Point2D<T>& point);
         virtual void addToFringe(const size_t ind, const T cost, size_t predec) = 0;
         virtual T compHeuristicGoal(const Point2D<T>& current) const = 0;
 
@@ -39,7 +39,7 @@ class SearchBase2D {
         virtual void findPath(const Point2D<T>& start) = 0;
         void setGoal(const Point2D<T>& point);
         bool isGoal(const Point2D<T>& point) const;
-        Point2D<T>& getGoal() const;
+        Point2D<T> getGoal() const;
         Point2D<T> getPath(const size_t ind) const;
         size_t getGridWidth() const;
         size_t getGridHeight() const;

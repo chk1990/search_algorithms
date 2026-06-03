@@ -10,12 +10,10 @@
  * @param[in] filename Name of file that contains the plan
  */
 template<typename T>
-SearchBase2D<T>::SearchBase2D(const std::string& filename) : goal(std::make_unique<Point2D<T>>()),
-                                                             grid(std::make_unique<Grid2D<T>>()),
+SearchBase2D<T>::SearchBase2D(const std::string& filename) : grid(std::make_unique<Grid2D<T>>()),
                                                              path(std::make_unique<std::vector<size_t>>())
 {
     this->grid.get()->importPlanFile(filename);
-    //this->setGoal(Point2D<T>(static_cast<T>(0), static_cast<T>(0)));
 }
 
 /**
@@ -59,6 +57,7 @@ T SearchBase2D<T>::getGridStep() const
  * @brief Add a point to the path
  * @param[in] point Point to add
  */
+/*
 template<typename T>
 void SearchBase2D<T>::add2path(const Point2D<T>& point)
 {
@@ -66,6 +65,7 @@ void SearchBase2D<T>::add2path(const Point2D<T>& point)
     this->setPath(point);
     this->path.get()->emplace_back(ind);
 }
+*/
 
 /**
  * @brief Declare a point as part of a path
@@ -138,7 +138,7 @@ void SearchBase2D<T>::setBegin(const Point2D<T>& point)
 template <typename T>
 void SearchBase2D<T>::setGoal(const Point2D<T>& point)
 {
-    this->goal = std::make_unique<Point2D<T>>(point);
+    this->goal = point;
 
     // determine index
     Grid2D<T>* g = this->grid.get();
@@ -166,7 +166,7 @@ void SearchBase2D<T>::setGridGoal(const size_t ind)
 template <typename T>
 bool SearchBase2D<T>::isGoal(const Point2D<T>& point) const
 {
-   Point2D<T> goal = *(this->goal.get());
+   Point2D<T> goal = this->goal;
    return point == goal;
 }
 
@@ -174,9 +174,9 @@ bool SearchBase2D<T>::isGoal(const Point2D<T>& point) const
  * @brief Gets goals of path
  */
 template <typename T>
-Point2D<T>& SearchBase2D<T>::getGoal() const
+Point2D<T> SearchBase2D<T>::getGoal() const
 {
-    return *(this->goal.get());
+    return this->goal;
 }
 
 /**

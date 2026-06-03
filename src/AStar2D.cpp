@@ -47,6 +47,8 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
     this->setBegin(start);
 
     bool leave = false;
+    size_t indSuccessor = 0;
+    Point2D<T> successor;
 
     while(!pq->empty()) {
 
@@ -97,8 +99,8 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
                     yVal = maxY;
                 }
 
-                const Point2D<T> successor(xVal, yVal);
-                const size_t indSuccessor = this->getPointIndex(successor);
+                successor = Point2D<T>(xVal, yVal);
+                indSuccessor = this->getPointIndex(successor);
                 
                 // check if it containd an obstacle
                 if(this->isObstacle(indSuccessor)) {
@@ -107,7 +109,7 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
 
                 if(this->isGoal(successor)) {
                     leave = true;
-                    std::cout << "LEVEL 3.1" << std::endl;
+                    //std::cout << "LEVEL 3.1" << std::endl;
                 } else {
                     if(this->isDiscovered(indSuccessor)) {
                         continue;
@@ -139,6 +141,9 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
             }
         }
     }
+
+    successor.printCoordinates();
+    std::cout << std::endl;
 
     //std::cout << "END" << std::endl;
     //std::cout << this->prioQueue.get()->size() << std::endl;
