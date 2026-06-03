@@ -269,3 +269,13 @@ bool SearchBase2D<T>::isObstacle(const size_t ind) const
 {
     return this->grid.get()->isObstacle(ind);
 }
+
+/**
+ * @brief Determines the point's index in the grid
+ * @param[in] ind Index of point
+ */
+template <typename T>
+Point2D<T> SearchBase2D<T>::getIndex(size_t ind) const
+{
+    return this->grid.get()->getCoordinates(ind);
+}

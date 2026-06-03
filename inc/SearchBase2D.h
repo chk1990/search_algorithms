@@ -45,6 +45,7 @@ class SearchBase2D {
         size_t getGridHeight() const;
         T getGridStep() const;
         size_t getPointIndex(const Point2D<T>& point) const;
+        Point2D<T> getIndex(size_t ind) const;
         bool isDiscovered(const size_t ind) const;
         void setDiscovered(const size_t ind);
         bool isObstacle(const size_t ind) const;
