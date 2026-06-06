@@ -58,6 +58,8 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
     std::vector<pointInfo> visited;
     visited.emplace_back(initPt);
 
+    size_t i = 0;
+
     while(!pq->empty()) {
 
         if(leave) {
@@ -134,6 +136,12 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
                         const T actualCost = cumulDist + distCurrSucc;
                         const pointInfo pt = {actualCost, indSuccessor, currentInd};
                         visited.emplace_back(pt);
+
+                        std::cout << cumulDist << " " << indSuccessor << " " << currentInd << std::endl;
+
+                        if(i == 10) {
+                            leave = true;
+                        }
                     }
                 }
                 
@@ -143,6 +151,8 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
                 if(leave) {
                     break;
                 }
+
+                ++i;
             }
         }
     }
