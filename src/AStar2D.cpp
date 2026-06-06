@@ -25,6 +25,7 @@ AStar2D<T>::AStar2D(const std::string& filename) : SearchBase2D<T>(filename),
  * @brief Finds the path from start to goal if the path is available
  * @param[in] start Point to start
  * @todo Backtracking and add to this->path
+ * @todo Check if data in visited are correct
  */
 template<typename T>
 void AStar2D<T>::findPath(const Point2D<T>& start)
@@ -120,7 +121,8 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
 
                 if(this->isGoal(successor)) {
                     leave = true;
-                    const pointInfo pt = {succHeur, indSuccessor, currentInd};
+                    const T actualCost = cumulDist + distCurrSucc;
+                    const pointInfo pt = {actualCost, indSuccessor, currentInd};
                     visited.emplace_back(pt);
                 } else {
                     if(this->isDiscovered(indSuccessor)) {
@@ -129,7 +131,8 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
                         this->setDiscovered(indSuccessor);
                         //this->setPath(indSuccessor);
 
-                        const pointInfo pt = {cumulDist + distCurrSucc, indSuccessor, currentInd};
+                        const T actualCost = cumulDist + distCurrSucc;
+                        const pointInfo pt = {actualCost, indSuccessor, currentInd};
                         visited.emplace_back(pt);
                     }
                 }

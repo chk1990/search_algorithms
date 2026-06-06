@@ -23,6 +23,10 @@ void GeneratePlan<T>::genPlan2D(const size_t ind, const std::string filename)
         genPlan2D1(filename);
         break;
     
+    case 2:
+        genPlan2D2(filename);
+        break;
+
     default:
         break;
     }
@@ -47,6 +51,31 @@ void GeneratePlan<T>::genPlan2D1(const std::string filename)
     for(size_t indX = 12; indX < width; ++indX) {
         grid.setObstacle(indX, 7);
         grid.setObstacle(indX, 15);
+    }
+
+    grid.printContent();
+    grid.exportPlanFile(filename);
+}
+
+/**
+ * @brief Generates 2D plan with index 1 and stores it in file
+ * @param[in] filename Name of the file to store the plan in
+ */
+template<typename T>
+void GeneratePlan<T>::genPlan2D2(const std::string filename)
+{
+    const size_t width = 40;
+    const size_t height = 30;
+    Grid2D<T> grid(width, height, 1.5);
+
+    for(size_t indX = 0; indX <= 20; ++indX) {
+        grid.setObstacle(indX, 5);
+        grid.setObstacle(indX, 17);
+    }
+
+    for(size_t indX = 15; indX < width; ++indX) {
+        grid.setObstacle(indX, 11);
+        grid.setObstacle(indX, 23);
     }
 
     grid.printContent();

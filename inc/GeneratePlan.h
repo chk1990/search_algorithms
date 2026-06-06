@@ -28,6 +28,7 @@ class GeneratePlan {
         std::unique_ptr<Grid2D<T>> plan; /**< All information of the map */
 
         void genPlan2D1(const std::string filename);
+        void genPlan2D2(const std::string filename);
 };
 
 template class GeneratePlan<int>;
