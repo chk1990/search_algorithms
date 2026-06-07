@@ -105,5 +105,21 @@ Please ensure:
 
 Created and maintained by Christoph Kolhoff.
 
-GitHub:
-https://github.com/chk1990
+---
+
+## Citation
+
+If you use this software in academic work, publications, technical reports, theses, or patents, please cite the repository as follows:
+Kolhoff, C. Search Algorithms. GitHub repository. Available at: https://github.com/chk1990/search_algorithms
+
+## BibTeX
+
+@software{kolhoff_search_algorithms,
+         author = {Christoph Kolhoff},
+         title = {Search Algorithms},
+         year = {2026},
+         publisher = {GitHub},
+         url = {https://github.com/chk1990/search_algorithms}
+}
+
+If a specific release is used, citing the corresponding version or commit hash is recommended to ensure reproducibility.
