@@ -92,22 +92,12 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
 
                 // determine successor and apply limitation
                 T xVal = current.getX() + dX * step;
-                if(xVal <= minX) {
-                    xVal = minX;
-                }
-
-                if(xVal >= maxX) {
-                    xVal = maxX;
-                }
+                xVal = std::max(xVal, minX);
+                xVal = std::min(xVal, maxX);
 
                 T yVal = current.getY() + dY * step;
-                if(yVal <= minY) {
-                    yVal = minY;
-                }
-
-                if(yVal >= maxY) {
-                    yVal = maxY;
-                }
+                yVal = std::max(yVal, minY);
+                yVal = std::min(yVal, maxY);
 
                 successor = Point2D<T>(xVal, yVal);
                 indSuccessor = this->getPointIndex(successor);
