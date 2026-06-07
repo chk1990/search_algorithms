@@ -47,6 +47,8 @@ class Grid2D
       void setPath(const size_t col, const size_t row);   
       void setPath(const size_t ind);
       void setPath(const Point2D<T>& pt);
+      bool isStart(const size_t ind) const;
+      void setStart(const size_t ind);
       void setDiscovered(const size_t col, const size_t row);
       void setDiscovered(const size_t ind);
       void setUndiscovered(const size_t col, const size_t row);

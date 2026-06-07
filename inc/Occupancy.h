@@ -15,7 +15,8 @@ enum Occupancy
    FREE = 0, /**< Point is free and can be accessed */
    OBSTACLE = 1, /**< Point contains an obstacle and cannot be accessed */
    PATH = 2, /**< Point belongs to a path */
-   GOAL = 3 /**< Point is the goal */
+   GOAL = 3, /**< Point is the goal */
+   START = 4 /**< Point is the start */
 };
 
 #endif // H_OCCUPANCY_H

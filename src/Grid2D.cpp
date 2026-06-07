@@ -234,8 +234,13 @@ void Grid2D<T>::printContent() const
                 case Occupancy::PATH:
                     std::cout << "+";
                     break;
+
                 case Occupancy::GOAL:
                     std::cout << "G";
+                    break;
+
+                case Occupancy::START:
+                    std::cout << "S";
                     break;
 
                 default:
@@ -333,6 +338,17 @@ bool Grid2D<T>::isFree(const size_t col, const size_t row) const
 }
 
 /**
+ * @brief Returns if the point if free
+ * @param[in] col Column of interest
+ * @param[in] row Row of interest
+ */
+template <typename T>
+bool Grid2D<T>::isStart(const size_t ind) const
+{
+    return this->occupancy.get()[ind] == Occupancy::START;
+}
+
+/**
  * @brief Returns if the point is an obstacle
  * @param[in] ind Index of interest
  */
@@ -418,6 +434,18 @@ void Grid2D<T>::setPath(const size_t ind)
 {
     Occupancy* occ = this->occupancy.get();
     occ[ind] = Occupancy::PATH;
+    this->setDiscovered(ind);
+}
+
+/**
+ * @brief Sets the state of the point as start of the path
+ * @param[in] ind Index of interest
+ */
+template <typename T>
+void Grid2D<T>::setStart(const size_t ind)
+{
+    Occupancy* occ = this->occupancy.get();
+    occ[ind] = Occupancy::START;
     this->setDiscovered(ind);
 }
 

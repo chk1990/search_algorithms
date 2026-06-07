@@ -54,20 +54,6 @@ T SearchBase2D<T>::getGridStep() const
 }
 
 /**
- * @brief Add a point to the path
- * @param[in] point Point to add
- */
-/*
-template<typename T>
-void SearchBase2D<T>::add2path(const Point2D<T>& point)
-{
-    size_t ind = this->grid.get()->index(point);
-    this->setPath(point);
-    this->path.get()->emplace_back(ind);
-}
-*/
-
-/**
  * @brief Declare a point as part of a path
  * @param[in] point Point to add
  */
@@ -115,7 +101,8 @@ template <typename T>
 void SearchBase2D<T>::setBegin(const Point2D<T>& point)
 {
     const size_t ind = this->grid.get()->index(point);
-    this->setPath(ind);
+    //this->setPath(ind);
+    this->setGridStart(ind);
 
     std::vector<size_t>* p = this->path.get();
 
@@ -279,4 +266,14 @@ template <typename T>
 Point2D<T> SearchBase2D<T>::getIndex(size_t ind) const
 {
     return this->grid.get()->getCoordinates(ind);
+}
+
+/**
+ * @brief Sets the current point as start in the grid
+ * @param[in] ind Index of point
+ */
+template <typename T>
+void SearchBase2D<T>::setGridStart(const size_t ind)
+{
+    this->grid.get()->setStart(ind);
 }
