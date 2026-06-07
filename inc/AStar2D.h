@@ -29,7 +29,7 @@ class AStar2D : public SearchBase2D<T> {
          */
         static auto makeComparator() {
             return [](const pointInfo& a, const pointInfo& b) {
-                return std::get<0>(a) > std::get<0>(b);
+                return std::get<0>(a) < std::get<0>(b);
             };
         }
 
@@ -40,7 +40,8 @@ class AStar2D : public SearchBase2D<T> {
 
         T compHeuristic(const Point2D<T>& current, const Point2D<T>& desired) const;
         T compHeuristicGoal(const Point2D<T>& current) const override;
-        void addToFringe(const size_t ind, const T cost, size_t predec) override;
+        void addToFringe(const T cost, const size_t ind, size_t predec) override;
+        void printPointInfo(const pointInfo ptInfo) const;
 
     public:
         AStar2D(const std::string& filename);

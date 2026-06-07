@@ -127,7 +127,8 @@ void SearchBase2D<T>::setBegin(const Point2D<T>& point)
 
     this->setDiscovered(ind);
 
-    this->addToFringe(ind, 0, -1);
+    //const T heurDist = this->compHeuristicGoal(point);
+    this->addToFringe(0, ind, ind);
 }
 
 /**

@@ -29,7 +29,7 @@ class SearchBase2D {
         void setPath(const Point2D<T>& point);
         void setGridGoal(const size_t ind);
         //void add2path(const Point2D<T>& point);
-        virtual void addToFringe(const size_t ind, const T cost, size_t predec) = 0;
+        virtual void addToFringe(const T cost, const size_t ind, size_t predec) = 0;
         virtual T compHeuristicGoal(const Point2D<T>& current) const = 0;
 
     public:

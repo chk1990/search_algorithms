@@ -26,6 +26,7 @@ AStar2D<T>::AStar2D(const std::string& filename) : SearchBase2D<T>(filename),
  * @param[in] start Point to start
  * @todo Backtracking and add to this->path
  * @todo Check if data in visited are correct
+ * @todo Check if goal ahs been reached and handle if not
  */
 template<typename T>
 void AStar2D<T>::findPath(const Point2D<T>& start)
@@ -55,10 +56,13 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
     // collect all visited points for backtracking later
     const size_t indStartPt = this->getPointIndex(start);
     const pointInfo initPt{0, indStartPt, indStartPt};
+
     std::vector<pointInfo> visited;
     visited.emplace_back(initPt);
 
-    size_t i = 0;
+    size_t i = 0; // DELETE
+
+    const pointInfo elemTop = pq->top();
 
     while(!pq->empty()) {
 
@@ -69,8 +73,12 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
         const pointInfo elem = pq->top();
         pq->pop();
 
-        const size_t currentInd = std::get<1>(elem);
-        const Point2D<T> current = this->getCoordinates(currentInd);
+        this->printPointInfo(elem);
+
+        const size_t indCurrent = std::get<1>(elem);
+        const Point2D<T> current = this->getCoordinates(indCurrent);
+
+        //this->setPath(indCurrent);
 
         for(T dX = -1; dX <= 1; ++dX) {
             for(T dY = -1; dY <= 1; ++dY) {
@@ -84,20 +92,20 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
 
                 // determine successor and apply limitation
                 T xVal = current.getX() + dX * step;
-                if(xVal < minX) {
+                if(xVal <= minX) {
                     xVal = minX;
                 }
 
-                if(xVal > maxX) {
+                if(xVal >= maxX) {
                     xVal = maxX;
                 }
 
-                T yVal = current.getY() + dY * this->getGridStep();
-                if(yVal < minY) {
+                T yVal = current.getY() + dY * step;
+                if(yVal <= minY) {
                     yVal = minY;
                 }
 
-                if(yVal > maxY) {
+                if(yVal >= maxY) {
                     yVal = maxY;
                 }
 
@@ -109,8 +117,29 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
                     continue;
                 }
 
+                if(this->isDiscovered(indSuccessor)) {
+                    continue; // REWORK
+                }
+
+                // can be set as discovered and skipped afterwards because A* acts optimal
+                this->setDiscovered(indSuccessor);
+
                 // cummulated distance from beginning to current node
-                const T cumulDist = std::get<0>(elem);
+                const pointInfo visitedInfo = visited.back();
+                const size_t indCurrVisited = std::get<1>(visitedInfo);
+
+                auto visitCrit = [indCurrVisited](const pointInfo& ptInfoVec){
+                    const size_t indCurr = std::get<1>(ptInfoVec); // Current index of the node from vector
+
+                    return indCurr == indCurrVisited;
+                };
+                
+                // find current node in visited set
+                typename std::vector<pointInfo>::iterator it;
+                it = std::find_if(visited.begin(), visited.end(), visitCrit);
+                //printPointInfo(*it);
+
+                const T cumulDist = std::get<0>(*it);
 
                 // direct distance from current node to next one
                 const T distCurrSucc = this->compHeuristic(successor, current);
@@ -121,48 +150,36 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
                 // summing all distances and heuristics up
                 const T succHeur = cumulDist + distCurrSucc + heurDistSucc;
 
-                if(this->isGoal(successor)) {
+                // find the predecessor node in visited
+                const T actualCost = cumulDist + distCurrSucc;
+                const pointInfo pt = {actualCost, indSuccessor, indCurrent};
+                visited.emplace_back(pt);
+
+                if(this->isGoal(successor)) {   
                     leave = true;
-                    const T actualCost = cumulDist + distCurrSucc;
-                    const pointInfo pt = {actualCost, indSuccessor, currentInd};
-                    visited.emplace_back(pt);
-                } else {
-                    if(this->isDiscovered(indSuccessor)) {
-                        continue;
-                    } else {
-                        this->setDiscovered(indSuccessor);
-                        //this->setPath(indSuccessor);
-
-                        const T actualCost = cumulDist + distCurrSucc;
-                        const pointInfo pt = {actualCost, indSuccessor, currentInd};
-                        visited.emplace_back(pt);
-
-                        std::cout << cumulDist << " " << indSuccessor << " " << currentInd << std::endl;
-
-                        if(i == 10) {
-                            leave = true;
-                        }
-                    }
+                    std::cout << "FOUND GOAL" << std::endl;
                 }
                 
                 // add new element to priority queue
-                this->addToFringe(indSuccessor, succHeur, currentInd);
+                this->addToFringe(succHeur, indSuccessor, indCurrent);
 
                 if(leave) {
                     break;
                 }
 
-                ++i;
             }
+
+        }
+
+        // DELETE
+        if(++i == 100) {
+            leave = true;
         }
     }
-    
-    pointInfo pt = visited.back();
-    std::cout << std::get<0>(pt) << " " << std::get<1>(pt) << " " << std::get<2>(pt) << std::endl;
 
-    auto p = this->getIndex(std::get<1>(pt));
-    p.printCoordinates();
-    std::cout << std::endl;
+    while(!pq->empty()) {
+        pq->pop();
+    }
 }
 
 /**
@@ -175,7 +192,8 @@ void AStar2D<T>::printPrioQueue() const
     while(!pq->empty()) {
         pointInfo pd = pq->top();
         pq->pop();
-        std::cout << "(" << std::get<0>(pd) << " " << std::get<2>(pd) << " " << std::get<1>(pd) << ")" << std::endl;
+        //std::cout << "(" << std::get<0>(pd) << " " << std::get<1>(pd) << " " << std::get<2>(pd) << ")" << std::endl;
+        this->printPointInfo(pd);
     }
 }
 
@@ -186,7 +204,7 @@ void AStar2D<T>::printPrioQueue() const
  * @param[in] predec Predecessor of this node
  */
 template<typename T>
-void AStar2D<T>::addToFringe(const size_t ind, const T cost, size_t predec)
+void AStar2D<T>::addToFringe(const T cost, const size_t ind, size_t predec)
 {
     const pointInfo elem = {cost, ind, predec};
     this->prioQueue->push(elem);
@@ -215,4 +233,14 @@ T AStar2D<T>::compHeuristic(const Point2D<T>& current, const Point2D<T>& desired
 {
     const T dist = std::sqrt(pow(desired.getX() - current.getX(), 2) + pow(desired.getY() - current.getY(), 2));
     return dist;
+}
+
+/**
+ * @brief Print the content of a point info set
+ * @param[in] ptInfo Point info as needed
+ */
+template<typename T>
+void AStar2D<T>::printPointInfo(const pointInfo ptInfo) const
+{
+    std::cout << "Dist = " << std::get<0>(ptInfo) << "; Current = " << std::get<1>(ptInfo) << "; Predecessor = " << std::get<2>(ptInfo) << std::endl;
 }
