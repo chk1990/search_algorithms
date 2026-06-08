@@ -29,7 +29,7 @@ class AStar2D : public SearchBase2D<T> {
          */
         static auto makeComparator() {
             return [](const pointInfo& a, const pointInfo& b) {
-                return std::get<0>(a) < std::get<0>(b);
+                return std::get<0>(a) > std::get<0>(b);
             };
         }
 

@@ -58,14 +58,14 @@ A C++20 compatible compiler is recommended.
 
 ```text
 search_algorithms/
-├── include/        # Public headers
+├── inc/            # Public headers
 ├── src/            # Source files
 ├── unit_tests/     # Unit tests
-├── docs/           # Documentation
+├── docs/           # Documentation (generated)
 ├── build/          # Build output (generated)
 ├── compile.sh      # Compile everything easily
 ├── Doxyfile        # Generate documentation
-└── CMakeLists.txt
+└── CMakeLists.txt  # Building everything
 ```
 
 ---
@@ -94,6 +94,7 @@ This project is licensed under the MIT License.
 Contributions, issues, and suggestions are welcome.
 
 Please ensure:
+
 - readable code,
 - consistent formatting,
 - reasonable documentation,
@@ -109,11 +110,11 @@ Created and maintained by Christoph Kolhoff.
 
 ## Citation
 
-If you use this software in academic work, publications, technical reports, theses, or patents, please cite the repository as follows:
+If you use this software in academic work, publications, technical reports, theses, or patents, please cite the repository like:
 Kolhoff, C. Search Algorithms. GitHub repository. Available at: https://github.com/chk1990/search_algorithms
 
 ## BibTeX
-
+```text
 @software{kolhoff_search_algorithms,
          author = {Christoph Kolhoff},
          title = {Search Algorithms},
@@ -121,5 +122,9 @@ Kolhoff, C. Search Algorithms. GitHub repository. Available at: https://github.c
          publisher = {GitHub},
          url = {https://github.com/chk1990/search_algorithms}
 }
-
+```
 If a specific release is used, citing the corresponding version or commit hash is recommended to ensure reproducibility.
+
+---
+
+# Visualization

@@ -134,7 +134,7 @@ void SearchBase2D<T>::setGoal(const Point2D<T>& point)
 
     //g->setPath(ind);
     this->setGridGoal(ind);
-    this->setDiscovered(ind);
+    //this->setDiscovered(ind);
 }
 
 /**
