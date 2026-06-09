@@ -180,13 +180,13 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
         currInd = predInd;
     }
 
-    this->printPath();
+    //this->printPath();
 
     // Export path
 
 
     // Export search tree
-    
+
 }
 
 /**

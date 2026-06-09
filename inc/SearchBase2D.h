@@ -21,6 +21,7 @@ class SearchBase2D {
         Point2D<T> goal; /**< Goal to be found */
         std::unique_ptr<Grid2D<T>> grid; /**< Contains information on the points on the grid */
         std::unique_ptr<std::deque<size_t>> path; /**< All points of the path found by the algorithm */
+        std::string fileName; /**< Name of the file to take the plan from */
 
     protected:
         void setBegin(const Point2D<T>& point);

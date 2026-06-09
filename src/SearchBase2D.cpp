@@ -11,9 +11,10 @@
  */
 template<typename T>
 SearchBase2D<T>::SearchBase2D(const std::string& filename) : grid(std::make_unique<Grid2D<T>>()),
-                                                             path(std::make_unique<std::deque<size_t>>())
+                                                             path(std::make_unique<std::deque<size_t>>()),
+                                                             fileName(filename)
 {
-    this->grid.get()->importPlanFile(filename);
+    this->grid.get()->importPlanFile(fileName);
 }
 
 /**
@@ -103,16 +104,6 @@ void SearchBase2D<T>::setBegin(const Point2D<T>& point)
     const size_t ind = this->grid.get()->index(point);
     this->setGridStart(ind);
 
-    std::deque<size_t>* p = this->path.get();
-
-    /*
-    if(p->size() == 0) {
-        p->emplace_back(ind);
-    } else {
-        p->at(0) = ind;
-    }
-    */
-
     this->setDiscovered(ind);
     this->addToFringe(0, ind, ind);
 }
@@ -131,9 +122,7 @@ void SearchBase2D<T>::setGoal(const Point2D<T>& point)
     Grid2D<T>* g = this->grid.get();
     size_t ind = g->index(point);
 
-    //g->setPath(ind);
     this->setGridGoal(ind);
-    //this->setDiscovered(ind);
 }
 
 /**
