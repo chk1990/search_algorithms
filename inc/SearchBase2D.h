@@ -6,8 +6,8 @@
 #ifndef H_SEARCH_BASE_H
 #define H_SEARCH_BASE_H
 
+#include<deque>
 #include<string>
-#include<vector>
 
 #include "Grid2D.h"
 
@@ -20,7 +20,7 @@ class SearchBase2D {
     private:
         Point2D<T> goal; /**< Goal to be found */
         std::unique_ptr<Grid2D<T>> grid; /**< Contains information on the points on the grid */
-        std::unique_ptr<std::vector<size_t>> path; /**< All points of the path found by the algorithm */
+        std::unique_ptr<std::deque<size_t>> path; /**< All points of the path found by the algorithm */
 
     protected:
         void setBegin(const Point2D<T>& point);
@@ -29,7 +29,7 @@ class SearchBase2D {
         void setPath(const Point2D<T>& point);
         void setGridGoal(const size_t ind);
         void setGridStart(const size_t ind);
-        //void add2path(const Point2D<T>& point);
+        void add2path(const size_t ind);
         virtual void addToFringe(const T cost, const size_t ind, size_t predec) = 0;
         virtual T compHeuristicGoal(const Point2D<T>& current) const = 0;
 
@@ -55,6 +55,7 @@ class SearchBase2D {
         Point2D<T> getCoordinates(const size_t ind) const;
 
         void printGrid() const;
+        void printPath() const;
 };
 
 template class SearchBase2D<int>;

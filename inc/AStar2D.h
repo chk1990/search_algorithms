@@ -8,7 +8,6 @@
 
 #include<queue>
 #include<tuple>
-#include<vector>
 
 #include "SearchBase2D.h"
 

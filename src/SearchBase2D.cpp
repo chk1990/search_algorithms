@@ -11,7 +11,7 @@
  */
 template<typename T>
 SearchBase2D<T>::SearchBase2D(const std::string& filename) : grid(std::make_unique<Grid2D<T>>()),
-                                                             path(std::make_unique<std::vector<size_t>>())
+                                                             path(std::make_unique<std::deque<size_t>>())
 {
     this->grid.get()->importPlanFile(filename);
 }
@@ -101,20 +101,19 @@ template <typename T>
 void SearchBase2D<T>::setBegin(const Point2D<T>& point)
 {
     const size_t ind = this->grid.get()->index(point);
-    //this->setPath(ind);
     this->setGridStart(ind);
 
-    std::vector<size_t>* p = this->path.get();
+    std::deque<size_t>* p = this->path.get();
 
+    /*
     if(p->size() == 0) {
         p->emplace_back(ind);
     } else {
         p->at(0) = ind;
     }
+    */
 
     this->setDiscovered(ind);
-
-    //const T heurDist = this->compHeuristicGoal(point);
     this->addToFringe(0, ind, ind);
 }
 
@@ -174,7 +173,7 @@ Point2D<T> SearchBase2D<T>::getGoal() const
 template <typename T>
 Point2D<T> SearchBase2D<T>::getPath(const size_t ind) const
 {
-    const std::vector<size_t> pth = *(this->path.get());
+    const std::deque<size_t> pth = *(this->path.get());
     const size_t indPt = pth[ind];
 
     const Grid2D<T>* g = this->grid.get();
@@ -276,4 +275,25 @@ template <typename T>
 void SearchBase2D<T>::setGridStart(const size_t ind)
 {
     this->grid.get()->setStart(ind);
+}
+
+/**
+ * @brief Add a point index to the front of the path for backtracking
+ * @param[in] ind Index of point
+ */
+template <typename T>
+void SearchBase2D<T>::add2path(const size_t ind)
+{
+    this->path.get()->emplace_front(ind);
+}
+
+/**
+ * @brief Print all node indices of the computed path
+ */
+template <typename T>
+void SearchBase2D<T>::printPath() const
+{
+    for(const size_t ind : *(this->path.get())) {
+        std::cout << ind << std::endl;
+    }
 }
