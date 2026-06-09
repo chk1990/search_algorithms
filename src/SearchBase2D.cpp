@@ -300,6 +300,7 @@ std::string SearchBase2D<T>::getFilename() const
 
 /**
  * @brief Export the computed path to a file
+ * The coordinates of one point of the path (x and y) are printed into the same row.
  */
 template <typename T>
 void SearchBase2D<T>::exportPath() const
@@ -323,25 +324,4 @@ void SearchBase2D<T>::exportPath() const
     }
 
     filePath.close();
-}
-
-/**
- * @brief Export the computed search tree to a file
- */
-template <typename T>
-void SearchBase2D<T>::exportTree() const
-{
-    const size_t len = this->getFilename().size();
-    std::string baseName = this->getFilename().substr(0, len-4);
-
-    std::ofstream fileTree;
-    fileTree.open(baseName + "_tree.dat");
-    if(!fileTree.is_open()) {
-        perror("Failed to open path file");
-        return;
-    }
-
-    //
-
-    fileTree.close();
 }

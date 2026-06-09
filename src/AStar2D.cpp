@@ -5,11 +5,13 @@
 
 #include<algorithm>
 #include<cmath>
+#include<fstream>
 
 #include "AStar2D.h"
 
 /**
  * @brief Creates object to perform search on given plan
+ * 
  * @param[in] filename Name of the file containing the plan
  */
 template<typename T>
@@ -23,6 +25,10 @@ AStar2D<T>::AStar2D(const std::string& filename) : SearchBase2D<T>(filename),
 
 /**
  * @brief Finds the path from start to goal if the path is available. The results as path and search tree are exported to files afterwards.
+ * 
+ * The file for the tree is structured as follows:
+ * x1,y1,x2,y2
+ * 
  * @param[in] start Point to start
  * @todo Export path for visualization
  * @todo Export entire search tree (visited) for visualization
@@ -186,7 +192,33 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
     // Export path and search tree
     // =============================================
     this->exportPath();
-    this->exportTree();
+
+    const size_t len = this->getFilename().size();
+    std::string baseName = this->getFilename().substr(0, len-4);
+
+    std::ofstream fileTree;
+    fileTree.open(baseName + "_tree.dat");
+    if(!fileTree.is_open()) {
+        perror("Failed to open tree file");
+        return;
+    }
+
+    for(const pointInfo& ptInfo : visited) {
+        const size_t indEnd = std::get<1>(ptInfo);
+        const size_t indStart = std::get<2>(ptInfo);
+
+        const Point2D<T> startPt = this->getPoint(indStart);
+        const Point2D<T> endPt = this->getPoint(indEnd);
+
+        T x1 = startPt.getX();
+        T y1 = startPt.getY();
+        T x2 = endPt.getX();
+        T y2 = endPt.getY();
+
+        fileTree << x1 << "," << y1 << "," << x2 << "," << y2 << std::endl;
+    }
+
+    fileTree.close();
 }
 
 /**
@@ -229,7 +261,7 @@ T AStar2D<T>::compHeuristicGoal(const Point2D<T>& current) const
 }
 
 /**
- * @brief Computes the heuristic from current point to the desired point as Euclidean Distance
+ * @brief Computes the heuristic from current point to the desired point as Euclidean Distance. Any other valid heuristic can be used as far as it is admissible and consistent.
  * @param[in] current Point to start
  * @param[in] desired Desired end of path
  * @return Euclidean distance of points
