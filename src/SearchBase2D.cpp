@@ -3,6 +3,8 @@
  * @author Christoph Kolhoff
  */
 
+#include<fstream>
+
 #include "SearchBase2D.h"
 
 /**
@@ -251,7 +253,7 @@ bool SearchBase2D<T>::isObstacle(const size_t ind) const
  * @param[in] ind Index of point
  */
 template <typename T>
-Point2D<T> SearchBase2D<T>::getIndex(size_t ind) const
+Point2D<T> SearchBase2D<T>::getPoint(size_t ind) const
 {
     return this->grid.get()->getCoordinates(ind);
 }
@@ -285,4 +287,61 @@ void SearchBase2D<T>::printPath() const
     for(const size_t ind : *(this->path.get())) {
         std::cout << ind << std::endl;
     }
+}
+
+/**
+ * @brief Delivers name of the file with the plan to work on
+ */
+template <typename T>
+std::string SearchBase2D<T>::getFilename() const
+{
+    return this->fileName;
+}
+
+/**
+ * @brief Export the computed path to a file
+ */
+template <typename T>
+void SearchBase2D<T>::exportPath() const
+{
+    const size_t len = this->getFilename().size();
+    std::string baseName = this->getFilename().substr(0, len-4);
+
+    std::ofstream filePath;
+    filePath.open(baseName + "_path.dat");
+    if(!filePath.is_open()) {
+        perror("Failed to open path file");
+        return;
+    }
+
+    for(const size_t indPath : *(this->path.get())) {
+        const Point2D<T> pathPoint = this->getPoint(indPath);
+        T x = pathPoint.getX();
+        T y = pathPoint.getY();
+
+        filePath << x << "," << y << std::endl;
+    }
+
+    filePath.close();
+}
+
+/**
+ * @brief Export the computed search tree to a file
+ */
+template <typename T>
+void SearchBase2D<T>::exportTree() const
+{
+    const size_t len = this->getFilename().size();
+    std::string baseName = this->getFilename().substr(0, len-4);
+
+    std::ofstream fileTree;
+    fileTree.open(baseName + "_tree.dat");
+    if(!fileTree.is_open()) {
+        perror("Failed to open path file");
+        return;
+    }
+
+    //
+
+    fileTree.close();
 }

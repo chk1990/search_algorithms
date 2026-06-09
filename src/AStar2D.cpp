@@ -22,7 +22,7 @@ AStar2D<T>::AStar2D(const std::string& filename) : SearchBase2D<T>(filename),
 }
 
 /**
- * @brief Finds the path from start to goal if the path is available
+ * @brief Finds the path from start to goal if the path is available. The results as path and search tree are exported to files afterwards.
  * @param[in] start Point to start
  * @todo Export path for visualization
  * @todo Export entire search tree (visited) for visualization
@@ -30,6 +30,8 @@ AStar2D<T>::AStar2D(const std::string& filename) : SearchBase2D<T>(filename),
 template<typename T>
 void AStar2D<T>::findPath(const Point2D<T>& start)
 {
+    // Find path
+    // =============================================
     const size_t width = this->getGridWidth();
     const size_t height = this->getGridHeight();
     const Point2D<T> ptLim1 = this->getMinLimPoint();
@@ -71,7 +73,7 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
         const size_t indCurrent = std::get<1>(elem);
         const Point2D<T> current = this->getCoordinates(indCurrent);
 
-        auto visitCrit = [indCurrent](const pointInfo& ptInfoVec){
+        auto visitCrit = [indCurrent](const pointInfo& ptInfoVec) {
             // find the point entity that has a given current index
             const size_t indCurr = std::get<1>(ptInfoVec);
             return indCurr == indCurrent;
@@ -148,6 +150,7 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
     }
 
     // Backtracking
+    // =============================================
     const pointInfo currVisited = visited.back();
     size_t currInd = std::get<1>(currVisited);
     size_t predInd = std::get<2>(currVisited);
@@ -160,7 +163,7 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
         // determine previously visited point
         typename std::vector<pointInfo>::iterator it;
 
-        auto backtrackCrit = [currInd](const pointInfo& visitPt){
+        auto backtrackCrit = [currInd](const pointInfo& visitPt) {
             // find the point with a specific current index
             const size_t indVisited = std::get<1>(visitPt);
             return indVisited == currInd;
@@ -180,13 +183,10 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
         currInd = predInd;
     }
 
-    //this->printPath();
-
-    // Export path
-
-
-    // Export search tree
-
+    // Export path and search tree
+    // =============================================
+    this->exportPath();
+    this->exportTree();
 }
 
 /**
