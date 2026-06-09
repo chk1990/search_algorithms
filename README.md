@@ -128,3 +128,5 @@ If a specific release is used, citing the corresponding version or commit hash i
 ---
 
 # Visualization
+To visualize the path search the Python script in the top folder can be used. It delivers images like below:
+![image](./docs/path_plot.png)
