@@ -1,33 +1,16 @@
 #==============================================================================
-# Doxyfile für moderne C++ Projekte
-# Projekt: Search Algorithms
-#
-# Ziel:
-# - vollständige HTML Dokumentation
-# - Klassenhierarchien
-# - Namespaces
-# - Include Graphs
-# - Vererbungsdiagramme
-# - Call Graphs
-# - Source Browser
-# - C++20 Support
-# - Markdown Support
-# - UML ähnliche Darstellung
-# - XML Export
-# - vollständige Extraktion aller Klassen/Funktionen
-#
-# Benötigte Pakete:
+# Needed packages:
 #   sudo apt install doxygen graphviz clang
 #
-# Generieren:
+# Generate:
 #   doxygen Doxyfile
 #
-# Ausgabe:
+# Output:
 #   docs/html/index.html
 #==============================================================================
 
 #------------------------------------------------------------------------------
-# Projektinformationen
+# Information
 #------------------------------------------------------------------------------
 
 DOXYFILE_ENCODING            = UTF-8
@@ -89,7 +72,7 @@ INLINE_SIMPLE_STRUCTS        = YES
 TYPEDEF_HIDES_STRUCT         = NO
 
 #------------------------------------------------------------------------------
-# Extraktion
+# Extraction
 #------------------------------------------------------------------------------
 
 EXTRACT_ALL                  = YES
@@ -136,7 +119,7 @@ SHOW_FILES                   = YES
 SHOW_NAMESPACES              = YES
 
 #------------------------------------------------------------------------------
-# Warnungen
+# Warnings
 #------------------------------------------------------------------------------
 
 QUIET                        = NO
@@ -154,7 +137,7 @@ WARN_AS_ERROR                = NO
 WARN_FORMAT                  = "$file:$line: $text"
 
 #------------------------------------------------------------------------------
-# Eingabedateien
+# Input files
 #------------------------------------------------------------------------------
 
 INPUT                        = src \
@@ -226,7 +209,7 @@ USE_HTAGS                    = NO
 VERBATIM_HEADERS             = YES
 
 #------------------------------------------------------------------------------
-# Clang Unterstützung für moderne C++
+# Clang support for modern C++
 #------------------------------------------------------------------------------
 
 CLANG_ASSISTED_PARSING       = YES
@@ -243,7 +226,7 @@ COLS_IN_ALPHA_INDEX          = 5
 IGNORE_PREFIX                =
 
 #------------------------------------------------------------------------------
-# HTML Ausgabe
+# HTML output
 #------------------------------------------------------------------------------
 
 GENERATE_HTML                = YES
@@ -289,7 +272,7 @@ MATHJAX_VERSION              = MathJax_3
 MATHJAX_FORMAT               = HTML-CSS
 
 #------------------------------------------------------------------------------
-# Graphviz / UML / Diagramme
+# Graphviz / UML / Diagrams
 #------------------------------------------------------------------------------
 
 HAVE_DOT                     = YES
@@ -368,7 +351,7 @@ EXPAND_AS_DEFINED += TYPED_TEST
 SKIP_FUNCTION_MACROS         = NO
 
 #------------------------------------------------------------------------------
-# Tagfiles / externe Referenzen
+# Tagfiles / extern references
 #------------------------------------------------------------------------------
 
 TAGFILES                     =
@@ -389,7 +372,7 @@ XML_OUTPUT                   = xml
 XML_PROGRAMLISTING           = YES
 
 #------------------------------------------------------------------------------
-# Andere Formate deaktivieren
+# Disable other formats
 #------------------------------------------------------------------------------
 
 GENERATE_LATEX               = NO
@@ -411,7 +394,7 @@ ALIASES += "warning=\par Warning:^^"
 ALIASES += "note=\par Note:^^"
 
 #------------------------------------------------------------------------------
-# Moderne C++ Erweiterungen
+# Modern C++ extensions
 #------------------------------------------------------------------------------
 
 EXTENSION_MAPPING            = ixx=C++ \

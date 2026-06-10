@@ -18,7 +18,7 @@
 template<typename T>
 class AStar2D : public SearchBase2D<T> {
     private:
-        using pointInfo = std::tuple<T, size_t, size_t>; /**< Element to represent distant information of a point, its index and its predecessor*/
+        using pathElement = std::tuple<T, size_t, size_t>; /**< Element to represent distant information of a point, its index and its predecessor*/
 
         /**
          * @brief Wrapper for sorting expression of points in priority queue
@@ -27,20 +27,20 @@ class AStar2D : public SearchBase2D<T> {
          *      If the priority queue is not defined as member variable, the lambda expression can directly passed to the definition.
          */
         static auto makeComparator() {
-            return [](const pointInfo& a, const pointInfo& b) {
+            return [](const pathElement& a, const pathElement& b) {
                 return std::get<0>(a) > std::get<0>(b);
             };
         }
 
         using comparator = decltype(makeComparator()); /**< Defines the given lambda as comparison element */
-        using priorityQueue = std::priority_queue<pointInfo, std::vector<pointInfo>, comparator>; /**< Represent the data structure of the used priority queue */
+        using priorityQueue = std::priority_queue<pathElement, std::vector<pathElement>, comparator>; /**< Represent the data structure of the used priority queue */
 
         std::unique_ptr<priorityQueue> prioQueue; /**< Priority queue to sort the following points to investigate by distance. */
 
         T compHeuristic(const Point2D<T>& current, const Point2D<T>& desired) const;
         T compHeuristicGoal(const Point2D<T>& current) const override;
         void addToFringe(const T cost, const size_t ind, size_t predec) override;
-        void printPointInfo(const pointInfo ptInfo) const;
+        void printpathElement(const pathElement ptInfo) const;
 
     public:
         AStar2D(const std::string& filename);

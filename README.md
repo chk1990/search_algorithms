@@ -61,7 +61,7 @@ search_algorithms/
 ├── inc/            # Public headers
 ├── src/            # Source files
 ├── unit_tests/     # Unit tests
-├── docs/           # Documentation (generated)
+├── docs/           # Documentation
 ├── build/          # Build output (generated)
 ├── compile.sh      # Compile everything easily
 ├── Doxyfile        # Generate documentation
@@ -85,7 +85,7 @@ Use at your own risk.
 
 ## License
 
-See LICENSE file.
+MIT license, see LICENSE file.
 
 ---
 

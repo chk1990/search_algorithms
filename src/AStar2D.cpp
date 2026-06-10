@@ -16,8 +16,8 @@
  */
 template<typename T>
 AStar2D<T>::AStar2D(const std::string& filename) : SearchBase2D<T>(filename),
-                                                   prioQueue(std::make_unique<std::priority_queue<pointInfo,
-                                                   std::vector<pointInfo>,
+                                                   prioQueue(std::make_unique<std::priority_queue<pathElement,
+                                                   std::vector<pathElement>,
                                                    comparator>>())
 {
     //
@@ -30,8 +30,6 @@ AStar2D<T>::AStar2D(const std::string& filename) : SearchBase2D<T>(filename),
  * x1,y1,x2,y2
  * 
  * @param[in] start Point to start
- * @todo Export path for visualization
- * @todo Export entire search tree (visited) for visualization
  */
 template<typename T>
 void AStar2D<T>::findPath(const Point2D<T>& start)
@@ -62,9 +60,9 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
 
     // collect all visited points for backtracking later
     const size_t indStartPt = this->getPointIndex(start);
-    const pointInfo initPt{0, indStartPt, indStartPt};
+    const pathElement initPt{0, indStartPt, indStartPt};
 
-    std::vector<pointInfo> visited;
+    std::vector<pathElement> visited;
     visited.emplace_back(initPt);
 
     while(!pq->empty()) {
@@ -73,19 +71,19 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
             break;
         }
 
-        const pointInfo elem = pq->top();
+        const pathElement elem = pq->top();
         pq->pop();
 
         const size_t indCurrent = std::get<1>(elem);
         const Point2D<T> current = this->getCoordinates(indCurrent);
 
-        auto visitCrit = [indCurrent](const pointInfo& ptInfoVec) {
+        auto visitCrit = [indCurrent](const pathElement& ptInfoVec) {
             // find the point entity that has a given current index
             const size_t indCurr = std::get<1>(ptInfoVec);
             return indCurr == indCurrent;
         };
 
-        typename std::vector<pointInfo>::iterator it;
+        typename std::vector<pathElement>::iterator it;
         it = std::find_if(visited.begin(), visited.end(), visitCrit);
 
         // actual cost from the current node for which the children are investigated
@@ -133,7 +131,7 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
 
                 // find the predecessor node in visited
                 const T actualCost = cumulDistCurr + distCurrSucc;
-                const pointInfo pt = {actualCost, indSuccessor, indCurrent};
+                const pathElement pt = {actualCost, indSuccessor, indCurrent};
                 visited.emplace_back(pt);
 
                 if(this->isGoal(successor)) {
@@ -157,7 +155,7 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
 
     // Backtracking
     // =============================================
-    const pointInfo currVisited = visited.back();
+    const pathElement currVisited = visited.back();
     size_t currInd = std::get<1>(currVisited);
     size_t predInd = std::get<2>(currVisited);
 
@@ -167,9 +165,9 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
 
     while(true) {
         // determine previously visited point
-        typename std::vector<pointInfo>::iterator it;
+        typename std::vector<pathElement>::iterator it;
 
-        auto backtrackCrit = [currInd](const pointInfo& visitPt) {
+        auto backtrackCrit = [currInd](const pathElement& visitPt) {
             // find the point with a specific current index
             const size_t indVisited = std::get<1>(visitPt);
             return indVisited == currInd;
@@ -203,7 +201,7 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
         return;
     }
 
-    for(const pointInfo& ptInfo : visited) {
+    for(const pathElement& ptInfo : visited) {
         const size_t indEnd = std::get<1>(ptInfo);
         const size_t indStart = std::get<2>(ptInfo);
 
@@ -229,9 +227,9 @@ void AStar2D<T>::printPrioQueue() const
 {
     priorityQueue* pq = this->prioQueue.get();
     while(!pq->empty()) {
-        pointInfo pd = pq->top();
+        pathElement pd = pq->top();
         pq->pop();
-        this->printPointInfo(pd);
+        this->printpathElement(pd);
     }
 }
 
@@ -244,7 +242,7 @@ void AStar2D<T>::printPrioQueue() const
 template<typename T>
 void AStar2D<T>::addToFringe(const T cost, const size_t ind, size_t predec)
 {
-    const pointInfo elem = {cost, ind, predec};
+    const pathElement elem = {cost, ind, predec};
     this->prioQueue->push(elem);
 }
 
@@ -278,7 +276,7 @@ T AStar2D<T>::compHeuristic(const Point2D<T>& current, const Point2D<T>& desired
  * @param[in] ptInfo Point info as needed
  */
 template<typename T>
-void AStar2D<T>::printPointInfo(const pointInfo ptInfo) const
+void AStar2D<T>::printpathElement(const pathElement ptInfo) const
 {
     std::cout << "Dist = " << std::get<0>(ptInfo) << "; Current = " << std::get<1>(ptInfo) << "; Predecessor = " << std::get<2>(ptInfo) << std::endl;
 }
