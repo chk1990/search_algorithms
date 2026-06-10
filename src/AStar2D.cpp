@@ -17,8 +17,8 @@
 template<typename T>
 AStar2D<T>::AStar2D(const std::string& filename) : SearchBase2D<T>(filename),
                                                    prioQueue(std::make_unique<std::priority_queue<pathElement,
-                                                   std::vector<pathElement>,
-                                                   comparator>>())
+                                                             std::vector<pathElement>,
+                                                             comparator>>())
 {
     //
 }
@@ -117,7 +117,7 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
                 }
 
                 if(this->isDiscovered(indSuccessor)) {
-                    continue; // TODO: rework
+                    continue;
                 }
 
                 // can be set as discovered and skipped afterwards because A* acts optimal
@@ -208,10 +208,10 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
         const Point2D<T> startPt = this->getPoint(indStart);
         const Point2D<T> endPt = this->getPoint(indEnd);
 
-        T x1 = startPt.getX();
-        T y1 = startPt.getY();
-        T x2 = endPt.getX();
-        T y2 = endPt.getY();
+        const T x1 = startPt.getX();
+        const T y1 = startPt.getY();
+        const T x2 = endPt.getX();
+        const T y2 = endPt.getY();
 
         fileTree << x1 << "," << y1 << "," << x2 << "," << y2 << std::endl;
     }

@@ -67,7 +67,10 @@ if __name__ == "__main__":
         xData = [float(coordinates[0]), float(coordinates[2])]
         yData = [float(coordinates[1]), float(coordinates[3])]
 
-        ax.plot(xData, yData, color=(0, 0, 1), label="_nolegend_")
+        if indTree == 1:
+            ax.plot(xData, yData, color=(0, 0, 1), label="search tree")
+        else:
+            ax.plot(xData, yData, color=(0, 0, 1), label="_nolegend_")
 
     # draw path
     xPath = []
@@ -79,8 +82,8 @@ if __name__ == "__main__":
 
     ax.plot(xPath, yPath, color=(1,0,0), label="A*")
 
-    ax.plot(xPath[0], yPath[0], 'o', color=(1,0,0), label="Start")
-    ax.plot(xPath[-1], yPath[-1], 'o', color=(0,1,0), label="Goal")
+    ax.plot(xPath[0], yPath[0], 'o', color=(1, 0, 0), label="Start")
+    ax.plot(xPath[-1], yPath[-1], 'o', color=(0, 1, 0), label="Goal")
 
     plt.legend()
     plt.show()
