@@ -131,7 +131,7 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
                 // find the predecessor node in visited
                 const T actualCost = cumulDistCurr + distCurrSucc;
                 const pathElement pt = {actualCost, indSuccessor, indCurrent};
-                this->visited.emplace_back(pt);
+                this->addVisited(pt);
 
                 if(this->isGoal(successor)) {
                     leave = true;
