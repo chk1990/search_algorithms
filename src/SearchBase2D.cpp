@@ -3,6 +3,7 @@
  * @author Christoph Kolhoff
  */
 
+#include<algorithm>
 #include<fstream>
 
 #include "SearchBase2D.h"
@@ -307,7 +308,7 @@ template <typename T>
 void SearchBase2D<T>::exportPath() const
 {
     const size_t len = this->getFilename().size();
-    std::string baseName = this->getFilename().substr(0, len-4);
+    const std::string baseName = this->getFilename().substr(0, len-4);
 
     std::ofstream filePath;
     filePath.open(baseName + "_" + this->getAlgorithmName() + "_path.dat");
@@ -328,10 +329,94 @@ void SearchBase2D<T>::exportPath() const
 }
 
 /**
+ * @brief Export the computed path to a file
+ * The coordinates of one point of the path (x and y) are printed into the same row.
+ */
+template <typename T>
+void SearchBase2D<T>::exportTree() const
+{
+    const size_t len = this->getFilename().size();
+    const std::string baseName = this->getFilename().substr(0, len-4);
+
+    std::ofstream fileTree;
+    fileTree.open(baseName + "_" + this->getAlgorithmName() + "_tree.dat");
+    if(!fileTree.is_open()) {
+        perror("Failed to open tree file");
+        return;
+    }
+
+    for(const pathElement& ptInfo : this->visited) {
+        const size_t indEnd = std::get<1>(ptInfo);
+        const size_t indStart = std::get<2>(ptInfo);
+
+        const Point2D<T> startPt = this->getPoint(indStart);
+        const Point2D<T> endPt = this->getPoint(indEnd);
+
+        const T x1 = startPt.getX();
+        const T y1 = startPt.getY();
+        const T x2 = endPt.getX();
+        const T y2 = endPt.getY();
+
+        fileTree << x1 << "," << y1 << "," << x2 << "," << y2 << std::endl;
+    }
+
+    fileTree.close();
+}
+
+/**
  * @brief Provides the name of the used algorithm
  */
 template <typename T>
 std::string SearchBase2D<T>::getAlgorithmName() const
 {
     return this->algorithmName;
+}
+
+/**
+ * @brief Adds a node to the visited ones
+ * @param[in] elem Point information to add
+ */
+template <typename T>
+void SearchBase2D<T>::addVisited(const pathElement& elem)
+{
+    this->visited.emplace_back(elem);
+}
+
+/**
+ * @brief Backtracks the path that has been passed
+ */
+template <typename T>
+void SearchBase2D<T>::backtrack()
+{
+    const pathElement currVisited = this->visited.back();
+    size_t currInd = std::get<1>(currVisited);
+    size_t predInd = std::get<2>(currVisited);
+
+    this->add2path(currInd);
+
+    currInd = predInd;
+
+    while(true) {
+        // determine previously visited point
+        typename std::vector<pathElement>::iterator it;
+
+        auto backtrackCrit = [currInd](const pathElement& visitPt) {
+            // find the point with a specific current index
+            const size_t indVisited = std::get<1>(visitPt);
+            return indVisited == currInd;
+        };
+
+        it = std::find_if(this->visited.begin(), this->visited.end(), backtrackCrit);
+
+        currInd = std::get<1>(*it);
+        predInd = std::get<2>(*it);
+
+        this->add2path(currInd);
+
+        if(currInd == predInd) {
+            break;
+        }
+
+        currInd = predInd;
+    }
 }

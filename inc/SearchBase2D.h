@@ -28,7 +28,7 @@ class SearchBase2D {
         std::string algorithmName; /**< Name of the algorithm to be applied */
 
     protected:
-        std::vector<pathElement> visited;
+        std::vector<pathElement> visited; /**< Nodes and their predecessors that have been visited */
 
         void setBegin(const Point2D<T>& point);
         void setPath(const size_t col, const size_t row);
@@ -38,9 +38,12 @@ class SearchBase2D {
         void setGridStart(const size_t ind);
         void add2path(const size_t ind);
         void exportPath() const;
+        void exportTree() const;
         virtual void addToFringe(const T cost, const size_t ind, size_t predec) = 0;
         virtual T compHeuristicGoal(const Point2D<T>& current) const = 0;
         std::string getFilename() const;
+        void addVisited(const pathElement& elem);
+        void backtrack();
 
     public:
         SearchBase2D(const std::string& , const std::string& algName);
