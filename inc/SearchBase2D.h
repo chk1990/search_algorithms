@@ -18,10 +18,13 @@
 template<typename T>
 class SearchBase2D {
     private:
+        using pathElement = std::tuple<T, size_t, size_t>; /**< Element to represent distant information of a point, its index and its predecessor*/
+
         Point2D<T> goal; /**< Goal to be found */
         std::unique_ptr<Grid2D<T>> grid; /**< Contains information on the points on the grid */
         std::unique_ptr<std::deque<size_t>> path; /**< All points of the path found by the algorithm */
         std::string fileName; /**< Name of the file to take the plan from */
+        std::string algorithmName; /**< Name of the algorithm to be applied */
 
     protected:
         void setBegin(const Point2D<T>& point);
@@ -37,7 +40,7 @@ class SearchBase2D {
         std::string getFilename() const;
 
     public:
-        SearchBase2D(const std::string& filename);
+        SearchBase2D(const std::string& , const std::string& algName);
         ~SearchBase2D() {};
 
         virtual void findPath(const Point2D<T>& start) = 0;

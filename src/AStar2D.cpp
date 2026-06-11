@@ -15,7 +15,7 @@
  * @param[in] filename Name of the file containing the plan
  */
 template<typename T>
-AStar2D<T>::AStar2D(const std::string& filename) : SearchBase2D<T>(filename),
+AStar2D<T>::AStar2D(const std::string& filename) : SearchBase2D<T>(filename, "astar"),
                                                    prioQueue(std::make_unique<std::priority_queue<pathElement,
                                                              std::vector<pathElement>,
                                                              comparator>>())

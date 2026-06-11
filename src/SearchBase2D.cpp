@@ -12,9 +12,10 @@
  * @param[in] filename Name of file that contains the plan
  */
 template<typename T>
-SearchBase2D<T>::SearchBase2D(const std::string& filename) : grid(std::make_unique<Grid2D<T>>()),
+SearchBase2D<T>::SearchBase2D(const std::string& filename, const std::string& algName) : grid(std::make_unique<Grid2D<T>>()),
                                                              path(std::make_unique<std::deque<size_t>>()),
-                                                             fileName(filename)
+                                                             fileName(filename),
+                                                             algorithmName(algName)
 {
     this->grid.get()->importPlanFile(fileName);
 }

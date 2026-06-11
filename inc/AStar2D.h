@@ -18,7 +18,7 @@
 template<typename T>
 class AStar2D : public SearchBase2D<T> {
     private:
-        using pathElement = std::tuple<T, size_t, size_t>; /**< Element to represent distant information of a point, its index and its predecessor*/
+        //using pathElement = std::tuple<T, size_t, size_t>; /**< Element to represent distant information of a point, its index and its predecessor*/
 
         /**
          * @brief Wrapper for sorting expression of points in priority queue

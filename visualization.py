@@ -33,7 +33,7 @@ if __name__ == "__main__":
     xSteps = int(gridContent[0])
     ySteps = int(gridContent[1])
     xLim = (float(xSteps) - 1) * float(gridContent[2])
-    yLim = (float(ySteps) - 1)* float(gridContent[2])
+    yLim = (float(ySteps) - 1) * float(gridContent[2])
     step = float(gridContent[2])
     obstacles = gridContent[3]
 
@@ -60,9 +60,7 @@ if __name__ == "__main__":
     # draw tree
     for indTree in range(1, len(treeContent) - 1):
         lineData = treeContent[indTree]
-
         coordinates = lineData.split(",")
-        #print(lineData)
 
         xData = [float(coordinates[0]), float(coordinates[2])]
         yData = [float(coordinates[1]), float(coordinates[3])]
