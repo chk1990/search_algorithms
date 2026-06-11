@@ -13,9 +13,11 @@ if __name__ == "__main__":
     """
 
     jobName = sys.argv[1]
+    algorithm = sys.argv[2]
+
     gridName = "./data_environment/" + jobName + ".dat"
-    pathName = "./data_environment/" + jobName + "_path.dat"
-    treeName = "./data_environment/" + jobName + "_tree.dat"
+    pathName = "./data_environment/" + jobName + "_" + algorithm + "_path.dat"
+    treeName = "./data_environment/" + jobName + "_" + algorithm + "_tree.dat"
 
     gridFile = open(gridName, 'r')
     gridContent = gridFile.read().split('\n')

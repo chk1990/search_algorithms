@@ -310,7 +310,7 @@ void SearchBase2D<T>::exportPath() const
     std::string baseName = this->getFilename().substr(0, len-4);
 
     std::ofstream filePath;
-    filePath.open(baseName + "_path.dat");
+    filePath.open(baseName + "_" + this->getAlgorithmName() + "_path.dat");
     if(!filePath.is_open()) {
         perror("Failed to open path file");
         return;
@@ -325,4 +325,13 @@ void SearchBase2D<T>::exportPath() const
     }
 
     filePath.close();
+}
+
+/**
+ * @brief Provides the name of the used algorithm
+ */
+template <typename T>
+std::string SearchBase2D<T>::getAlgorithmName() const
+{
+    return this->algorithmName;
 }

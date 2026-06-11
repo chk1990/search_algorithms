@@ -195,7 +195,7 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
     std::string baseName = this->getFilename().substr(0, len-4);
 
     std::ofstream fileTree;
-    fileTree.open(baseName + "_tree.dat");
+    fileTree.open(baseName + "_" + this->getAlgorithmName() + "_tree.dat");
     if(!fileTree.is_open()) {
         perror("Failed to open tree file");
         return;
