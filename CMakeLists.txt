@@ -48,6 +48,15 @@ target_include_directories(bfs
     PRIVATE inc
 )
 
+add_executable(dfs
+    dfs.cpp
+    ${SRC_FILES}
+)
+
+target_include_directories(dfs
+    PRIVATE inc
+)
+
 # ============================================
 # Configure source files
 

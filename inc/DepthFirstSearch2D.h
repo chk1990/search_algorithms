@@ -23,7 +23,7 @@ class DepthFirstSearch2D : public SearchBase2D<T> {
     public:
         DepthFirstSearch2D(const std::string& filename);
 
-        void findPath(const Point2D<T>& start, const Point2D<T>& goal);
+        void findPath(const Point2D<T>& start);
 };
 
 template class DepthFirstSearch2D<int>;

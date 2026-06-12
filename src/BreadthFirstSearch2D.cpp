@@ -19,7 +19,7 @@ BreadthFirstSearch2D<T>::BreadthFirstSearch2D(const std::string& filename) : Sea
 }
 
 /**
- * @brief Adds a point to the priority queue
+ * @brief Adds a point to the queue
  * @param[in] ind Index of point to add
  * @param[in] cost Cost from begin to selected point
  * @param[in] predec Predecessor of this point
