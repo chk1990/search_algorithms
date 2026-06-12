@@ -429,16 +429,26 @@ template <typename T>
 T SearchBase2D<T>::getCumulDist(const size_t ind)
 {
     auto visitCrit = [ind](const pathElement& ptInfoVec) {
-            // find the point entity that has a given current index
-            const size_t indCurr = std::get<1>(ptInfoVec);
-            return indCurr == ind;
-        };
+        // find the point entity that has a given current index
+        const size_t indCurr = std::get<1>(ptInfoVec);
+        return indCurr == ind;
+    };
 
-        typename std::vector<pathElement>::iterator it;
-        it = std::find_if(this->visited.begin(), this->visited.end(), visitCrit);
+    typename std::vector<pathElement>::iterator it;
+    it = std::find_if(this->visited.begin(), this->visited.end(), visitCrit);
 
-        // actual cost from the current node for which the children are investigated
-        const T cumulDistCurr = std::get<0>(*it);
+    // actual cost from the current node for which the children are investigated
+    const T cumulDistCurr = std::get<0>(*it);
 
-        return cumulDistCurr;
+    return cumulDistCurr;
+}
+
+/**
+ * @brief Print the content of a point info set
+ * @param[in] ptInfo Point info as needed
+ */
+template<typename T>
+void SearchBase2D<T>::printpathElement(const pathElement ptInfo) const
+{
+    std::cout << "Dist = " << std::get<0>(ptInfo) << "; Current = " << std::get<1>(ptInfo) << "; Predecessor = " << std::get<2>(ptInfo) << std::endl;
 }

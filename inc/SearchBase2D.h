@@ -44,6 +44,7 @@ class SearchBase2D {
         std::string getFilename() const;
         void addVisited(const pathElement& elem);
         void backtrack();
+        void printpathElement(const pathElement ptInfo) const;
 
     public:
         SearchBase2D(const std::string& , const std::string& algName);

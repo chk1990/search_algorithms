@@ -40,7 +40,6 @@ class AStar2D : public SearchBase2D<T> {
         T compHeuristic(const Point2D<T>& current, const Point2D<T>& desired) const;
         T compHeuristicGoal(const Point2D<T>& current) const override;
         void addToFringe(const T cost, const size_t ind, size_t predec) override;
-        void printpathElement(const pathElement ptInfo) const;
 
     public:
         AStar2D(const std::string& filename);

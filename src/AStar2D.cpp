@@ -199,13 +199,3 @@ T AStar2D<T>::compHeuristic(const Point2D<T>& current, const Point2D<T>& desired
     const T dist = std::sqrt(pow(desired.getX() - current.getX(), 2) + pow(desired.getY() - current.getY(), 2));
     return dist;
 }
-
-/**
- * @brief Print the content of a point info set
- * @param[in] ptInfo Point info as needed
- */
-template<typename T>
-void AStar2D<T>::printpathElement(const pathElement ptInfo) const
-{
-    std::cout << "Dist = " << std::get<0>(ptInfo) << "; Current = " << std::get<1>(ptInfo) << "; Predecessor = " << std::get<2>(ptInfo) << std::endl;
-}
