@@ -24,11 +24,11 @@ class SearchBase2D {
         Point2D<T> goal; /**< Goal to be found */
         std::unique_ptr<Grid2D<T>> grid; /**< Contains information on the points on the grid */
         std::unique_ptr<std::deque<size_t>> path; /**< All points of the path found by the algorithm */
+        std::vector<pathElement> visited; /**< Nodes and their predecessors that have been visited */
         std::string fileName; /**< Name of the file to take the plan from */
         std::string algorithmName; /**< Name of the algorithm to be applied */
 
     protected:
-        std::vector<pathElement> visited; /**< Nodes and their predecessors that have been visited */
 
         void setBegin(const Point2D<T>& point);
         void setPath(const size_t col, const size_t row);
@@ -67,6 +67,7 @@ class SearchBase2D {
         Point2D<T> getCoordinates(const size_t ind) const;
 
         std::string getAlgorithmName() const;
+        T getCumulDist(const size_t ind);
 
         void printGrid() const;
         void printPath() const;

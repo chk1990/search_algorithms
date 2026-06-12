@@ -75,18 +75,7 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
 
         const size_t indCurrent = std::get<1>(elem);
         const Point2D<T> current = this->getCoordinates(indCurrent);
-
-        auto visitCrit = [indCurrent](const pathElement& ptInfoVec) {
-            // find the point entity that has a given current index
-            const size_t indCurr = std::get<1>(ptInfoVec);
-            return indCurr == indCurrent;
-        };
-
-        typename std::vector<pathElement>::iterator it;
-        it = std::find_if(this->visited.begin(), this->visited.end(), visitCrit);
-
-        // actual cost from the current node for which the children are investigated
-        const T cumulDistCurr = std::get<0>(*it);
+        const T cumulDistCurr = this->getCumulDist(indCurrent);
 
         for(T dX = -1; dX <= 1; ++dX) {
             for(T dY = -1; dY <= 1; ++dY) {
@@ -152,6 +141,7 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
         pq->pop();
     }
 
+    // Backtracking and export
     this->backtrack();
     
     this->exportPath();
