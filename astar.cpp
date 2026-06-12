@@ -1,5 +1,5 @@
 /**
- * @file search_base.cpp
+ * @file astar.cpp
  * @author Christoph Kolhoff
  */
 

@@ -80,7 +80,7 @@ if __name__ == "__main__":
         xPath.append(float(coordinates[0]))
         yPath.append(float(coordinates[1]))
 
-    ax.plot(xPath, yPath, color=(1,0,0), label="A*")
+    ax.plot(xPath, yPath, color=(1,0,0), label="found path")
 
     ax.plot(xPath[0], yPath[0], 'o', color=(1, 0, 0), label="Start")
     ax.plot(xPath[-1], yPath[-1], 'o', color=(0, 1, 0), label="Goal")

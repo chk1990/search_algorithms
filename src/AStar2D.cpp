@@ -49,7 +49,7 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
 
     const T step = this->getGridStep();
 
-    // put all children to the queue
+    // put first child to the queue
     priorityQueue* pq = this->prioQueue.get();
     this->setBegin(start);
 

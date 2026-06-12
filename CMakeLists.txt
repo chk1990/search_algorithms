@@ -39,6 +39,15 @@ target_include_directories(astar
     PRIVATE inc
 )
 
+add_executable(bfs
+    bfs.cpp
+    ${SRC_FILES}
+)
+
+target_include_directories(bfs
+    PRIVATE inc
+)
+
 # ============================================
 # Configure source files
 
