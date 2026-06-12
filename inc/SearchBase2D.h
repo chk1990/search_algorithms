@@ -29,7 +29,6 @@ class SearchBase2D {
         std::string algorithmName; /**< Name of the algorithm to be applied */
 
     protected:
-
         void setBegin(const Point2D<T>& point);
         void setPath(const size_t col, const size_t row);
         void setPath(const size_t ind);
@@ -66,10 +65,8 @@ class SearchBase2D {
         Point2D<T> getMinLimPoint() const;
         Point2D<T> getMaxLimPoint() const;
         Point2D<T> getCoordinates(const size_t ind) const;
-
         std::string getAlgorithmName() const;
         T getCumulDist(const size_t ind);
-
         void printGrid() const;
         void printPath() const;
 };

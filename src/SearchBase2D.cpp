@@ -281,7 +281,7 @@ void SearchBase2D<T>::add2path(const size_t ind)
 }
 
 /**
- * @brief Print all node indices of the computed path
+ * @brief Print all point indices of the computed path
  */
 template <typename T>
 void SearchBase2D<T>::printPath() const
@@ -373,7 +373,7 @@ std::string SearchBase2D<T>::getAlgorithmName() const
 }
 
 /**
- * @brief Adds a node to the visited ones
+ * @brief Adds a point to the visited ones
  * @param[in] elem Point information to add
  */
 template <typename T>
@@ -383,7 +383,7 @@ void SearchBase2D<T>::addVisited(const pathElement& elem)
 }
 
 /**
- * @brief Backtracks the path that has been passed
+ * @brief Finds the path from the visited points
  */
 template <typename T>
 void SearchBase2D<T>::backtrack()
@@ -437,7 +437,7 @@ T SearchBase2D<T>::getCumulDist(const size_t ind)
     typename std::vector<pathElement>::iterator it;
     it = std::find_if(this->visited.begin(), this->visited.end(), visitCrit);
 
-    // actual cost from the current node for which the children are investigated
+    // actual cost from the current point for which the children are investigated
     const T cumulDistCurr = std::get<0>(*it);
 
     return cumulDistCurr;

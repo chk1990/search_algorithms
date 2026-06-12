@@ -111,13 +111,13 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
                 // can be set as discovered and skipped afterwards because A* acts optimal
                 this->setDiscovered(indSuccessor);
 
-                // direct distance from current node to next one
+                // direct distance from current point to next one
                 const T distCurrSucc = this->compHeuristic(successor, current);
 
                 // heuristic from successor to goal
                 const T heurDistSucc = this->compHeuristicGoal(successor);
 
-                // find the predecessor node in visited
+                // find the predecessor point in visited
                 const T actualCost = cumulDistCurr + distCurrSucc;
                 const pathElement pt = {actualCost, indSuccessor, indCurrent};
                 this->addVisited(pt);
@@ -142,6 +142,7 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
     }
 
     // Backtracking and export
+    // =============================================
     this->backtrack();
     
     this->exportPath();
@@ -149,7 +150,7 @@ void AStar2D<T>::findPath(const Point2D<T>& start)
 }
 
 /**
- * @brief Print all elements of the priority queue
+ * @brief Print all elements of the priority queue. It is empty afterwards.
  */
 template<typename T>
 void AStar2D<T>::printPrioQueue() const
@@ -165,8 +166,8 @@ void AStar2D<T>::printPrioQueue() const
 /**
  * @brief Adds a point to the priority queue
  * @param[in] ind Index of point to add
- * @param[in] cost Cost from begin to selected node
- * @param[in] predec Predecessor of this node
+ * @param[in] cost Cost from begin to selected point
+ * @param[in] predec Predecessor of this point
  */
 template<typename T>
 void AStar2D<T>::addToFringe(const T cost, const size_t ind, size_t predec)
