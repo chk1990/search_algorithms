@@ -61,6 +61,7 @@ search_algorithms/
 ├── inc/            # Public headers
 ├── src/            # Source files
 ├── unit_tests/     # Unit tests
+├── testing/        # Execution of algorithms
 ├── docs/           # Documentation
 ├── build/          # Build output (generated)
 ├── compile.sh      # Compile everything easily
