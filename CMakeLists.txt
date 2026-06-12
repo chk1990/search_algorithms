@@ -31,7 +31,7 @@ target_include_directories(generate_plans
 )
 
 add_executable(astar
-    astar.cpp
+    testing/astar.cpp
     ${SRC_FILES}
 )
 
@@ -40,7 +40,7 @@ target_include_directories(astar
 )
 
 add_executable(bfs
-    bfs.cpp
+    testing/bfs.cpp
     ${SRC_FILES}
 )
 
@@ -49,7 +49,7 @@ target_include_directories(bfs
 )
 
 add_executable(dfs
-    dfs.cpp
+    testing/dfs.cpp
     ${SRC_FILES}
 )
 
