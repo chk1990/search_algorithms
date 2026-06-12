@@ -38,7 +38,7 @@ class AStar2D : public SearchBase2D<T> {
         std::unique_ptr<priorityQueue> prioQueue; /**< Priority queue to sort the following points to investigate by distance. */
 
         T compHeuristic(const Point2D<T>& current, const Point2D<T>& desired) const;
-        T compHeuristicGoal(const Point2D<T>& current) const override;
+        T compHeuristicGoal(const Point2D<T>& current) const;
         void addToFringe(const T cost, const size_t ind, size_t predec) override;
 
     public:

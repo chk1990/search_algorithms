@@ -39,7 +39,6 @@ class SearchBase2D {
         void exportPath() const;
         void exportTree() const;
         virtual void addToFringe(const T cost, const size_t ind, size_t predec) = 0;
-        virtual T compHeuristicGoal(const Point2D<T>& current) const = 0;
         std::string getFilename() const;
         void addVisited(const pathElement& elem);
         void backtrack();

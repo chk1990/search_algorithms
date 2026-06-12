@@ -11,11 +11,13 @@
 #include "SearchBase2D.h"
 
 template<typename T>
-class DepthFirstSearch2D  : public SearchBase2D<T> {
+class DepthFirstSearch2D : public SearchBase2D<T> {
     private:
-        std::stack<T> stack;
+        std::unique_ptr<std::stack<size_t>> stack;
 
     public:
+        DepthFirstSearch2D(const std::string& filename);
+
         void findPath(const Point2D<T>& start, const Point2D<T>& goal);
 };
 

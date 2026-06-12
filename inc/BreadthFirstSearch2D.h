@@ -13,10 +13,14 @@
 template<typename T>
 class BreadthFirstSearch2D : public SearchBase2D<T> {
     private:
-        std::queue<T> queue;
+        std::unique_ptr<std::queue<size_t>> queue;
+
+        void addToFringe(const T cost, const size_t ind, size_t predec);
 
     public:
-        void findPath(const Point2D<T>& start, const Point2D<T>& goal);
+        BreadthFirstSearch2D(const std::string& filename);
+
+        void findPath(const Point2D<T>& start);
 };
 
 template class BreadthFirstSearch2D<int>;
