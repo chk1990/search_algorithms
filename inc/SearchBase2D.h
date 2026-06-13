@@ -29,6 +29,8 @@ class SearchBase2D {
         std::string algorithmName; /**< Name of the algorithm to be applied */
 
     protected:
+        bool reached = false;
+
         void setBegin(const Point2D<T>& point);
         void setPath(const size_t col, const size_t row);
         void setPath(const size_t ind);
@@ -68,6 +70,7 @@ class SearchBase2D {
         T getCumulDist(const size_t ind);
         void printGrid() const;
         void printPath() const;
+        bool isGoalReached() const;
 };
 
 template class SearchBase2D<int>;

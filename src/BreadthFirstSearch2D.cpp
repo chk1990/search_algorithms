@@ -127,6 +127,7 @@ void BreadthFirstSearch2D<T>::findPath(const Point2D<T>& start)
 
                 if(this->isGoal(successor)) {
                     leave = true;
+                    this->reached = true;
                 }
 
                 // add new element to queue

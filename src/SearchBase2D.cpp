@@ -452,3 +452,12 @@ void SearchBase2D<T>::printpathElement(const pathElement ptInfo) const
 {
     std::cout << "Dist = " << std::get<0>(ptInfo) << "; Current = " << std::get<1>(ptInfo) << "; Predecessor = " << std::get<2>(ptInfo) << std::endl;
 }
+
+/**
+ * @brief Shows if a goal has been reached
+ */
+template<typename T>
+bool SearchBase2D<T>::isGoalReached() const
+{
+    return this->reached;
+}
