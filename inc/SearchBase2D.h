@@ -71,6 +71,8 @@ class SearchBase2D {
         void printGrid() const;
         void printPath() const;
         bool isGoalReached() const;
+        size_t numVisitedPoints() const;
+        T finalCost() const;
 };
 
 template class SearchBase2D<int>;

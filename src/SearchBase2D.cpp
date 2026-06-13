@@ -461,3 +461,21 @@ bool SearchBase2D<T>::isGoalReached() const
 {
     return this->reached;
 }
+
+/**
+ * @brief Shows how many points have been visited during the search
+ */
+template<typename T>
+size_t SearchBase2D<T>::numVisitedPoints() const
+{
+    return this->visited.size();
+}
+
+/**
+ * @brief Determines the entire cost of the found path
+ */
+template<typename T>
+T SearchBase2D<T>::finalCost() const
+{
+    return std::get<0>(this->visited.back());
+}
