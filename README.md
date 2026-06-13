@@ -16,12 +16,10 @@ Currently implemented / planned algorithms may include:
 
 - Breadth-First Search (BFS)
 - Depth-First Search (DFS)
-- Dijkstra
 - A*
 - Greedy Best-First Search
 - Bidirectional Search
-- Flood Fill
-- Heuristic-based pathfinding
+- Uniform-Cost Search
 
 Additional algorithms and optimizations may be added over time.
 
